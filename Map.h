@@ -63,6 +63,4 @@ public:
     void exploreSpace(int row, int col);
 };
 
-void mapInitializer();
-
 #endif
