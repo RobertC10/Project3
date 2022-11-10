@@ -8,7 +8,6 @@
 using namespace std;
 
 void phaseOne();
-Map mapInitializer(Map);
 
 int main()
 {
