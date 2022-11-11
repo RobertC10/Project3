@@ -91,7 +91,11 @@ void NPC::setNPCPuzzle(bool puzzleCheck)
         while (getline(file_input, riddle))
         {
             split (riddle, ',', temp_riddle, 50);
-            //To be filled
+            //To be filled wherein the riddle will be separated by riddle and answer
+            //They will then be assigned line-by-line to their own temp array
+            //From there the array is randomly selected from a random num generator
+            //Output array, prompt user input
+            //Compare answers and determine the puzzle completion successfully to be returned as puzzleCheck
         }
     }
 
