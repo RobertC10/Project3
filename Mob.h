@@ -52,5 +52,5 @@ class Mob
         void setFood(int, bool);
         bool getKey();
         void getKey(bool, bool);
-
+}
 #endif
