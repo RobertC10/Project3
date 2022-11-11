@@ -8,6 +8,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <ctime> 
+#include <cstdlib>
 #include <string>
 #include "Mob"
 #include "Party"
