@@ -7,16 +7,17 @@
 
 using namespace std;
 
-void phaseOne();
+void phaseOne(Map/*, Mob*/);
 
 int main()
 {
-    phaseOne();
+    Map map = Map();
+    //Mob Sorcerer = Sorcerer();
+    phaseOne(map/*, sorcerer*/);
 }
 
-void phaseOne()
+void phaseOne(Map map/*, Mob sorcerer*/)
 {
-    Map map = Map();
     srand(time(0));
     int rand1 = rand() % 12;
     int rand2 = rand() % 12;
