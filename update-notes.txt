@@ -26,3 +26,5 @@ stuff becasue we need a way to change armor and stuff like that as well so we ca
     NormalActions in actions.cpp also does not work when it's in actions.cpp - RC
 
     Reason for different Action functions: we need different sets of actions depending on if we're on a room space, open space, or an npc space - RC
+    
+    Will also work on making comments and discriptions for each function in my classes throughout the week. - RC
