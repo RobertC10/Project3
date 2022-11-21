@@ -56,14 +56,26 @@ using namespace std;
         name_ = name;
     }
 
-    void Member::setFullness(int fullness)
+    void Member::addFullness(int fullness)
     {
         //if fullness is greater than 50 and less than 0, return, if not, then set fullness_ to fullness
-        if(fullness>50 || fullness<0)
+        if(fullness_ + fullness >= 50)
         {
+            fullness_ = 50;
             return;
         }
-        fullness_ = fullness;
+        fullness_ += fullness;
+    }
+
+    void Member::subFullness(int fullness)
+    {
+        if(fullness_ - fullness <= 0)
+        {
+            fullness_ = 0;
+            is_alive_ = false;
+            return;
+        }
+        fullness_ -= fullness;
     }
 
     void Member::setAlive(bool is_alive)

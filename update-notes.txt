@@ -4,3 +4,25 @@
     move() in actions probably will not work because it needs to directly access our map object. This means that even if we could pass our map object into the our move(),
 we would need to return that map object to our main Driver. Because the Map class already has a move() function, I have opted to just use that instead. - RC
 
+    I am thinking, we could have like a reccursive function. kinda. We could have the main menu function or whatever and it would just point the player to the right function
+passing what needs to be passed through. Like it could point to the Actions Normal function and once that's done it would just go back to the main which would thenn point it 
+to the right function again. For example:
+
+        Main(prints map, if on a normal spot, go to Actions-Normal) --> 
+        ActionsNormal(has player do the actions they want to, changes map, party, and members, and all that needs to be changed, then passes the objects that could be changed-
+        through back to the Main function) -->'
+        Main(if player is in a room, pass everything to RoomActions function) -->
+        RoomActions(So on and so forth)
+
+    -RC
+
+    Need to change cookware and weapons array in Party class to have addweapons and subtractweapons for cookware too; See Treasure functions. - RC
+
+    Monster fights need to be updated for NormalAction() function in MainDriver.cpp - RC
+
+    We need the Merchant menu to be completed so we can change the amount of Ingredients and cookware so we can cook and eat food. This goes for really most of the
+stuff becasue we need a way to change armor and stuff like that as well so we can work on misfortunes. - RC
+
+    NormalActions in actions.cpp also does not work when it's in actions.cpp - RC
+
+    Reason for different Action functions: we need different sets of actions depending on if we're on a room space, open space, or an npc space - RC

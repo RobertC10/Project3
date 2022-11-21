@@ -110,9 +110,9 @@ using namespace std;
         num_members_ = num_members;
     }
 
-    void Party::setGold(int gold)
+    void Party::addGold(int gold)
     {
-        gold_ = gold;
+        gold_ += gold;
     }
 
     void Party::setMemberAt(int index, Member myMember)
@@ -133,14 +133,14 @@ using namespace std;
         num_members_--;
     }
 
-    void Party::setRoomsCleared(int rooms_cleared)
+    void Party::addRoomsCleared(int rooms_cleared)
     {
-        rooms_cleared_ = rooms_cleared;
+        rooms_cleared_ += rooms_cleared;
     }
 
-    void Party::setIngredients(int ingredients)
+    void Party::addIngredients(int ingredients)
     {
-        ingredients_ = ingredients;
+        ingredients_ += ingredients;
     }
 
     void Party::setCookwareAt(int index, int number)
@@ -153,22 +153,27 @@ using namespace std;
         weapons_[index] = number;
     }
 
-    void Party::setArmor(int armor)
+    void Party::addArmor(int armor)
     {
-        armor_ = armor;
+        armor_ += armor;
     }
 
-    void Party::setTreasuresAt(int index, int treasures)
+    void Party::addTreasuresAt(int index, int treasures)
     {
-        treasures_[index] = treasures;
+        treasures_[index] += treasures;
     }
 
-    void Party::setKeys(int keys)
+    void Party::subTreasuresAt(int index, int treasures)
     {
-        keys_ = keys;
+        treasures_[index] -= treasures;
     }
 
-    void Party::printMenu(/*Mob sorcerer, */Member user)
+    void Party::addKeys(int keys)
+    {
+        keys_ += keys;
+    }
+
+    void Party::printMenu(/*Mob sorcerer, */)
     {
         cout<<"+-------------+"<<endl;
         cout<<"| STATUS      |"<<endl;
@@ -185,9 +190,8 @@ using namespace std;
         cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
         cout<<"+-------------+"<<endl;
         cout<<"| PARTY       |"<<endl;
-        cout<<"+-------------+"<<endl;
-        cout<<"| "<<user.getName()<<" | Fullness: "<<user.getFullness()<<endl;    
-        for(int i = 1; i < getNumMembers(); i++)
+        cout<<"+-------------+"<<endl; 
+        for(int i = 0; i < getNumMembers(); i++)
         {
         cout<<"| "<<getMembersAt(i).getName()<<" | Fullness: "<<getMembersAt(i).getFullness()<<endl;    
         }

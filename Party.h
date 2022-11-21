@@ -35,18 +35,19 @@ class Party
         int getTreasuresAt(int);
         int getKeys();
         void setNumMembers(int);
-        void setGold(int);
+        void addGold(int);
         void setMemberAt(int, Member);
         void addMember(Member);
         void removeMemberAt(int);
-        void setRoomsCleared(int);
-        void setIngredients(int);
+        void addRoomsCleared(int);
+        void addIngredients(int);
         void setCookwareAt(int, int);
         void setWeaponsAt(int, int);
-        void setArmor(int);
-        void setTreasuresAt(int, int);
-        void setKeys(int);
-        void printMenu(/*Mob, */Member);
+        void addArmor(int);
+        void addTreasuresAt(int, int);
+        void subTreasuresAt(int, int);
+        void addKeys(int);
+        void printMenu(/*Mob, */);
 };
 
 #endif

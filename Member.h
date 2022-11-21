@@ -20,7 +20,8 @@ class Member
         bool getAlive();
         char getWeapon();
         void setName(string);
-        void setFullness(int);
+        void addFullness(int);
+        void subFullness(int);
         void setAlive(bool);
         void setWeapon(char);
 
