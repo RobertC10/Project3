@@ -16,6 +16,8 @@ void phaseOne(Map, Party/*, Mob*/);
 
 void NormalAction(Map, Party/*, Mob*/);
 
+void NPCAction(Map, Party);
+
 int main()
 {
     Map map = Map();
@@ -95,6 +97,10 @@ void phaseThree(Map map, Party my_party)
     if(map.isFreeSpace(map.getPlayerRow(), map.getPlayerCol()))
     {
         NormalAction(map, my_party);
+    }else
+    if(map.isNPCLocation(map.getPlayerRow(), map.getPlayerCol()))
+    {
+        NPCAction(map, my_party);
     }
     
 }
@@ -243,6 +249,64 @@ void NormalAction(Map map, Party my_party)
                 cout<<"Please enter a valid input."<<endl;
                 NormalAction(map, my_party);
                 break;
+    }
+    phaseThree(map, my_party);
+}
+
+void NPCAction(Map map, Party my_party)
+{
+    int actionOption = 0;
+    bool truefalse = 0;
+    int temp_int = 0;
+    char moveDirection = ' ';
+    Member temp_member;
+    printActionsNPC();
+    int rand1 = 0;
+    int rand2 = 0;
+    cin>>actionOption;
+    switch(actionOption)
+    {
+        case 1:
+            //repeats until user gives a vaild character
+            while(!truefalse)
+            {
+                cout<<"What direction do you want to move? w, a, s, or d:";
+                cin>>moveDirection;
+                truefalse = map.move(moveDirection);
+            }
+            //reduces parties hunger by 1 if unlucky
+            for(int i = 0; i < 5; i++)
+            {
+                rand1 = rand() % 10;
+                if(rand1 == 1 || rand1 == 2)
+                {
+                    temp_member = my_party.getMembersAt(i);
+                    temp_member.subFullness(1);
+                    my_party.setMemberAt(i, temp_member);
+                }
+            }
+            break;
+        case 2:
+            //talk to NPC
+            break;
+        case 3:
+            //game over
+            cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
+            cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
+            cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
+            cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
+            cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
+            cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
+            cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
+            cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
+            cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
+            cout<<"                                                     ░                   "<<endl;
+            return;
+            break;
+        default:
+            cout<<"Please enter a valid input."<<endl;
+            NPCAction(map, my_party);
+            break;
     }
     phaseThree(map, my_party);
 }

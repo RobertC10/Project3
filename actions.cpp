@@ -14,6 +14,15 @@ void printActionsNormal()
     cout<<"5. Give up"<<endl;
 }
 
+void printActionsNPC()
+{
+    cout<<"It seems there's a Non-Player-Character here."<<endl;
+    cout<<"You can do a few things:"<<endl;
+    cout<<"1. Move"<<endl;
+    cout<<"2. Speak to NPC"<<endl;
+    cout<<"3. Give up"<<endl;
+}
+
 
 /*void NormalAction(Map map, Party my_party)
 {

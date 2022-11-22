@@ -13,6 +13,8 @@ void printActionsNormal();
 
 void NormalActions(Map, Party/*, Mob*/);
 
+void printActionsNPC();
+
 //Map mover(Map);
 
 bool investigate();
