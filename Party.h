@@ -47,6 +47,7 @@ class Party
         void addTreasuresAt(int, int);
         void subTreasuresAt(int, int);
         void addKeys(int);
+        void subkeys(int);
         void printMenu(/*Mob, */);
 };
 

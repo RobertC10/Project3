@@ -28,3 +28,25 @@ stuff becasue we need a way to change armor and stuff like that as well so we ca
     Reason for different Action functions: we need different sets of actions depending on if we're on a room space, open space, or an npc space - RC
     
     Will also work on making comments and discriptions for each function in my classes throughout the week. - RC
+
+
+22 Nov 22
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    Added NPCactions and RoomActions in Main Driver. Both still need the NPC interaction and the monster fight respectively. I also worked on the door puzzle for the room.
+I finished the rock paper scissors game but I'm thinking of making a connect 4 game as well. Just for shits and giggles. But yeah need the NPC and Mob classes updated to work on 
+finishing the actions. - RC
+
+    changed and need to change some things in Party class. Mainly changing the setters to add and subtract functions. - RC
+
+    Putting thoughts on to the screen here, what we need left is:
+        - Finish the Merchant menu
+        - Monster fight
+        - Cooking and eating food
+        - changing Sorcerer's anger every turn
+        - make checks every turn to make sure that people aren't dead or about to die, at least by hunger 
+        - make checks every turn to make sure that any conditions to end the game haven't happened
+        - implement misfortunes
+        - change armor cookware and weapons functions in Party to add and subtract
+        - do NPC puzzles
+        - 

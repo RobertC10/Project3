@@ -18,6 +18,8 @@ void NormalAction(Map, Party/*, Mob*/);
 
 void NPCAction(Map, Party);
 
+void RoomAction(Map, Party);
+
 int main()
 {
     Map map = Map();
@@ -101,6 +103,10 @@ void phaseThree(Map map, Party my_party)
     if(map.isNPCLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
         NPCAction(map, my_party);
+    }else
+    if(map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol()))
+    {
+        RoomAction(map, my_party);
     }
     
 }
@@ -288,6 +294,135 @@ void NPCAction(Map map, Party my_party)
             break;
         case 2:
             //talk to NPC
+            break;
+        case 3:
+            //game over
+            cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
+            cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
+            cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
+            cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
+            cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
+            cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
+            cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
+            cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
+            cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
+            cout<<"                                                     ░                   "<<endl;
+            return;
+            break;
+        default:
+            cout<<"Please enter a valid input."<<endl;
+            NPCAction(map, my_party);
+            break;
+    }
+    phaseThree(map, my_party);
+}
+
+void RoomAction(Map map, Party my_party)
+{
+    int actionOption = 0;
+    bool truefalse = 0;
+    int temp_int = 0;
+    string playerOption = "";
+    bool puzzlecompleted = 0;
+    char moveDirection = ' ';
+    Member temp_member;
+    printActionsRoom();
+    int rand1 = 0;
+    int rand2 = 0;
+    cin>>actionOption;
+    switch(actionOption)
+    {
+        case 1:
+            //repeats until user gives a vaild character
+            while(!truefalse)
+            {
+                cout<<"What direction do you want to move? w, a, s, or d:";
+                cin>>moveDirection;
+                truefalse = map.move(moveDirection);
+            }
+            //reduces parties hunger by 1 if unlucky
+            for(int i = 0; i < 5; i++)
+            {
+                rand1 = rand() % 10;
+                if(rand1 == 1 || rand1 == 2)
+                {
+                    temp_member = my_party.getMembersAt(i);
+                    temp_member.subFullness(1);
+                    my_party.setMemberAt(i, temp_member);
+                }
+            }
+            break;
+        case 2:
+            if(my_party.getKeys() == 0)
+            {
+                cout<<endl<<"It seems that you don't have any keys. You'll have to complete a puzzle if you want to enter without a key."<<endl;
+                cout<<"If you lose, one of you die. Do you want to try?"<<endl;
+                cin>>playerOption;
+
+                //making sure the player actually wants to do this
+                if(playerOption[0] == 'Y' || playerOption[0] == 'y')
+                {
+                cout<<"Are you sure? There's no backing out once you start."<<endl;
+                }else if(playerOption[0] == 'N' || playerOption[0] == 'n')
+                {
+                    cout<<"ok, sounds good."<<endl;
+                    RoomAction(map, my_party);
+                }
+                while(playerOption[0] != 'Y' && playerOption[0] != 'y' && playerOption[0] != 'N' && playerOption[0] != 'n')
+                {
+                    cout<<"Please enter a valid input."<<endl;
+                    cin>>playerOption;
+                    if(playerOption[0] == 'Y' || playerOption[0] == 'y')
+                    {
+                    cout<<"Are you sure? There's no backing out once you start."<<endl;
+                    }else if(playerOption[0] == 'N' || playerOption[0] == 'n')
+                    {
+                        cout<<"ok, sounds good."<<endl;
+                        RoomAction(map, my_party);
+                    }
+                }
+                
+                cin>>playerOption;
+                if(playerOption[0] == 'Y' || playerOption[0] == 'y')
+                {
+                    cout<<"Ok, here we go."<<endl<<endl;
+                }else if(playerOption[0] == 'N' || playerOption[0] == 'n')
+                {
+                    cout<<"ok, sounds good."<<endl;
+                    RoomAction(map, my_party);
+                }
+                while(playerOption[0] != 'Y' && playerOption[0] != 'y' && playerOption[0] != 'N' && playerOption[0] != 'n')
+                {
+                    cout<<"Please enter a valid input."<<endl;
+                    cin>>playerOption;
+                    if(playerOption[0] == 'Y' || playerOption[0] == 'y')
+                    {
+                        cout<<"Ok, here we go."<<endl<<endl;
+                    }else if(playerOption[0] == 'N' || playerOption[0] == 'n')
+                    {
+                        cout<<"ok, sounds good."<<endl;
+                        RoomAction(map, my_party);
+                    }
+                }
+
+                puzzlecompleted = doorPuzzle();
+                if(puzzlecompleted == true)
+                {
+                    my_party.addKeys(1);
+                }else
+                {
+                    rand2 = rand() % 4 + 1;
+                    temp_member = my_party.getMembersAt(rand2);
+                    temp_member.setAlive(0);
+                    cout<<"Well there you go. You killed "<<temp_member.getName()<<". Good job."<<endl;
+                    my_party.setMemberAt(rand2, temp_member);
+                }
+            }
+            if(my_party.getKeys() != 0)
+            {
+                my_party.subkeys(1);
+                //fight monster depending on how many rooms cleared with switch statement
+            }
             break;
         case 3:
             //game over

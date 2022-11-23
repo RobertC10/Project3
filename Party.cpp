@@ -173,6 +173,14 @@ using namespace std;
         keys_ += keys;
     }
 
+    void Party::subkeys(int keys)
+    {
+        if(keys_ - keys >= 0)
+        {
+        keys_ -= keys;
+        }
+    }
+
     void Party::printMenu(/*Mob sorcerer, */)
     {
         cout<<"+-------------+"<<endl;

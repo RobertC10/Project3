@@ -11,20 +11,14 @@ using namespace std;
 
 void printActionsNormal();
 
-void NormalActions(Map, Party/*, Mob*/);
+//void NormalActions(Map, Party/*, Mob*/);
 
 void printActionsNPC();
 
+void printActionsRoom();
+
+bool doorPuzzle();
+
 //Map mover(Map);
-
-bool investigate();
-
-bool fight();
-
-bool cookAndEat();
-
-void giveUp();
-
-bool readMonster();
 
 #endif
