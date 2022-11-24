@@ -201,7 +201,10 @@ using namespace std;
         cout<<"+-------------+"<<endl; 
         for(int i = 0; i < getNumMembers(); i++)
         {
-        cout<<"| "<<getMembersAt(i).getName()<<" | Fullness: "<<getMembersAt(i).getFullness()<<endl;    
+            if(getMembersAt(i).getAlive() == 1)
+            {
+                cout<<"| "<<getMembersAt(i).getName()<<" | Fullness: "<<getMembersAt(i).getFullness()<<endl;    
+            }
         }
         cout<<"+-------------+"<<endl;
         

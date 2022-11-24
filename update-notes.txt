@@ -49,4 +49,11 @@ finishing the actions. - RC
         - implement misfortunes
         - change armor cookware and weapons functions in Party to add and subtract
         - do NPC puzzles
-        - 
+
+23 Nov 22
+------------------------------------------------------------------------------------------------------------------------
+    Added muthafuckinass connect 4 for one of the door puzzles - RC
+
+    still definitely need to check every time we go through that we haven't won or lost. - RC
+
+    Also made it so that in printMenu() for Party class, it only prints that party members that are alive. - RC

@@ -3,6 +3,7 @@
 #include "actions.h"
 #include "Map.h"
 #include "Party.h"
+#include "connect4.h"
 
 void printActionsNormal()
 {
@@ -34,7 +35,7 @@ void printActionsRoom()
 bool doorPuzzle()
 {
     srand(time(0));
-    int rand1 = rand() % 1;
+    int rand1 = rand() % 2;
     int rand2 = 0;
 
     switch (rand1)
@@ -110,8 +111,23 @@ bool doorPuzzle()
             }
         }
     }
-        break;
-    
+    break;
+    case 1:
+        {
+            bool winloss = 0;
+            connect4 game = connect4();
+            winloss = game.computerGame();
+            if(winloss == 1)
+            {
+                cout<<"You may enter."<<endl;
+                return 1;
+            }else
+            if(winloss == 0)
+            {
+                return 0;
+            }
+        }
+    break;    
     default:
         break;
     }

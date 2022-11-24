@@ -413,6 +413,11 @@ void RoomAction(Map map, Party my_party)
                 {
                     rand2 = rand() % 4 + 1;
                     temp_member = my_party.getMembersAt(rand2);
+                    while(temp_member.getAlive() == 0)
+                    {
+                        rand2 = rand() % 4 + 1;
+                        temp_member = my_party.getMembersAt(rand2);
+                    }
                     temp_member.setAlive(0);
                     cout<<"Well there you go. You killed "<<temp_member.getName()<<". Good job."<<endl;
                     my_party.setMemberAt(rand2, temp_member);
