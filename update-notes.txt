@@ -57,3 +57,22 @@ finishing the actions. - RC
     still definitely need to check every time we go through that we haven't won or lost. - RC
 
     Also made it so that in printMenu() for Party class, it only prints that party members that are alive. - RC
+
+24 Nov 22
+------------------------------------------------------------------------------------------------------------------------
+    Added a psuedoMenu for the merchant (original became bugged along with most others involving Mob and NPC classes)
+    It should be up and ready for testing. Potential usage inside an action class instead for creation each time 
+    interaction with NPC occurs? - JW
+
+    still definitely need to check redo Mob class (managing to split the text file fine but accessing other classes and
+    storing these mobs become hazy and bug the shit out of the rest of the code). - JW
+
+    Also began on new system for Sorcerer anger. Rather than putting it in Mob class, will be focused into actions class
+    as a function applied for any action respectively. It should be up and running in a few hours since this commit. - JW
+
+    Run over the menu (operational one should be inside phaseTwo already) and let me know if anything is bugged with the 
+    MerchantMenu draft I made or anything good about it that I might be able to use or implement in other classes. 
+    (Also note it might not first work since I may have labeled the party members being used incorrectly which you should
+    be able to easily fix with CTRL-F for respective mistakes) -JW
+
+    Finally...HAPPY MUTHAFUKIN BIRTHDAY -JW

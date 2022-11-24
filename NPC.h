@@ -14,8 +14,8 @@
 #include <ctime> 
 #include <cstdlib>
 #include <string>
-#include "Mob"
-#include "Party"
+#include "Mob.h"
+#include "Party.h"
 using namespace std;
 
 
@@ -28,27 +28,27 @@ using namespace std;
 class NPC
 {
     private:
-        Mob monsters[50];
+        //Mob monsters[50];
         Party party_;
         int numEncounterd;
         bool spaceExplored;
         string NPCPuzzle[50];
         bool puzzleCheck;
-        Mob npcHostile[50];
+        //Mob npcHostile[50];
         void merchantMarket;
 
     public:
         NPC();
-        NPC(int, bool, bool, Mob, void);
+        NPC(int, bool, bool,/*Mob*/ void);
         int getNumNPC();
         bool setNumNPC(int);
         bool getspaceExplored();
-        int setspaceExplored(bool)
+        int setspaceExplored(bool);
         void setNPCPuzzle(bool);
         bool getbefriendPuzzle();
         int setbefriendPuzzle(bool);
-        Mob getMob();
-        bool setMob(bool, Mob)
+        /*Mob getMob();
+        bool setMob(bool, Mob)*/
         void merchantMarket(Party);
 };
 
