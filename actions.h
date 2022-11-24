@@ -3,11 +3,12 @@
 
 #include <string>
 #include <iostream>
-//#include "mob.h"
+#include "Mob.h"
 #include "Map.h"
 #include "Party.h"
 
 using namespace std;
+
 
 void printActionsNormal();
 
@@ -18,6 +19,10 @@ void printActionsNPC();
 void printActionsRoom();
 
 bool doorPuzzle();
+
+void readMobs();
+
+void sorcerersAnger();
 
 //Map mover(Map);
 

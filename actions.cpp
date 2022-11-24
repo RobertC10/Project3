@@ -2,6 +2,7 @@
 #include <iostream>
 #include "actions.h"
 #include "Map.h"
+#include "Mob.h"
 #include "Party.h"
 #include "connect4.h"
 
@@ -133,6 +134,77 @@ bool doorPuzzle()
     }
 
     return 0;
+}
+
+int split (string input_string, char separator, string arr[], int arr_size)
+{
+    int tracker = 0;
+    string temp = "";
+   
+    for (int i = 0; i < input_string.length(); i++)
+    {
+            if (tracker >= arr_size)
+            {
+                return -1;
+            }
+            
+            if (input_string[i] != separator)
+            {
+                temp += input_string[i];
+            }
+            else
+            {
+                arr[tracker] = temp;
+                temp = "";
+                tracker++;
+            }
+    }
+    
+    arr[tracker] = temp;
+    
+    if (input_string != "")
+    {
+        tracker++;
+    }
+    
+    return tracker;
+}
+
+void readMobs()
+{
+    ifstream file_input;
+    file_input.open(monsters.txt);
+
+    int index = 2;
+    Mob newMob;
+    string line;
+    string temp_mob[2];
+
+    if (file_input.fail())
+    {
+        cout << "Could not open file." << endl;
+        return -1;
+    }
+    else
+    {
+        for (int i = 21; getline(file_input, line) && i < 21; i++)
+        {
+            int count = split (line, ',', temp_mob, 2);
+
+            if (count == 2)
+            {
+                newMob.setName(temp_mob[0]);
+                newMob.setStr(temp_mob[1]);
+
+                monsters_[i] = newMob;
+            }
+        }
+    }
+}
+
+void sorcerersAnger()
+{
+    //To be updated in a few hours since last commit -JW
 }
 
 
