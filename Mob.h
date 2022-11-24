@@ -14,7 +14,9 @@
 #include <ctime> 
 #include <cstdlib>
 #include <string>
-#include "Action"
+#include "actions.h"
+#include "Party.h"
+#include "NPC.h"
 using namespace std;
 
 
@@ -29,30 +31,30 @@ class Mob
     private:
         string monsterName;
         int mobStr;
-        int sorcererRage;
-        bool defeated;
+        //int sorcererRage;
+        //bool defeated;
         int goldDrop;
         int foodDrop;
         bool keyDrop;
-        Action action_[5];
+        //actions action_[5];
 
 
     public:
         Mob();
-        Mob(string,int, int, bool, int, int, int);
+        Mob(string,int, int, int, bool);
         string getName();
         void setName(string);
         int getStr();
         void setStr(int);
-        int getRage();
+        /*int getRage();
         void setRage(int);
         bool getStatus();
-        void setStatus(bool, Action);
+        void setStatus(bool, Action);*/
         int getGold();
         void setGold(int, bool);
         int getFood();
         void setFood(int, bool);
         bool getKey();
         void getKey(bool, bool);
-}
+};
 #endif

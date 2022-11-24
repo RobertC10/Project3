@@ -11,62 +11,31 @@
 #include <ctime> 
 #include <cstdlib>
 #include <string>
-#include "Mob"
+#include "Mob.h"
+#include "actions.h"
+#include "Party.h"
+#include "NPC.h"
 using namespace std;
-
-int split (string input_string, char separator, string arr[], int arr_size)
-{
-    int tracker = 0;
-    string temp = "";
-   
-    for (int i = 0; i < input_string.length(); i++)
-    {
-            if (tracker >= arr_size)
-            {
-                return -1;
-            }
-            
-            if (input_string[i] != separator)
-            {
-                temp += input_string[i];
-            }
-            else
-            {
-                arr[tracker] = temp;
-                temp = "";
-                tracker++;
-            }
-    }
-    
-    arr[tracker] = temp;
-    
-    if (input_string != "")
-    {
-        tracker++;
-    }
-    
-    return tracker;
-}
 
 Mob::Mob()
 {
     //default constructor
     monsterName = "";
     mobStr = 0;
-    sorcererRage = 0;
-    defeated = false;
+    //sorcererRage = 0;
+    //defeated = false;
     goldDrop = 0;
     foodDrop = 0;
-    keyDrop = 0;
+    keyDrop = false;
 }
 
-Mob::Mob(string name, int str,int rage, bool status, int gold, int food, int key)
+Mob::Mob(string name, int str, int gold, int food, bool key)
 {
     //parameterized constructor
     monsterName = name;
     mobStr = str;
-    sorcererRage = rage;
-    defeated = status;
+    //sorcererRage = rage;
+    //defeated = status;
     goldDrop = gold;
     foodDrop = food;
     keyDrop = key;
@@ -75,28 +44,28 @@ Mob::Mob(string name, int str,int rage, bool status, int gold, int food, int key
 int getName()
 {
     //returns the monster's name after splitting it
-    return name;
+    return monsterName;
 }
 
 void setName(string name)
 {
     //sets name to name of randomly selected mob based on file number rand
-    name = monster[x][0];
+    monsterName = name;
 }
 
 int getStr()
 {
     //returns the monster's strength after splitting it
-    return str;
+    return mobStr;
 }
 
 void setStr(int str)
 {
     //sets str of the monster randomly selected that was split from file
-    str = monster[x][1];
+    mobStr = str;
 }
 
-int getRage()
+/*int getRage()
 {
     //will return rage of the sorcerer as a value if the monster is such
     return rage;
@@ -104,10 +73,11 @@ int getRage()
 
 void setRage(int rage)
 {
+    int i = mob.getName();
     bool rageInclude;
     //will first run condition seeing if randomly selected mob is sorcerer
     //then out put it as a value to be adjusted in other classes
-    if (monster[x] == 20)
+    if (name[i] == 20)
     {
         //rage = Action action[1-5];
         rageInclude = true;
@@ -134,75 +104,65 @@ void setStatus(bool status, Action action_)
             status = true;
         }
     }
-}
+}*/
 
 int getGold()
 {
     //returns the gold drop rate of the mob
-    return gold;
+    return goldDrop;
 }
 
 void setGold(int gold, bool status)
 {
     //will use a calculation to determine gold drop if defeated
 
-    gold = 10 * str;
+    gold = 10 * mobStr;
 
-    if (status == true)
-    {
-        return gold;
-    }
-    else
-    {
-        return 0;
-    }
+    goldDrop = gold;
 }
 
 int getFood()
 {
     //returns the resource drop rate of the mob
-    return food;
+    return foodDrop;
 }
 
 void setFood(int food, bool status)
 {
     //will use a calculation to determine resource drop if defeated
     
-    food = 5 * str;
+    food = 5 * mobStr;
 
-    if (status == true)
-    {
-        return food;
-    }
-    else
-    {
-        return 0;
-    }
+    foodDrop = food;
 }
 
 bool getKey()
 {
     //returns the key drop rate of the mob
-    return key;
+    return keyDrop;
 }
 
-void setKey(bool key, bool status)
+void setKey(bool key)
 {
     //will use a calculation to determine key drop if defeated
     srand(time(0));
-    int x = 0;
+    int rand1 = 0;
+    bool dropSuccess = false;
+
     for (int i = 0; i < 20; i++)
     {
-       x = rand(i);
-    }
-    return x;
+        rand1 = (rand() & 1) < 10;
 
-    if (status == true && x <= 20)
+    }
+
+    if (rand1 == 1)
     {
-        key = true;
+        dropSuccess = true;
     }
     else
     {
-        key = false;
+        dropSuccess = false;
     }
+
+    keyDrop = dropSuccess;
 }
