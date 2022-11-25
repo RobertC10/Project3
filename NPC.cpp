@@ -164,7 +164,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
               << "3. Weapons: Even the best knights wish they had this!" << endl
               << "4. Armor: You think you can take a hit without this?" << endl
               << "5. Sell treasures: If you find anything shiny, I would be happy to take it off your hands." << endl
-              << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl
+              << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
          cin >> choice;
          cout << "> " << choice << endl;
          if(choice==1){
@@ -192,7 +192,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              {
                                 party_.subGold((itemSelect1));
                                 party_.addIngredients(itemSelect1);
-                                cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl
+                                cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
                                 cout << "" << endl;
                                 return merchantMarket(party_);
                               }
@@ -203,12 +203,12 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              string choice2 = "";
                              int quantity = 0;
                               cout << "Pots 'n pans I reckon? Some are stronger than the others." << endl;
-                              cout << "Choose one of the following:" << endl;
-                              << "1. (25%) Ceramic Pot [2 Gold]" << endl;
-                              << "2. (10%) Frying Pan [10 Gold]" << endl;
-                              << "3. ( 2%) Cauldron [20 Gold]" << endl;
+                              cout << "Choose one of the following:" << endl
+                              << "1. (25%) Ceramic Pot [2 Gold]" << endl
+                              << "2. (10%) Frying Pan [10 Gold]" << endl
+                              << "3. ( 2%) Cauldron [20 Gold]" << endl
                               << "4. Cancel" << endl;
-                              << "" << endl;
+                              cout << "" << endl;
                               cin >> itemSelect2;
                               cout << "> " << itemSelect2 << endl;
                               switch (itemSelect2)
@@ -217,7 +217,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
                                     cout << "You sure about buying " << quantity << " pots for " << quantity * 2  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice2
                                     if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
@@ -249,7 +249,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
                                     cout << "You sure about buying " << quantity << " pans for " << quantity * 10  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice2
                                     if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
@@ -281,7 +281,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
                                     cout << "You sure about buying " << quantity << " cauldrons for " << quantity * 20  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice2
                                     if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
@@ -320,14 +320,14 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              string choice3 = "";
                              int quantity2 = 0;
                               cout << "Might ya be one of those collectors? I have several combative sets that might put a real kick in yer game." << endl;
-                              cout << "Choose one of the following:" << endl;
-                              << "1. Stone Club [2 Gold]" << endl;
-                              << "2. Iron Spear [2 Gold]" << endl;
-                              << "3. (+1) Mythril Rapier [5 Gold]" << endl;
-                              << "4. (+2) Flaming Battle-Axe [15 Gold]" << endl;
-                              << "5. (+3) Vorpal Longsword [50 Gold]" << endl;
+                              cout << "Choose one of the following:" << endl
+                              << "1. Stone Club [2 Gold]" << endl
+                              << "2. Iron Spear [2 Gold]" << endl
+                              << "3. (+1) Mythril Rapier [5 Gold]" << endl
+                              << "4. (+2) Flaming Battle-Axe [15 Gold]" << endl
+                              << "5. (+3) Vorpal Longsword [50 Gold]" << endl
                               << "6. Cancel" << endl;
-                              << "" << endl;
+                              cout << "" << endl;
                               cin >> itemSelect3;
                               cout << "> " << itemSelect3 << endl;
                               switch (itemSelect3)
@@ -336,7 +336,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice3
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
@@ -368,7 +368,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " spears for " << quantity2 * 2  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice3
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
@@ -400,7 +400,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " rapiers for " << quantity2 * 5  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice3
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
@@ -432,7 +432,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " battle-axes for " << quantity2 * 15  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice3
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
@@ -464,7 +464,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " longswords for " << quantity2 * 50  << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice3
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
@@ -527,14 +527,14 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              string choice5 = "";
                              int quantity3 = 0;
                               cout << "Oh....my...might I just lighten yer load and take some of those beauts of yer'self?" << endl;
-                              cout << "Choose one of the following:" << endl;
-                              << "1. Silver Ring" << endl;
-                              << "2. Ruby Necklace" << endl;
-                              << "3. Emerald Bracelet" << endl;
-                              << "4. Diamond Circlet" << endl;
-                              << "5. Gem-Encrusted Goblet" << endl;
-                              << "6. Cancel" << endl;
-                              << "" << endl;
+                              cout << "Choose one of the following:" << endl
+                              << "1. Silver Ring" << endl
+                              << "2. Ruby Necklace" << endl
+                              << "3. Emerald Bracelet" << endl
+                              << "4. Diamond Circlet" << endl
+                              << "5. Gem-Encrusted Goblet" << endl
+                              << "6. Cancel" << endl
+                              cout << "" << endl;
                               cin >> itemSelect5;
                               cout << "> " << itemSelect5 << endl;
                               switch (itemSelect5)
@@ -545,7 +545,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how..many..you prefer to sell? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity3;
                                     cout << "You sure about selling " << quantity3 << " rings for " << quantity3 * 10 << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice5
                                     if (choice5[0] == 'Y' || choice5[0] == 'y')
                                     {
@@ -585,7 +585,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how..many..you prefer to sell? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity3;
                                     cout << "You sure about selling " << quantity3 << " necklaces for " << quantity3 * 20 << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice5
                                     if (choice5[0] == 'Y' || choice5[0] == 'y')
                                     {
@@ -625,7 +625,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how..many..you prefer to sell? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity3;
                                     cout << "You sure about selling " << quantity3 << " bracelets for " << quantity3 * 30 << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice5
                                     if (choice5[0] == 'Y' || choice5[0] == 'y')
                                     {
@@ -665,7 +665,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how..many..you prefer to sell? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity3;
                                     cout << "You sure about selling " << quantity3 << " rings for " << quantity3 * 40 << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice5
                                     if (choice5[0] == 'Y' || choice5[0] == 'y')
                                     {
@@ -705,7 +705,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "And to how..many..you prefer to sell? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity3;
                                     cout << "You sure about selling " << quantity3 << " rings for " << quantity3 * 50 << " gold? (y/n)" << endl;
-                                    << "" << endl;
+                                    cout << "" << endl;
                                     cin >> choice5
                                     if (choice5[0] == 'Y' || choice5[0] == 'y')
                                     {
