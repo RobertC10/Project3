@@ -137,7 +137,8 @@ from that, hmu if you spot any more errors in the file. -JW
 
 As you said, yeah the beginning menu might have to just be a tad different, being a completely own menu that appears at 
 the beginning using my_party instead but it should'nt be too different. If anything NPC class's menu might be adjusted
-(it was originally made to act as its own action function, i just threw it in NPC class for my benefit). -JW
+(it was originally made to act as its own action function, i just threw it in NPC class for my benefit). Either
+way works really, I would just have to finish NPC class first. -JW
 
 Majority of today is finishing the Sorcerer Anger funct. & attempts to relocate and establish the Mob class to begin
 working on fights. -JW
