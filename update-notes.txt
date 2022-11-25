@@ -140,5 +140,10 @@ the beginning using my_party instead but it should'nt be too different. If anyth
 (it was originally made to act as its own action function, i just threw it in NPC class for my benefit). Either
 way works really, I would just have to finish NPC class first. -JW
 
-Majority of today is finishing the Sorcerer Anger funct. & attempts to relocate and establish the Mob class to begin
-working on fights. -JW
+Majority of today is finishing the Sorcerer Anger funct. & attempts to relocate and establish the NPC class to help out a bit with Phase 2. -JW
+
+Reworks:
+ - Mob class (probable rework in key drops as part of monster fight action
+ - Sorcerer Anger as independent action funct to be collectively gained overtime per each respective action
+ - NPC class (will not include Mob for the time being) will be developed
+                                                                            -JW
