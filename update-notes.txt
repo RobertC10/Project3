@@ -127,3 +127,17 @@ finishing the actions. - RC
     -RC
 
     If you are literally fixing the errors as I type this, then fuck, mb. - RC
+
+25 Nov 22
+------------------------------------------------------------------------------------------------------------------------
+Lmao that's all good. Yeah, I went ahead and committed those changes and other typos I caught. Unfortunately I have no 
+idea: how do you want me to implement it and test it? I thought phase Two needs to do it cuz thats how you get starting
+items at the beginning? (If you decide on another way to do that tho, lemme know and tell me if the menu works). Apart 
+from that, hmu if you spot any more errors in the file. -JW
+
+As you said, yeah the beginning menu might have to just be a tad different, being a completely own menu that appears at 
+the beginning using my_party instead but it should'nt be too different. If anything NPC class's menu might be adjusted
+(it was originally made to act as its own action function, i just threw it in NPC class for my benefit). -JW
+
+Majority of today is finishing the Sorcerer Anger funct. & attempts to relocate and establish the Mob class to begin
+working on fights. -JW
