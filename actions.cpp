@@ -170,12 +170,13 @@ int split (string input_string, char separator, string arr[], int arr_size)
     return tracker;
 }
 
-void readMobs()
+int readMobs(Mob monsters_[])
 {
     ifstream file_input;
-    file_input.open(monsters.txt);
+    file_input.open("monsters.txt");
 
     int index = 2;
+    int countMobs = 0;
     Mob newMob;
     string line;
     string temp_mob[2];
@@ -194,12 +195,15 @@ void readMobs()
             if (count == 2)
             {
                 newMob.setName(temp_mob[0]);
-                newMob.setStr(temp_mob[1]);
+                newMob.setStr(stoi(temp_mob[1]));
 
                 monsters_[i] = newMob;
+                countMobs++;
             }
         }
+        return countMobs;
     }
+    return 0;
 }
 
 void sorcerersAnger()

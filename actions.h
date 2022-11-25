@@ -20,7 +20,9 @@ void printActionsRoom();
 
 bool doorPuzzle();
 
-void readMobs();
+int split(string, char, string[], int);
+
+int readMobs(Mob[]);
 
 void sorcerersAnger();
 

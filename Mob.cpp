@@ -41,25 +41,25 @@ Mob::Mob(string name, int str, int gold, int food, bool key)
     keyDrop = key;
 }
 
-int getName()
+string Mob::getName()
 {
     //returns the monster's name after splitting it
     return monsterName;
 }
 
-void setName(string name)
+void Mob::setName(string name)
 {
     //sets name to name of randomly selected mob based on file number rand
     monsterName = name;
 }
 
-int getStr()
+int Mob::getStr()
 {
     //returns the monster's strength after splitting it
     return mobStr;
 }
 
-void setStr(int str)
+void Mob::setStr(int str)
 {
     //sets str of the monster randomly selected that was split from file
     mobStr = str;
@@ -106,13 +106,13 @@ void setStatus(bool status, Action action_)
     }
 }*/
 
-int getGold()
+int Mob::getGold()
 {
     //returns the gold drop rate of the mob
     return goldDrop;
 }
 
-void setGold(int gold, bool status)
+void Mob::setGold(int gold, bool status)
 {
     //will use a calculation to determine gold drop if defeated
 
@@ -121,13 +121,13 @@ void setGold(int gold, bool status)
     goldDrop = gold;
 }
 
-int getFood()
+int Mob::getFood()
 {
     //returns the resource drop rate of the mob
     return foodDrop;
 }
 
-void setFood(int food, bool status)
+void Mob::setFood(int food, bool status)
 {
     //will use a calculation to determine resource drop if defeated
     
@@ -136,13 +136,13 @@ void setFood(int food, bool status)
     foodDrop = food;
 }
 
-bool getKey()
+bool Mob::getKey()
 {
     //returns the key drop rate of the mob
     return keyDrop;
 }
 
-void setKey(bool key)
+void Mob::setKey(bool key)
 {
     //will use a calculation to determine key drop if defeated
     srand(time(0));

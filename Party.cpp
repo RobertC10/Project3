@@ -115,6 +115,20 @@ using namespace std;
         gold_ += gold;
     }
 
+    bool Party::subGold(int gold)
+    {
+        if(gold_ - gold >= 0)
+        {
+            gold_ -= gold;
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
+
     void Party::setMemberAt(int index, Member myMember)
     {
         members_.erase(members_.begin()+index);
@@ -142,15 +156,51 @@ using namespace std;
     {
         ingredients_ += ingredients;
     }
-
-    void Party::setCookwareAt(int index, int number)
+    
+    int Party::subIngredients(int ingredients)
     {
-        cookware_[index] = number;
+        if(ingredients_ - ingredients >= 0)
+        {
+            ingredients_ -= ingredients;
+            return 1;
+        }else
+        {
+            return 0;
+        }
     }
 
-    void Party::setWeaponsAt(int index, int number)
+    void Party::addCookwareAt(int index, int number)
+    {
+        cookware_[index] += number;
+    }
+
+    bool Party::subCookwareAt(int index, int number)
+    {
+        if(cookware_[index] - number >= 0)
+        {
+            cookware_[index] -= number;
+            return 1;
+        }else
+        {
+            return 0;
+        }
+    }
+
+    void Party::addWeaponsAt(int index, int number)
     {
         weapons_[index] = number;
+    }
+
+    bool Party::subWeaponsAt(int index, int number)
+    {
+        if(weapons_[index] - number >= 0)
+        {
+            weapons_[index] -= number;
+            return 1;
+        }else
+        {
+            return 0;
+        }
     }
 
     void Party::addArmor(int armor)
@@ -210,6 +260,22 @@ using namespace std;
         
     }
 
+void Party::printStats()
+{
+    cout<<"+-------------+"<<endl;
+        cout<<"| STATUS      |"<<endl;
+        cout<<"+-------------+"<<endl;
+        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<</*sorcerer.getAnger()<<*/endl;
+        cout<<"+-------------+"<<endl;
+        cout<<"| INVENTORY   |"<<endl;  
+        cout<<"+-------------+"<<endl;
+        cout<<"| Gold        | "<<gold_<<endl;
+        cout<<"| Ingredients | "<<ingredients_<<" kg"<<endl;
+        cout<<"| Cookware    | P: "<<getCookwareAt(0)<<" | F: "<<getCookwareAt(1)<<" | C: "<<getCookwareAt(2)<<endl;
+        cout<<"| Weapons     | C: "<<getWeaponsAt(0)<<" | S: "<<getWeaponsAt(1)<<" | R: "<<getWeaponsAt(2)<<" | B: "<<getWeaponsAt(3)<<" | L: "<<getWeaponsAt(4)<<endl;
+        cout<<"| Armor       | "<<getArmor()<<endl;
+        cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
+}
 
 
 

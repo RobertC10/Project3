@@ -149,21 +149,21 @@ void merchantMarket(Party party_)
     //will consist of multiple couts to establish a menu in which multiple options can result and produce random
     //products for purchase and will run through series of conditions taking in 
     //party resources to be used for checking/purchasing
-cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
+    cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
   cout<<"He asks you if you want to buy something [Y/N]?"<<endl<<"> ";   
-  party_.printMenu();
+  party_.printStats();
   cin >> user;
   if(user=="y"||user=="Y") {
-        string choice = "";
+        int choice = 0;
          cout << "If you're looking to get supplies, you've come to the right place."<< endl
               << "If it ain't broke, it worth some gold!!" << endl;
-         cout << "                                       " << endl;
-              << "Choose one of the following: " << endl;
-              << "1. Ingredients: Better than rats, I guarantee that mate." << endl;
-              << "2. Cookware: You fancy Sire Gordon Ramseyth The Fourth?." << endl;
-              << "3. Weapons: Even the best knights wish they had this!" << endl;
-              << "4. Armor: You think you can take a hit without this?" << endl;
-              << "5. Sell treasures: If you find anything shiny, I would be happy to take it off your hands." << endl;
+         cout << "                                       " << endl
+              << "Choose one of the following: " << endl
+              << "1. Ingredients: Better than rats, I guarantee that mate." << endl
+              << "2. Cookware: You fancy Sire Gordon Ramseyth The Fourth?." << endl
+              << "3. Weapons: Even the best knights wish they had this!" << endl
+              << "4. Armor: You think you can take a hit without this?" << endl
+              << "5. Sell treasures: If you find anything shiny, I would be happy to take it off your hands." << endl
               << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
          cin >> choice;
          cout << "> " << choice << endl;
@@ -183,8 +183,11 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                               }
                               else
                               {
-                                gold = gold - itemSelect1;
-                                ingredients =ingredients_ += itemSelect1;
+                                if(party_.subGold((itemSelect1)) == 0)
+                                    {
+                                        cout<<"You don't have enough gold to buy that."<<endl;
+                                    }
+                                party_.addIngredients(itemSelect1);
                                 cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
                                 cout << "" << endl;
                                 return merchantMarket(party_);
@@ -195,11 +198,11 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              string choice2 = "";
                              int quantity = 0;
                               cout << "Pots 'n pans I reckon? Some are stronger than the others." << endl;
-                              cout << "Choose one of the following:" << endl;
-                              << "1. (25%) Ceramic Pot [2 Gold]" << endl;
-                              << "2. (10%) Frying Pan [10 Gold]" << endl;
-                              << "3. ( 2%) Cauldron [20 Gold]" << endl;
-                              << "4. Cancel" << endl;
+                              cout << "Choose one of the following:" << endl
+                              << "1. (25%) Ceramic Pot [2 Gold]" << endl
+                              << "2. (10%) Frying Pan [10 Gold]" << endl
+                              << "3. ( 2%) Cauldron [20 Gold]" << endl
+                              << "4. Cancel" << endl
                               << "" << endl;
                               cin >> itemSelect2;
                               cout << "> " << itemSelect2 << endl;
@@ -208,13 +211,16 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                 case 1:
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
-                                    cout << "You sure about buying " << quantity << " pots for " << quantity * 2  << " gold? (y/n)" << endl;
+                                    cout << "You sure about buying " << quantity << " pots for " << quantity * 2  << " gold? (y/n)" << endl
                                     << "" << endl;
-                                    cin >> choice2
-                                    if (choice2 == 'Y' || choice2 == 'y')
+                                    cin >> choice2;
+                                    if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
-                                        gold = gold - (quantity * 2);
-                                        cookware[0] += quantity;
+                                        if(party_.subGold((quantity * 2)) == 0)
+                                        {
+                                            cout<<"You don't have enough gold to buy that."<<endl;
+                                        }
+                                        party_.addCookwareAt(0, quantity);
                                         cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                         return merchantMarket(party_);
                                     }
@@ -227,13 +233,16 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                 case 2:
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
-                                    cout << "You sure about buying " << quantity << " pans for " << quantity * 10  << " gold? (y/n)" << endl;
+                                    cout << "You sure about buying " << quantity << " pans for " << quantity * 10  << " gold? (y/n)" << endl
                                     << "" << endl;
-                                    cin >> choice2
-                                    if (choice2 == 'Y' || choice2 == 'y')
+                                    cin >> choice2;
+                                    if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
-                                        gold = gold - (quantity * 10);
-                                        cookware[1] += quantity;
+                                        if(party_.subGold((quantity * 10)) == 0)
+                                        {
+                                            cout<<"You don't have enough gold to buy that."<<endl;
+                                        }
+                                        party_.addCookwareAt(1, quantity);
                                         cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                         return merchantMarket(party_);
                                     }
@@ -246,13 +255,16 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                 case 3:
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity;
-                                    cout << "You sure about buying " << quantity << " cauldrons for " << quantity * 20  << " gold? (y/n)" << endl;
+                                    cout << "You sure about buying " << quantity << " cauldrons for " << quantity * 20  << " gold? (y/n)" << endl
                                     << "" << endl;
-                                    cin >> choice2
-                                    if (choice2 == 'Y' || choice2 == 'y')
+                                    cin >> choice2;
+                                    if (choice2[0] == 'Y' || choice2[0] == 'y')
                                     {
-                                        gold = gold - (quantity * 20);
-                                        cookware[2] += quantity;
+                                        if(party_.subGold((quantity * 20)) == 0)
+                                        {
+                                            cout<<"You don't have enough gold to buy that."<<endl;
+                                        }
+                                        party_.addCookwareAt(2, quantity);
                                         cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                         return merchantMarket(party_);
                                     }
@@ -273,13 +285,13 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                              string choice3 = "";
                              int quantity2 = 0;
                               cout << "Might ya be one of those collectors? I have several combative sets that might put a real kick in yer game." << endl;
-                              cout << "Choose one of the following:" << endl;
-                              << "1. Stone Club [2 Gold]" << endl;
-                              << "2. Iron Spear [2 Gold]" << endl;
-                              << "3. (+1) Mythril Rapier [5 Gold]" << endl;
-                              << "4. (+2) Flaming Battle-Axe [15 Gold]" << endl;
-                              << "5. (+3) Vorpal Longsword [50 Gold]" << endl;
-                              << "6. Cancel" << endl;
+                              cout << "Choose one of the following:" << endl
+                              << "1. Stone Club [2 Gold]" << endl
+                              << "2. Iron Spear [2 Gold]" << endl
+                              << "3. (+1) Mythril Rapier [5 Gold]" << endl
+                              << "4. (+2) Flaming Battle-Axe [15 Gold]" << endl
+                              << "5. (+3) Vorpal Longsword [50 Gold]" << endl
+                              << "6. Cancel" << endl
                               << "" << endl;
                               cin >> itemSelect3;
                               cout << "> " << itemSelect3 << endl;
@@ -288,13 +300,16 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                 case 1:
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
-                                    cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl;
+                                    cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl
                                     << "" << endl;
-                                    cin >> choice3
-                                    if (choice3 == 'Y' || choice3 == 'y')
+                                    cin >> choice3;
+                                    if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
-                                        gold = gold - (quantity2 * 2);
-                                        weapons[0] += quantity2;
+                                        if(party_.subGold((quantity2 * 2)) == 0)
+                                        {
+                                            cout<<"You don't have enough gold to buy that."<<endl;
+                                        }
+                                        party_.addCookwareAt(itemSelect3 - 1, quantity2);
                                         cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                         return merchantMarket(party_);
                                     }
@@ -310,7 +325,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "You sure about buying " << quantity2 << " spears for " << quantity2 * 2  << " gold? (y/n)" << endl;
                                     << "" << endl;
                                     cin >> choice3
-                                    if (choice3 == 'Y' || choice3 == 'y')
+                                    if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
                                         gold = gold - (quantity2 * 2);
                                         weapons[1] += quantity2;
@@ -329,7 +344,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "You sure about buying " << quantity2 << " rapiers for " << quantity2 * 5  << " gold? (y/n)" << endl;
                                     << "" << endl;
                                     cin >> choice3
-                                    if (choice3 == 'Y' || choice3 == 'y')
+                                    if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
                                         gold = gold - (quantity2 * 5);
                                         weapons[2] += quantity2;
@@ -348,7 +363,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "You sure about buying " << quantity2 << " battle-axes for " << quantity2 * 15  << " gold? (y/n)" << endl;
                                     << "" << endl;
                                     cin >> choice3
-                                    if (choice3 == 'Y' || choice3 == 'y')
+                                    if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
                                         gold = gold - (quantity2 * 15);
                                         weapons[3] += quantity2;
@@ -367,7 +382,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
                                     cout << "You sure about buying " << quantity2 << " longswords for " << quantity2 * 50  << " gold? (y/n)" << endl;
                                     << "" << endl;
                                     cin >> choice3
-                                    if (choice3 == 'Y' || choice3 == 'y')
+                                    if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
                                         gold = gold - (quantity2 * 50);
                                         weapons[4] += quantity2;

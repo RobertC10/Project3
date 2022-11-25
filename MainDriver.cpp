@@ -80,15 +80,19 @@ void phaseOne(Map map, Party my_party/*, Mob sorcerer*/)
 
 void phaseTwo(Map map, Party my_party)
 {
+
+    NPC my_npc = NPC();
+    my_npc.merchantMarket(my_party);    
+    /*/
     string user = "";
     //will consist of multiple couts to establish a menu in which multiple options can result and produce random
     //products for purchase and will run through series of conditions taking in 
     //party resources to be used for checking/purchasing
-cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
-  cout<<"He asks you if you want to buy something [Y/N]?"<<endl<<"> ";   
-  my_party.printMenu();
-  cin >> user;
-  if(user=="y"||user=="Y") {
+    cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
+    cout<<"He asks you if you want to buy something [Y/N]?"<<endl<<"> ";   
+    my_party.printStats();
+    cin >> user;
+    if(user=="y"||user=="Y") {
         string choice = "";
          cout << "If you're looking to get supplies, you've come to the right place."<< endl
               << "If it ain't broke, it worth some gold!!" << endl;
@@ -100,8 +104,8 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
               << "4. Armor: You think you can take a hit without this?" << endl;
               << "5. Sell treasures: If you find anything shiny, I would be happy to take it off your hands." << endl;
               << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
-         cin >> choice;
-         cout << "> " << choice << endl;
+         cout<<"> ";
+         cin>>choice;
          if(choice==1){
                               int itemSelect1 = 0;
                               cout << "How many kg of ingredients mate [1 Gold/kg]? (Enter a positive mulitple of 5, or 0 to cancel)" << endl;
@@ -522,6 +526,7 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
     cout <<"The prisoner disappears. Yet a distinct, pungy smell hangs in the air..." << endl;
     phaseThree(map, my_party);
   }
+  */
     //phaseThree(map, my_party);
 }
 

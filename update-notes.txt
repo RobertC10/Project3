@@ -76,3 +76,54 @@ finishing the actions. - RC
     be able to easily fix with CTRL-F for respective mistakes) -JW
 
     Finally...HAPPY MUTHAFUKIN THANKSGIVING -JW
+
+    HAPPT THAGNKGINVING - RC
+
+    I went ahead and deleted the merchantmenu from phaseTwo because it seemed like it was pretty much an exact copy of MerchantMenu function in NPC.cpp. 
+    If there's things that needed to be changed from the normal npc menu to the original merchantmenu that needs to be shown at the beginning of the game, let me know. - RC
+
+    I'm going to be straight up with you here. There's an unbelievable amount of errors. Mostly for the NPC class' Merchant Menu. Alot 
+    of the things are pretty easy to fix, it's probalby just gonna take a bit of time. Here's an example that containts most of the errors 
+    that are made in the function:
+
+        cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
+        cin >> quantity2;
+        cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl;
+        << "" << endl;
+        cin >> choice3
+        if (choice3 == 'Y' || choice3 == 'y')
+        {
+            gold = gold - (quantity2 * 2);
+            weapons[0] += quantity2;
+            cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
+            return merchantMarket(party_);
+        }
+    
+    -In the conditions for the if statement, since choice3 is a string, you i guess don't have to but if the user decides to type something like "yes"
+        or something like that, it is not a single character so it needs to be that if the first character of choice3 is 'Y' or 'y'
+    -In the third line, when you cout, you have a semicolon that makes an error for the 4th line because there is not cout in the 4th line.
+    -There is no semicolon at the end of line 5
+    -Where you change the gold and weapons, since they are apart of the party class and are private, you'll have to use public fucnntions to change them
+        as opposed to trying to change them directly. I've fixed the errors for some of the code so examples are there.
+
+    Example of a fixed one:
+        cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
+        cin >> quantity2;
+        cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl
+        << "" << endl;
+        cin >> choice3;
+        if (choice3[0] == 'Y' || choice3[0] == 'y')
+        {
+            if(party_.subGold((quantity2 * 2)) == 0)
+            {
+                cout<<"You don't have enough gold to buy that."<<endl;
+            }
+            party_.addCookwareAt(itemSelect3 - 1, quantity2);
+            cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
+            return merchantMarket(party_);
+        }
+    
+    I'll work more on this tmr too.
+    -RC
+
+    If you are literally fixing the errors as I type this, then fuck, mb. - RC
