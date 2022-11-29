@@ -1,3 +1,5 @@
+//Editors: Robert Church & Jevan Wiltz
+
 #include <string>
 #include <iostream>
 #include "actions.h"
