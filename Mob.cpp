@@ -1,7 +1,7 @@
 // Mob.cpp
 
 // CSCI 1300 Fall 2022
-// Author: Punith Sandhu
+// Editor: Jevan Wiltz
 // Recitation: 304 – Nikhith Sannidhi
 // Project #3
 
