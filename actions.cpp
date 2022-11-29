@@ -4,7 +4,7 @@
 #include <iostream>
 #include "actions.h"
 #include "Map.h"
-#include "Mob.h"
+//#include "Mob.h"
 #include "Party.h"
 #include "connect4.h"
 
@@ -180,6 +180,7 @@ bool setWeapons(int number, int member, int weapon)
     }
 }
 
+/*
 int readMobs(Mob monsters_[])
 {
     ifstream file_input;
@@ -215,11 +216,7 @@ int readMobs(Mob monsters_[])
     }
     return 0;
 }
-
-void sorcerersAnger()
-{
-    //To be updated in a few hours since last commit -JW
-}
+*/
 
 
 /*void NormalAction(Map map, Party my_party)

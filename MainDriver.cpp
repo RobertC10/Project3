@@ -3,6 +3,7 @@
 #include <string>
 #include "Member.h"
 #include "Party.h"
+#include "NPC.h"
 #include "Map.h"
 #include "actions.h"
 #include <iostream>
@@ -26,6 +27,7 @@ int main()
 {
     Map map = Map();
     Party my_party = Party();
+    int angerLvl = 0;
     //Mob Sorcerer = Sorcerer();
     phaseOne(map, my_party/*, sorcerer*/);
 }
@@ -82,9 +84,18 @@ void phaseOne(Map map, Party my_party/*, Mob sorcerer*/)
 
 void phaseTwo(Map map, Party my_party)
 {
+    bool marketUsed = false;
+    NPC my_npc = NPC(false, true, marketUsed);
+    my_npc.merchantMarket(my_party, marketUsed);    
 
-    NPC my_npc = NPC();
-    my_npc.merchantMarket(my_party);    
+    if (marketUsed == true)
+    {
+        phaseThree(map, my_party);
+    }
+    else
+    {
+        cout << "Fail" << endl;
+    }
 }
 
 void phaseThree(Map map, Party my_party)
@@ -101,14 +112,17 @@ void phaseThree(Map map, Party my_party)
     
     if(map.isFreeSpace(map.getPlayerRow(), map.getPlayerCol()))
     {
+        sorcerersAnger(angerLvl);
         NormalAction(map, my_party);
     }else
     if(map.isNPCLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
+        sorcerersAnger(angerLvl);
         NPCAction(map, my_party);
     }else
     if(map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
+        sorcerersAnger(angerLvl);
         RoomAction(map, my_party);
     }
     
@@ -523,4 +537,31 @@ void RoomAction(Map map, Party my_party)
             break;
     }
     phaseThree(map, my_party);
+}
+
+int sorcerersAnger(int anger)
+{
+    //To be updated in a few hours since last commit -JW
+    anger++;
+
+    if (anger == 100)
+    {
+        //game over
+                cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
+                cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
+                cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
+                cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
+                cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
+                cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
+                cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
+                cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
+                cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
+                cout<<"                                                     ░                   "<<endl;
+                return;
+    }
+    else
+    {
+        return anger;
+        continue;
+    }
 }

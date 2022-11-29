@@ -5,7 +5,7 @@
 
 #include <string>
 #include <iostream>
-#include "Mob.h"
+//#include "Mob.h"
 #include "Map.h"
 #include "Party.h"
 
@@ -26,9 +26,7 @@ int split(string, char, string[], int);
 
 bool setWeapons(int, int, int);
 
-int readMobs(Mob[]);
-
-void sorcerersAnger();
+//int readMobs(Mob[]);
 
 //Map mover(Map);
 
