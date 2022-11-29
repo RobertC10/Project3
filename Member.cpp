@@ -1,3 +1,5 @@
+//Editor: Robert Church
+
 #include <string>
 #include <iostream>
 #include "Member.h"
