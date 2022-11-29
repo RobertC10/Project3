@@ -175,3 +175,8 @@ Added Sorcerer Anger to each phase. Might need to design a party function to rec
 function in main rather than action function). - JW
 
 Need to still implement the ranking feature (prob just make running thing in main?) - JW
+
+Added maindriver.h so other functions can access maindriver funcrions - RC
+
+changed sorcereranger to a party class variable so it can be edited and accessed through party.add/getAnger - RC
+

@@ -15,6 +15,7 @@
 //#include "Mob.h"
 #include "Party.h"
 #include "NPC.h"
+#include "MainDriver.h"
 using namespace std;
 
 NPC::NPC()

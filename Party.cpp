@@ -262,7 +262,7 @@ using namespace std;
         cout<<"+-------------+"<<endl;
         cout<<"| STATUS      |"<<endl;
         cout<<"+-------------+"<<endl;
-        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<</*sorcerer.getAnger()<<*/endl;
+        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<<getAnger()<<endl;
         cout<<"+-------------+"<<endl;
         cout<<"| INVENTORY   |"<<endl;  
         cout<<"+-------------+"<<endl;
@@ -301,6 +301,16 @@ void Party::printStats()
         cout<<"| Weapons     | C: "<<getWeaponsAt(0)<<" | S: "<<getWeaponsAt(1)<<" | R: "<<getWeaponsAt(2)<<" | B: "<<getWeaponsAt(3)<<" | L: "<<getWeaponsAt(4)<<endl;
         cout<<"| Armor       | "<<getArmor()<<endl;
         cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
+}
+
+void Party::addAnger(int anger)
+{
+    anger_ += anger;
+}
+
+int Party::getAnger()
+{
+    return anger_;
 }
 
 

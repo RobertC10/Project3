@@ -178,6 +178,7 @@ bool setWeapons(int number, int member, int weapon)
     {
         
     }
+    return 0;
 }
 
 /*

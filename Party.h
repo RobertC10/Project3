@@ -23,6 +23,7 @@ class Party
         int armor_;
         int treasures_[5];
         int keys_;
+        int anger_;
     public:
         Party();
         Party(int, int, int, int, int, int);
@@ -57,6 +58,8 @@ class Party
         bool subkeys(int);
         void printMenu(/*Mob, */);
         void printStats();
+        void addAnger(int);
+        int getAnger();
 };
 
 #endif
