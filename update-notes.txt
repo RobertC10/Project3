@@ -156,4 +156,12 @@ Added cook and eat to Main Driver - RC
 
 Need to implement setWeapons for the User to actually access - RC
 
+New requirement: since in a group, need to implement a sorting/ranking system in which every time a game ends
+player must be put on a collective leaderboard. (potentially a vector txt file that compares rooms cleared end 
+of each game?) - JW
+
+Completed Sorcerer's Anger action, to be committed along with Mob class and monster fight - JW
+
+Need to implement mob into NPC class and puzzle to befriend NPC - JW
+
 
