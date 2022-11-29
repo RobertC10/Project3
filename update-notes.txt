@@ -164,4 +164,14 @@ Completed Sorcerer's Anger action, to be committed along with Mob class and mons
 
 Need to implement mob into NPC class and puzzle to befriend NPC - JW
 
+29 NOV 22
+------------------------------------------------------------------------------------------------------------
+Still finishing Mob class but wrapped up complete version of NPC for testing (Note, bugs are gone but several
+undefined elements/compatibility with Party class? Please test this and edit as needed or felt) - JW
 
+Need to still implement Mob and NPC space explored with Map class - JW
+
+Added Sorcerer Anger to each phase. Might need to design a party function to record the level as now it is 
+function in main rather than action function). - JW
+
+Need to still implement the ranking feature (prob just make running thing in main?) - JW
