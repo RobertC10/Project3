@@ -1,3 +1,5 @@
+//Editor: Robert Church
+
 #ifndef MEMBER_H
 #define MEMBER_H
 
