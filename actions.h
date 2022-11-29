@@ -1,3 +1,5 @@
+//Editors: Robert Church & Jevan Wiltz
+
 #ifndef ACTIONS_H
 #define ACTIONS_H
 
