@@ -1,3 +1,5 @@
+//Editor: Robert Church
+
 #include <cassert>
 #include <iostream>
 #include <iomanip>
