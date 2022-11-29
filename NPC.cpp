@@ -165,8 +165,8 @@ cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
               << "4. Armor: You think you can take a hit without this?" << endl
               << "5. Sell treasures: If you find anything shiny, I would be happy to take it off your hands." << endl
               << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
+         cout << "> "; 
          cin >> choice;
-         cout << "> " << choice << endl;
          if(choice==1){
                               int itemSelect1 = 0;
                               cout << "How many kg of ingredients mate [1 Gold/kg]? (Enter a positive mulitple of 5, or 0 to cancel)" << endl;

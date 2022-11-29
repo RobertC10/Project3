@@ -157,7 +157,7 @@ using namespace std;
         ingredients_ += ingredients;
     }
     
-    int Party::subIngredients(int ingredients)
+    bool Party::subIngredients(int ingredients)
     {
         if(ingredients_ - ingredients >= 0)
         {
@@ -208,14 +208,33 @@ using namespace std;
         armor_ += armor;
     }
 
+    bool Party::subArmor(int armor)
+    {
+        if(armor_ - armor >= 0)
+        {
+            armor_ -= armor;
+            return 1;
+        }else
+        {
+            return 0;
+        }
+    }
+
     void Party::addTreasuresAt(int index, int treasures)
     {
         treasures_[index] += treasures;
     }
 
-    void Party::subTreasuresAt(int index, int treasures)
+    bool Party::subTreasuresAt(int index, int treasures)
     {
-        treasures_[index] -= treasures;
+        if(treasures_[index] - treasures >= 0)
+        {
+            treasures_[index] -= treasures;
+            return 1;
+        }else
+        {
+            return 0;
+        }
     }
 
     void Party::addKeys(int keys)
@@ -223,11 +242,16 @@ using namespace std;
         keys_ += keys;
     }
 
-    void Party::subkeys(int keys)
+    bool Party::subkeys(int keys)
     {
         if(keys_ - keys >= 0)
         {
-        keys_ -= keys;
+            keys_ -= keys;
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
     }
 

@@ -170,6 +170,14 @@ int split (string input_string, char separator, string arr[], int arr_size)
     return tracker;
 }
 
+bool setWeapons(int number, int member, int weapon)
+{
+    for(int i = 0; i < number; i++)
+    {
+        
+    }
+}
+
 int readMobs(Mob monsters_[])
 {
     ifstream file_input;

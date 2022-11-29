@@ -681,7 +681,78 @@ void NormalAction(Map map, Party my_party)
                 //monster fight
                 break;
             case 4:
-                //cook and eat
+                {
+                    srand(time(0));
+                    int numkg = 0;
+                    int cookware = 0;
+                    int chance = 0;
+                    bool success = 1;
+                    Member temp_member;
+
+                    cout<<"What cookware item would you like to use to cook? You have: "<<endl;
+                    cout<<"(1) "<<my_party.getCookwareAt(0)<<" ceramic pot(s)"<<endl
+                    <<"(2) "<<my_party.getCookwareAt(1)<<" frying pan(s)"<<endl
+                    <<"(3) "<<my_party.getCookwareAt(2)<<" cauldron(s)"<<endl
+                    <<"(4) Exit"<<endl;
+                    cin>>cookware;
+                    //check that the user has a non-zero amount of the cookware;
+                    cout<<"How many kg of ingredients would you like to cook?"<<endl;
+                    cout<<"For every 5kg you cook successfully, each party member will gain 1 hunger"<<endl;
+                    cin>>numkg;
+                    while(numkg % 5 != 0)
+                    {
+                        cout<<"Please enter an amount that is divisible by 5"<<endl;
+                        cin>>numkg;
+                    }
+                    if(numkg % 5 == 0)
+                    {
+                        my_party.subIngredients(numkg);
+                        switch (cookware)
+                        {
+                        case 1:
+                            chance = rand() % 4;
+                            if(chance == 0)
+                            {
+                                my_party.subCookwareAt(0, 1);
+                                success = 0;
+                            }
+                            break;
+                        case 2:
+                            chance = rand() % 10;
+                            if(chance == 0)
+                            {
+                                my_party.subCookwareAt(1, 1);
+                                success = 0;
+                            }
+                        case 3:
+                            chance = rand() % 50;
+                            if(chance == 0)
+                            {
+                                my_party.subCookwareAt(2, 1);
+                                success = 0;
+                            }
+                        default:
+                            break;
+                        }
+                        
+                        if(success == 0)
+                        {
+                            cout<<"It seems that your cookware item has broken!!1!!1!"<<endl;
+                            cout<<"You just lost all of the ingredients you were going to use to make a meal."<<endl
+                            <<"sad."<<endl;
+                        }else
+                        {
+                            cout<<"It was a success!"<<endl;
+                            cout<<"All party members will gain "<<numkg/5<<"hunger."<<endl;
+                            for(int i = 0; i < 5; i++)
+                            {
+                                temp_member = my_party.getMembersAt(i);
+                                temp_member.addFullness(numkg/5);
+                                my_party.setMemberAt(i, temp_member);
+                            }
+                        }
+                    }
+                }
                 break;
             case 5:
                 //game over

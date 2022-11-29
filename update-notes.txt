@@ -147,3 +147,13 @@ Reworks:
  - Sorcerer Anger as independent action funct to be collectively gained overtime per each respective action
  - NPC class (will not include Mob for the time being) will be developed
                                                                             -JW
+
+28 NOV 22
+------------------------------------------------------------------------------------------------------------
+Changed party class a bit to access easier - RC
+
+Added cook and eat to Main Driver - RC
+
+Need to implement setWeapons for the User to actually access - RC
+
+

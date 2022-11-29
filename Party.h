@@ -48,10 +48,11 @@ class Party
         void addWeaponsAt(int, int);
         bool subWeaponsAt(int, int);
         void addArmor(int);
+        bool subArmor(int);
         void addTreasuresAt(int, int);
-        void subTreasuresAt(int, int);
+        bool subTreasuresAt(int, int);
         void addKeys(int);
-        void subkeys(int);
+        bool subkeys(int);
         void printMenu(/*Mob, */);
         void printStats();
 };

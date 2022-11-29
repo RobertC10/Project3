@@ -22,6 +22,8 @@ bool doorPuzzle();
 
 int split(string, char, string[], int);
 
+bool setWeapons(int, int, int);
+
 int readMobs(Mob[]);
 
 void sorcerersAnger();
