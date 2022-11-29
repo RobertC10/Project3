@@ -1,3 +1,5 @@
+//Editor: Robert Church
+
 #ifndef PARTY_H
 #define PARTY_H
 
