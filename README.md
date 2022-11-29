@@ -1,4 +1,4 @@
-# Project3
+# Project3 #
 D&D game for CompSci students to run for fun!!
 Editors: Robert Church & Jevan Wiltz
 ------------------------
