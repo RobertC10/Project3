@@ -215,7 +215,7 @@ void NormalAction(Map map, Party my_party)
                 //monster fight
             }
 
-            if(rand1 > 4)
+            if(rand1 > 4) /*double check this does interfere with above chance*/
             {
                 cout<<"Darn. You didn't find anything."<<endl;
                 //50% chance for member to lose hunger
