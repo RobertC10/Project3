@@ -158,7 +158,7 @@ Need to implement setWeapons for the User to actually access - RC
 
 New requirement: since in a group, need to implement a sorting/ranking system in which every time a game ends
 player must be put on a collective leaderboard. (potentially a vector txt file that compares rooms cleared end 
-of each game?) - JW
+of each game?)  Also states "You should also save the final stats of the game in a file named results.txt" - JW
 
 Completed Sorcerer's Anger action, to be committed along with Mob class and monster fight - JW
 
