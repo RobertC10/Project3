@@ -53,7 +53,8 @@ class NPC
         bool setMob(bool, Mob)*/
         bool getmerchantUse();
         void setmerchantUse(bool);
-        void merchantMarket(Map, Party, bool);
+        bool setWeaponsMarket(Map, Party, bool);
+        void merchantMarket(Map, Party, bool);      
 };
 
 #endif

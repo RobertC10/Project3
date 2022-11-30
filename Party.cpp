@@ -297,32 +297,47 @@ using namespace std;
         
     }
 
-void Party::printStats()
-{
-    cout<<"+-------------+"<<endl;
-        cout<<"| STATUS      |"<<endl;
+    void Party::printStats()
+    {
         cout<<"+-------------+"<<endl;
-        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<<getAnger()<<endl;
-        cout<<"+-------------+"<<endl;
-        cout<<"| INVENTORY   |"<<endl;  
-        cout<<"+-------------+"<<endl;
-        cout<<"| Gold        | "<<gold_<<endl;
-        cout<<"| Ingredients | "<<ingredients_<<" kg"<<endl;
-        cout<<"| Cookware    | P: "<<getCookwareAt(0)<<" | F: "<<getCookwareAt(1)<<" | C: "<<getCookwareAt(2)<<endl;
-        cout<<"| Weapons     | C: "<<getWeaponsAt(0)<<" | S: "<<getWeaponsAt(1)<<" | R: "<<getWeaponsAt(2)<<" | B: "<<getWeaponsAt(3)<<" | L: "<<getWeaponsAt(4)<<endl;
-        cout<<"| Armor       | "<<getArmor()<<endl;
-        cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
-}
+            cout<<"| STATUS      |"<<endl;
+            cout<<"+-------------+"<<endl;
+            cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<<getAnger()<<endl;
+            cout<<"+-------------+"<<endl;
+            cout<<"| INVENTORY   |"<<endl;  
+            cout<<"+-------------+"<<endl;
+            cout<<"| Gold        | "<<gold_<<endl;
+            cout<<"| Ingredients | "<<ingredients_<<" kg"<<endl;
+            cout<<"| Cookware    | P: "<<getCookwareAt(0)<<" | F: "<<getCookwareAt(1)<<" | C: "<<getCookwareAt(2)<<endl;
+            cout<<"| Weapons     | C: "<<getWeaponsAt(0)<<" | S: "<<getWeaponsAt(1)<<" | R: "<<getWeaponsAt(2)<<" | B: "<<getWeaponsAt(3)<<" | L: "<<getWeaponsAt(4)<<endl;
+            cout<<"| Armor       | "<<getArmor()<<endl;
+            cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
+    }
 
-void Party::addAnger(int anger)
-{
-    anger_ += anger;
-}
+    void Party::printParty()
+    {
+            cout<<"+-------------+"<<endl; 
+            cout<<"| PARTY       |"<<endl;
+            cout<<"+-------------+"<<endl; 
+            for(int i = 0; i < getNumMembers(); i++)
+            {
+                if(getMembersAt(i).getAlive() == 1)
+                {
+                    cout<<"| "<<getMembersAt(i).getName()<<" | Fullness: "<<getMembersAt(i).getFullness()<<" | Weapon: "<<getMembersAt(i).getWeapon()<<endl;    
+                }
+            }
+            cout<<"+-------------+"<<endl; 
+    }
 
-int Party::getAnger()
-{
-    return anger_;
-}
+    void Party::addAnger(int anger)
+    {
+        anger_ += anger;
+    }
+
+    int Party::getAnger()
+    {
+        return anger_;
+    }
 
 
 

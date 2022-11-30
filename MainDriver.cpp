@@ -56,13 +56,13 @@ void phaseOne(Map map, Party my_party)
 
     cout<<"Welcome, to Dungeon Escape!"<<endl<<endl;
     cout<<"Before we start, may I ask, what's your name?"<<endl;
-    cin>>temp_string;
+    getline(cin, temp_string);
     temp_member.setName(temp_string);
     my_party.setMemberAt(0, temp_member);
     cout<<"It seems you have some friends. What are their names?"<<endl;
     for(int i = 1; i < 5; i++)
     {
-        cin>>temp_string;
+        getline(cin, temp_string);
         temp_member.setName(temp_string);
         my_party.setMemberAt(i, temp_member);
     }

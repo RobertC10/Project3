@@ -13,11 +13,11 @@ using namespace std;
         */
         name_ = "";
         fullness_ = 50;
-        weapon_type_ = 'N';
+        weapon_type_ = -1;
         is_alive_ = true;
     }
 
-    Member::Member(string name, int fullness, bool is_alive, char weapon_type)
+    Member::Member(string name, int fullness, bool is_alive, int weapon_type)
     {
         /*
         - perameterized constructor

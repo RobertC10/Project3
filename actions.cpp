@@ -7,6 +7,7 @@
 //#include "Mob.h"
 #include "Party.h"
 #include "connect4.h"
+#include "NPC.h"
 
 void printActionsNormal()
 {
@@ -172,14 +173,30 @@ int split (string input_string, char separator, string arr[], int arr_size)
     return tracker;
 }
 
-bool setWeapons(int number, int member, int weapon)
+/*bool setWeaponsMarket(Map map, Party my_party, bool merchant_Exit_)
 {
-    for(int i = 0; i < number; i++)
-    {
-        
+    string yesNo = "";
+    string squad = "";
+
+    cout<<"Do you want to edit who has what weapon in your party?"<<endl;
+    cin>>yesNo;
+    while(yesNo[0] == 'y' || yesNo[0] == 'Y')
+    {  
+        cout<<"You have: "<<my_party.getWeaponsAt(0)<<" club(s), "<<my_party.getWeaponsAt(1)<<" iron sword(s), "<<my_party.getWeaponsAt(2)<<" rapier(s), "<<my_party.getWeaponsAt(3)<<" battle-axe(s), "<<my_party.getWeaponsAt(4)<<" longsword(s)."<<endl;
+        my_party.printParty();
+        cout<<"Whos weapon do you want to change?(type their name)"<<endl;
+        cin>>squad;
+        while(squad != my_party.getMembersAt(0).getName() && squad != my_party.getMembersAt(1).getName() && squad != my_party.getMembersAt(2).getName() && squad != my_party.getMembersAt(3).getName() && squad != my_party.getMembersAt(4).getName())
+        {
+            cout<<"Please enter a valid name."<<endl;
+            cin>>squad;
+        }
+        cout<<"Do you want to still edit who has what weapon in your party?"<<endl;
+        cin>>yesNo;
     }
+
     return 0;
-}
+}*/
 
 /*
 int readMobs(Mob monsters_[])

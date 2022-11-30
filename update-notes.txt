@@ -195,3 +195,11 @@ NEED TO DO:
     Finsih phasefour and change every game end to direct to it
     implement ranking/score system system
 
+30 NOV 22
+--------------------------------------------------------------------------------------------------------
+changed the very beginning to accept getline instead of just cin - RC
+
+currently working on weaponsselect function / UNFINISHED - RC
+
+added a little to member, party, just nice little additions and changes - RC
+

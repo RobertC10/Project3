@@ -16,7 +16,7 @@ class Member
         int weapon_type_;
     public:
         Member();
-        Member(string, int, bool, char);
+        Member(string, int, bool, int);
         string getName();
         int getFullness();
         bool getAlive();

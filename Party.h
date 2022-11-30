@@ -58,6 +58,7 @@ class Party
         bool subkeys(int);
         void printMenu(/*Mob, */);
         void printStats();
+        void printParty();
         void addAnger(int);
         int getAnger();
 };
