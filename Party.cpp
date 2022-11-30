@@ -17,6 +17,7 @@ using namespace std;
         gold_ = 100;
         rooms_cleared_ = 0;
         ingredients_ = 0;
+        anger_ = 0;
         for(int i = 0; i < 3; i++)
         {
             cookware_[i] = 0;
@@ -33,7 +34,7 @@ using namespace std;
         keys_ = 0;
     }
 
-    Party::Party(int party_members, int gold, int rooms_cleared, int ingredients, int armor, int keys)
+    Party::Party(int party_members, int gold, int rooms_cleared, int ingredients, int armor, int keys, int anger)
     {
         Member temp_member;
         num_members_ = party_members;
@@ -42,6 +43,7 @@ using namespace std;
         ingredients_ = ingredients;
         armor_ = armor;
         keys_ = keys;
+        anger_ = anger;
         members_ = {temp_member, temp_member, temp_member, temp_member, temp_member};
         for(int i = 0; i < 3; i++)
         {
@@ -300,7 +302,7 @@ void Party::printStats()
     cout<<"+-------------+"<<endl;
         cout<<"| STATUS      |"<<endl;
         cout<<"+-------------+"<<endl;
-        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<</*sorcerer.getAnger()<<*/endl;
+        cout<<"| Rooms Cleared: "<<getRoomsCleared()<<" | Keys: "<<keys_<<" | Anger Level: "<<getAnger()<<endl;
         cout<<"+-------------+"<<endl;
         cout<<"| INVENTORY   |"<<endl;  
         cout<<"+-------------+"<<endl;
