@@ -203,8 +203,8 @@ currently working on weaponsselect function / UNFINISHED - RC
 
 added a little to member, party, just nice little additions and changes - RC
 
-Starting debug of basic game thus far (changes in Merchant Menu and explore functions), then
-finishing up NPC - JW
+Starting debug of basic game thus far (changes in Merchant Menu/bs'd with loop so invalid inputs 
+redeclare menu), then finishing up NPC - JW
 
 Began Mob (will implement a basic fight action) / Unfinished - JW
 

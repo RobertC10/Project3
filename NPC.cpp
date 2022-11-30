@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <stdlib.h>
 #include <ctime> 
 #include <cstdlib>
 #include <string>
@@ -495,6 +496,8 @@ void NPC::setmerchantUse(bool merchantExit_)
 void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
 {
     string user = "";
+    bool shopExit = false;
+    bool choiceExit = false;
     //will consist of multiple couts to establish a menu in which multiple options can result and produce random
     //products for purchase and will run through series of conditions taking in 
     //party resources to be used for checking/purchasing
@@ -502,6 +505,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
   cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
   cout<<"He asks you if you want to buy something [Y/N]?"<<endl;   
   cin >> user;
+  while (choiceExit == false){
   if(user[0]=='y'||user[0]=='Y') {
         int choice = 0;
          cout << "If you're looking to get supplies, you've come to the right place."<< endl
@@ -516,7 +520,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
               << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
          cout << "> "; 
          cin >> choice;
-         if(choice==1){
+        if(choice==1){
                               int itemSelect1 = 0;
                               cout << "How many kg of ingredients mate [1 Gold/kg]? (Enter a positive mulitple of 5, or 0 to cancel)" << endl;
                               cin >> itemSelect1;
@@ -527,8 +531,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                               }
                               else if (itemSelect1 % 5 != 0)
                               {
-                                cout << "Enter a valid amount: " << endl;
-                                cin >> itemSelect1;
+                                cout << "Enter a valid amount. " << endl;
+                                //cin >> itemSelect1;
                               }
                               else
                               {
@@ -542,6 +546,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                 party_.addIngredients(itemSelect1);
                                 cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
                                 cout << "" << endl;
+                                choiceExit = false;
                                 return merchantMarket(map_, party_, merchantExit_);
                               }
                               }
@@ -588,8 +593,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
 
@@ -620,8 +625,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
                                 
@@ -652,8 +657,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
 
@@ -662,8 +667,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     return merchantMarket(map_, party_, merchantExit_);
                                     break;
 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect2;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect2;
                                     break;
                               }
 
@@ -713,8 +718,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
@@ -745,8 +750,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
                                 
@@ -777,8 +782,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
@@ -809,8 +814,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
                                 
@@ -841,8 +846,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
@@ -851,8 +856,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     return merchantMarket(map_, party_, merchantExit_);
                                     break;
                                 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect3;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect3;
                                     break;
                               }
                              }
@@ -926,8 +931,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
@@ -966,8 +971,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
@@ -1006,8 +1011,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
@@ -1046,8 +1051,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
@@ -1086,8 +1091,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
@@ -1102,8 +1107,8 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     return merchantMarket(map_, party_, merchantExit_);
                                     break;
                                 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect5;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect5;
                                     break;
                               }
                              }
@@ -1116,6 +1121,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                              {
                                 cout << "I bid you luck! Hopefully better than mine mate... *He appears rather sad but grins away at you anyways*" << endl;
                                 merchantExit_ = true;
+                                choiceExit = true;
                                 phaseThree(map_, party_);
                              }
                              else if (choice6[0] == 'N' || choice6[0] == 'n')
@@ -1125,29 +1131,32 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                              }
                              else
                              {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> choice6; 
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> choice6; 
                              }
                              }
-         else
-         {
+         
+         /*{
             cout << "C'mon!!! Waste my time and I'll be as vicious as that ol' wizard." << endl;
             cout << "Please put in a valid response" << endl;
             cin >> choice;
-         }
+         }*/
   }
   else if (user[0] == 'N' || user[0] == 'n')
   {
     cout << "Fine you bugger! You look dirt poor anyways!" << endl;
     cout <<"The prisoner disappears. Yet a distinct, pungy smell hangs in the air..." << endl;
     merchantExit_ = true;
+    choiceExit = true;
     phaseThree(map_, party_);
   }
   else
   {
     cout << "Please put a valid response:" << endl;
     cin >> user;
+    return merchantMarket(map_, party_, merchantExit_);
   }
+}
 }
 
 bool NPC::setWeaponsMarket(Map map, Party my_party, bool merchant_Exit_)
