@@ -26,7 +26,7 @@ class Party
         int anger_;
     public:
         Party();
-        Party(int, int, int, int, int, int);
+        Party(int, int, int, int, int, int, int);
         int getNumMembers();
         int getGold();
         Member getMembersAt(int);
