@@ -75,16 +75,16 @@ void phaseTwo(Map map, Party my_party)
 {
     bool marketUsed = false;
     NPC my_npc = NPC(false, true, marketUsed);
-    my_npc.merchantMarket(my_party, marketUsed);    
+    my_npc.merchantMarket(map, my_party, marketUsed);    
 
-    if (marketUsed == true)
+    /*if (marketUsed == true)
     {
         phaseThree(map, my_party);
     }
     else
     {
         cout << "Fail" << endl;
-    }
+    }*/
 }
 
 void phaseThree(Map map, Party my_party)
