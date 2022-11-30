@@ -107,8 +107,16 @@ using namespace std;
         return keys_;
     }
 
-    void Party::setNumMembers(int num_members)
+    void Party::setNumMembers()
     {
+        int num_members = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            if(getMembersAt(i).getAlive() == 1)
+            {
+                num_members++;
+            }
+        }
         num_members_ = num_members;
     }
 
@@ -167,6 +175,7 @@ using namespace std;
             return 1;
         }else
         {
+            ingredients_ = 0;
             return 0;
         }
     }

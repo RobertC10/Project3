@@ -180,3 +180,5 @@ Added maindriver.h so other functions can access maindriver funcrions - RC
 
 changed sorcereranger to a party class variable so it can be edited and accessed through party.add/getAnger - RC
 
+added misfortunes to all actions - RC
+

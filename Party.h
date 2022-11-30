@@ -37,7 +37,7 @@ class Party
         int getArmor();
         int getTreasuresAt(int);
         int getKeys();
-        void setNumMembers(int);
+        void setNumMembers();
         void addGold(int);
         bool subGold(int);
         void setMemberAt(int, Member);

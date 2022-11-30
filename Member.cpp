@@ -46,7 +46,7 @@ using namespace std;
         return is_alive_;
     }
 
-    char Member::getWeapon()
+    int Member::getWeapon()
     {
         //returns what weapon the member has
         return weapon_type_;
@@ -86,10 +86,10 @@ using namespace std;
         is_alive_ = is_alive;
     }
 
-    void Member::setWeapon(char weapon_type)
+    void Member::setWeapon(int weapon_type)
     {
         //if the weapon_type is valid, then set weapon_type
-        if(weapon_type == 'C' || weapon_type == 'R' || weapon_type == 'S' || weapon_type == 'B' || weapon_type == 'L' || weapon_type == 'N')
+        if(weapon_type == 0 || weapon_type == 1 || weapon_type == 2 || weapon_type == 3 || weapon_type == 4 || weapon_type == -1)
         {
         weapon_type_ = weapon_type;
         }

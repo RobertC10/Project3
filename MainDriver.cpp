@@ -233,6 +233,99 @@ void NormalAction(Map map, Party my_party)
                 }
             }
             map.exploreSpace(map.getPlayerRow(), map.getPlayerCol());
+            
+            //misfortunes
+            rand1 = rand() % 10;
+            if(rand1 == 0 || rand2 == 1 || rand2 ==2)
+            {
+                cout<<"OH NO! Your team was robbed by dungeon bandits!"<<endl;
+                my_party.subIngredients(10);
+                if(my_party.getCookwareAt(0) != 0 || my_party.getCookwareAt(1) != 0 || my_party.getCookwareAt(2) != 0)
+                {
+                    rand2 = rand() % 3;
+                    while(my_party.subCookwareAt(rand2, 1) == 0)
+                    {
+                        rand2 = rand() % 3;
+                    }
+                    switch (rand2)
+                    {
+                    case 0:
+                        cout<<"You lost 1 Pot"<<endl;
+                        break;
+                    case 1:
+                        cout<<"You lost 1 Pan"<<endl;
+                        break;
+                    case 2:
+                        cout<<"You lost 1 Cauldron"<<endl;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+
+            }else
+            if(rand1 == 3)
+            {
+                rand2 = rand() % 5;
+                if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
+                    {
+                    while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                    {
+                        rand2 = rand() % 5;
+                    }
+                    for(int i = 0; i < 5; i++)
+                    {
+                        temp_member = my_party.getMembersAt(i);
+                        if(temp_member.getWeapon() == rand2)
+                        {
+                            temp_member.setWeapon(-1);
+                            my_party.setMemberAt(i, temp_member);
+                            break;
+                        }
+                    }
+                    switch (rand2)
+                    {
+                    case 0:
+                        cout<<"OH NO! Your Club broke!"<<endl;
+                        break;
+                    case 1:
+                        cout<<"OH NO! Your Spear broke!"<<endl;
+                        break;
+                    case 2:
+                        cout<<"OH NO! Your +1 Rapier broke!"<<endl;
+                        break;
+                    case 3:
+                        cout<<"OH NO! Your +2 Battle-Axe broke!"<<endl;
+                        break;
+                    case 4:
+                        cout<<"OH NO! Your +3 Long Sword broke!"<<endl;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }else
+            if(rand1 == 4 || rand1 == 5 || rand1 == 6)
+            {
+                rand2 = rand() % 4;
+                while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                {
+                    rand2 = rand() % 4;
+                }
+                temp_member = my_party.getMembersAt(rand2+1);
+                cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                temp_member.subFullness(10);
+                if(temp_member.getAlive() == 0)
+                {
+                    cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
+                }
+                
+            }else
+            if(rand1 == 7 || rand1 == 8 || rand1 == 9)
+            {
+
+            }
+
             break;
             case 3:
                 //monster fight
@@ -309,6 +402,97 @@ void NormalAction(Map map, Party my_party)
                             }
                         }
                     }
+                    //misfortunes
+                    rand1 = rand() % 10;
+                    if(rand1 == 0 || rand2 == 1 || rand2 ==2)
+                    {
+                        cout<<"OH NO! Your team was robbed by dungeon bandits!"<<endl;
+                        my_party.subIngredients(10);
+                        if(my_party.getCookwareAt(0) != 0 || my_party.getCookwareAt(1) != 0 || my_party.getCookwareAt(2) != 0)
+                        {
+                            rand2 = rand() % 3;
+                            while(my_party.subCookwareAt(rand2, 1) == 0)
+                            {
+                                rand2 = rand() % 3;
+                            }
+                            switch (rand2)
+                            {
+                            case 0:
+                                cout<<"You lost 1 Pot"<<endl;
+                                break;
+                            case 1:
+                                cout<<"You lost 1 Pan"<<endl;
+                                break;
+                            case 2:
+                                cout<<"You lost 1 Cauldron"<<endl;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+
+                    }else
+                    if(rand1 == 3)
+                    {
+                        rand2 = rand() % 5;
+                        if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
+                            {
+                            while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                            {
+                                rand2 = rand() % 5;
+                            }
+                            for(int i = 0; i < 5; i++)
+                            {
+                                temp_member = my_party.getMembersAt(i);
+                                if(temp_member.getWeapon() == rand2)
+                                {
+                                    temp_member.setWeapon(-1);
+                                    my_party.setMemberAt(i, temp_member);
+                                    break;
+                                }
+                            }
+                            switch (rand2)
+                            {
+                            case 0:
+                                cout<<"OH NO! Your Club broke!"<<endl;
+                                break;
+                            case 1:
+                                cout<<"OH NO! Your Spear broke!"<<endl;
+                                break;
+                            case 2:
+                                cout<<"OH NO! Your +1 Rapier broke!"<<endl;
+                                break;
+                            case 3:
+                                cout<<"OH NO! Your +2 Battle-Axe broke!"<<endl;
+                                break;
+                            case 4:
+                                cout<<"OH NO! Your +3 Long Sword broke!"<<endl;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }else
+                    if(rand1 == 4 || rand1 == 5 || rand1 == 6)
+                    {
+                        rand2 = rand() % 4;
+                        while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                        {
+                            rand2 = rand() % 4;
+                        }
+                        temp_member = my_party.getMembersAt(rand2+1);
+                        cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                        temp_member.subFullness(10);
+                        if(temp_member.getAlive() == 0)
+                        {
+                            cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
+                        }
+                        
+                    }else
+                    if(rand1 == 7 || rand1 == 8 || rand1 == 9)
+                    {
+
+                    }
                 }
                 break;
             case 5:
@@ -369,6 +553,98 @@ void NPCAction(Map map, Party my_party)
             break;
         case 2:
             //talk to NPC
+
+            //misfortunes
+            rand1 = rand() % 10;
+            if(rand1 == 0 || rand2 == 1 || rand2 ==2)
+            {
+                cout<<"OH NO! Your team was robbed by dungeon bandits!"<<endl;
+                my_party.subIngredients(10);
+                if(my_party.getCookwareAt(0) != 0 || my_party.getCookwareAt(1) != 0 || my_party.getCookwareAt(2) != 0)
+                {
+                    rand2 = rand() % 3;
+                    while(my_party.subCookwareAt(rand2, 1) == 0)
+                    {
+                        rand2 = rand() % 3;
+                    }
+                    switch (rand2)
+                    {
+                    case 0:
+                        cout<<"You lost 1 Pot"<<endl;
+                        break;
+                    case 1:
+                        cout<<"You lost 1 Pan"<<endl;
+                        break;
+                    case 2:
+                        cout<<"You lost 1 Cauldron"<<endl;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+
+            }else
+            if(rand1 == 3)
+            {
+                rand2 = rand() % 5;
+                if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
+                    {
+                    while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                    {
+                        rand2 = rand() % 5;
+                    }
+                    for(int i = 0; i < 5; i++)
+                    {
+                        temp_member = my_party.getMembersAt(i);
+                        if(temp_member.getWeapon() == rand2)
+                        {
+                            temp_member.setWeapon(-1);
+                            my_party.setMemberAt(i, temp_member);
+                            break;
+                        }
+                    }
+                    switch (rand2)
+                    {
+                    case 0:
+                        cout<<"OH NO! Your Club broke!"<<endl;
+                        break;
+                    case 1:
+                        cout<<"OH NO! Your Spear broke!"<<endl;
+                        break;
+                    case 2:
+                        cout<<"OH NO! Your +1 Rapier broke!"<<endl;
+                        break;
+                    case 3:
+                        cout<<"OH NO! Your +2 Battle-Axe broke!"<<endl;
+                        break;
+                    case 4:
+                        cout<<"OH NO! Your +3 Long Sword broke!"<<endl;
+                        break;
+                    default:
+                        break;
+                    }
+                }
+            }else
+            if(rand1 == 4 || rand1 == 5 || rand1 == 6)
+            {
+                rand2 = rand() % 4;
+                while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                {
+                    rand2 = rand() % 4;
+                }
+                temp_member = my_party.getMembersAt(rand2+1);
+                cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                temp_member.subFullness(10);
+                if(temp_member.getAlive() == 0)
+                {
+                    cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
+                }
+                
+            }else
+            if(rand1 == 7 || rand1 == 8 || rand1 == 9)
+            {
+
+            }
             break;
         case 3:
             //game over
@@ -487,22 +763,207 @@ void RoomAction(Map map, Party my_party)
                     my_party.addKeys(1);
                 }else
                 {
-                    rand2 = rand() % 4 + 1;
-                    temp_member = my_party.getMembersAt(rand2);
-                    while(temp_member.getAlive() == 0)
+                    //misfortunes
+                    rand1 = rand() % 10;
+                    if(rand1 == 0 || rand2 == 1 || rand2 ==2)
+                    {
+                        cout<<"OH NO! Your team was robbed by dungeon bandits!"<<endl;
+                        my_party.subIngredients(10);
+                        if(my_party.getCookwareAt(0) != 0 || my_party.getCookwareAt(1) != 0 || my_party.getCookwareAt(2) != 0)
+                        {
+                            rand2 = rand() % 3;
+                            while(my_party.subCookwareAt(rand2, 1) == 0)
+                            {
+                                rand2 = rand() % 3;
+                            }
+                            switch (rand2)
+                            {
+                            case 0:
+                                cout<<"You lost 1 Pot"<<endl;
+                                break;
+                            case 1:
+                                cout<<"You lost 1 Pan"<<endl;
+                                break;
+                            case 2:
+                                cout<<"You lost 1 Cauldron"<<endl;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+
+                    }else
+                    if(rand1 == 3)
+                    {
+                        rand2 = rand() % 5;
+                        if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
+                            {
+                            while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                            {
+                                rand2 = rand() % 5;
+                            }
+                            for(int i = 0; i < 5; i++)
+                            {
+                                temp_member = my_party.getMembersAt(i);
+                                if(temp_member.getWeapon() == rand2)
+                                {
+                                    temp_member.setWeapon(-1);
+                                    my_party.setMemberAt(i, temp_member);
+                                    break;
+                                }
+                            }
+                            switch (rand2)
+                            {
+                            case 0:
+                                cout<<"OH NO! Your Club broke!"<<endl;
+                                break;
+                            case 1:
+                                cout<<"OH NO! Your Spear broke!"<<endl;
+                                break;
+                            case 2:
+                                cout<<"OH NO! Your +1 Rapier broke!"<<endl;
+                                break;
+                            case 3:
+                                cout<<"OH NO! Your +2 Battle-Axe broke!"<<endl;
+                                break;
+                            case 4:
+                                cout<<"OH NO! Your +3 Long Sword broke!"<<endl;
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }else
+                    if(rand1 == 4 || rand1 == 5 || rand1 == 6)
+                    {
+                        rand2 = rand() % 4;
+                        while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                        {
+                            rand2 = rand() % 4;
+                        }
+                        temp_member = my_party.getMembersAt(rand2+1);
+                        cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                        temp_member.subFullness(10);
+                        if(temp_member.getAlive() == 0)
+                        {
+                            cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
+                        }
+                        
+                    }else
+                    if(rand1 == 7 || rand1 == 8 || rand1 == 9)
                     {
                         rand2 = rand() % 4 + 1;
                         temp_member = my_party.getMembersAt(rand2);
+                        while(temp_member.getAlive() == 0)
+                        {
+                            rand2 = rand() % 4 + 1;
+                            temp_member = my_party.getMembersAt(rand2);
+                        }
+                        temp_member.setAlive(0);
+                        my_party.setMemberAt(rand2, temp_member);
+                        my_party.setNumMembers();
+                        cout<<"OH NO! Your teammate "<<temp_member.getName()<<" is trapped in the previous room and is unable to get through. You must continue without them."<<endl
+                        <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
                     }
-                    temp_member.setAlive(0);
-                    cout<<"Well there you go. You killed "<<temp_member.getName()<<". Good job."<<endl;
-                    my_party.setMemberAt(rand2, temp_member);
+                    
                 }
             }
             if(my_party.getKeys() != 0)
             {
                 my_party.subkeys(1);
                 //fight monster depending on how many rooms cleared with switch statement
+
+                //misfortunes
+                rand1 = rand() % 10;
+                if(rand1 == 0 || rand2 == 1 || rand2 ==2)
+                {
+                    cout<<"OH NO! Your team was robbed by dungeon bandits!"<<endl;
+                    my_party.subIngredients(10);
+                    if(my_party.getCookwareAt(0) != 0 || my_party.getCookwareAt(1) != 0 || my_party.getCookwareAt(2) != 0)
+                    {
+                        rand2 = rand() % 3;
+                        while(my_party.subCookwareAt(rand2, 1) == 0)
+                        {
+                            rand2 = rand() % 3;
+                        }
+                        switch (rand2)
+                        {
+                        case 0:
+                            cout<<"You lost 1 Pot"<<endl;
+                            break;
+                        case 1:
+                            cout<<"You lost 1 Pan"<<endl;
+                            break;
+                        case 2:
+                            cout<<"You lost 1 Cauldron"<<endl;
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+
+                }else
+                if(rand1 == 3)
+                {
+                    rand2 = rand() % 5;
+                    if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
+                        {
+                        while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                        {
+                            rand2 = rand() % 5;
+                        }
+                        for(int i = 0; i < 5; i++)
+                        {
+                            temp_member = my_party.getMembersAt(i);
+                            if(temp_member.getWeapon() == rand2)
+                            {
+                                temp_member.setWeapon(-1);
+                                my_party.setMemberAt(i, temp_member);
+                                break;
+                            }
+                        }
+                        switch (rand2)
+                        {
+                        case 0:
+                            cout<<"OH NO! Your Club broke!"<<endl;
+                            break;
+                        case 1:
+                            cout<<"OH NO! Your Spear broke!"<<endl;
+                            break;
+                        case 2:
+                            cout<<"OH NO! Your +1 Rapier broke!"<<endl;
+                            break;
+                        case 3:
+                            cout<<"OH NO! Your +2 Battle-Axe broke!"<<endl;
+                            break;
+                        case 4:
+                            cout<<"OH NO! Your +3 Long Sword broke!"<<endl;
+                            break;
+                        default:
+                            break;
+                        }
+                    }
+                }else
+                if(rand1 == 4 || rand1 == 5 || rand1 == 6)
+                {
+                    rand2 = rand() % 4;
+                    while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                    {
+                        rand2 = rand() % 4;
+                    }
+                    temp_member = my_party.getMembersAt(rand2+1);
+                    cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                    temp_member.subFullness(10);
+                    if(temp_member.getAlive() == 0)
+                    {
+                        cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
+                    }
+                    
+                }else
+                if(rand1 == 7 || rand1 == 8 || rand1 == 9)
+                {
+
+                }
             }
             break;
         case 3:

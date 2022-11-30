@@ -13,19 +13,19 @@ class Member
         string name_;
         int fullness_;
         bool is_alive_;
-        char weapon_type_;
+        int weapon_type_;
     public:
         Member();
         Member(string, int, bool, char);
         string getName();
         int getFullness();
         bool getAlive();
-        char getWeapon();
+        int getWeapon();
         void setName(string);
         void addFullness(int);
         void subFullness(int);
         void setAlive(bool);
-        void setWeapon(char);
+        void setWeapon(int);
 
 };
 
