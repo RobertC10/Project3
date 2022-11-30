@@ -539,7 +539,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                 }
                                 else
                              {
-                                party_.subGold((itemSelect1));
                                 party_.addIngredients(itemSelect1);
                                 cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
                                 cout << "" << endl;
@@ -577,7 +576,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity * 2);
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -610,7 +608,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity * 10);
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -643,7 +640,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity * 20);
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -704,7 +700,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity2 * 2);
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -737,7 +732,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity2 * 2);
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -770,7 +764,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity2 * 5);
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -803,7 +796,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity2 * 15);
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -836,7 +828,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(quantity2 * 50);
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -882,7 +873,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.subGold(itemSelect4 * 5);
                                                 party_.addArmor(itemSelect4);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -923,7 +913,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.addGold(quantity3 * 10);
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -964,7 +953,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.addGold(quantity3 * 20);
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -1005,7 +993,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.addGold(quantity3 * 30);
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -1046,7 +1033,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.addGold(quantity3 * 40);
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
@@ -1087,7 +1073,6 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                             }
                                         else
                                             {
-                                                party_.addGold(quantity3 * 50);
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 return merchantMarket(map_, party_, merchantExit_);
