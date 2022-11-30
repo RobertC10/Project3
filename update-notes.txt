@@ -186,3 +186,12 @@ added checks for lose conditions and win conditions - RC
 
 changed the adding of sorcereranger so that it stops adding if all 5 rooms are cleared - RC
 
+NEED TO DO:
+    Update Investigate spaces for anger increase
+    ExitDungeon Action
+    Finish merchantMarket(Invalid Inputs)
+    Finish Mob class
+    Finish choosing weapons for each character
+    Finsih phasefour and change every game end to direct to it
+    implement ranking/score system system
+
