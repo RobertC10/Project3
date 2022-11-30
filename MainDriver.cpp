@@ -21,7 +21,7 @@ int main()
     phaseOne(map, my_party/*, sorcerer*/);
 }
 
-void phaseOne(Map map, Party my_party/*, Mob sorcerer*/)
+void phaseOne(Map map, Party my_party)
 {
     //This function would kind of be the welcome and initializing everything before passing it through the other functions.
 
@@ -99,6 +99,42 @@ void phaseThree(Map map, Party my_party)
     cout<<endl;
     map.displayMap();
     
+    //checks for all deaths, win condition, lose conditions
+
+    //checks all party members livelyness, if all party members are dead, send to phase four to end game
+    for(int i = 1; i < 5; i++)
+    {
+        temp_member = my_party.getMembersAt(i);
+        if(temp_member.getAlive() == 1)
+        {
+            truefalse = 1;
+        }
+    }
+    if(truefalse == 0)
+    {
+        phaseFour(map, my_party, 0);
+    }
+    truefalse = 0;
+
+    //checks if user is dead
+    if(my_party.getMembersAt(0).getAlive() == 0)
+    {
+        phaseFour(map, my_party, 0);
+    }
+
+    //checks if Anger is 100
+    if(my_party.getAnger() == 100)
+    {
+        phaseFour(map, my_party, 0);
+    }
+
+    //checks if player got to the end
+    if(map.isDungeonExit(map.getPlayerRow(), map.getPlayerCol()) && my_party.getRoomsCleared() == 5)
+    {
+
+    }
+
+    //checking spaces    
     if(map.isFreeSpace(map.getPlayerRow(), map.getPlayerCol()))
     {
         NormalAction(map, my_party);
@@ -112,6 +148,11 @@ void phaseThree(Map map, Party my_party)
         RoomAction(map, my_party);
     }
     
+}
+
+void phaseFour(Map map, Party my_party, bool win_lose)
+{
+
 }
 
 void NormalAction(Map map, Party my_party)
@@ -514,7 +555,10 @@ void NormalAction(Map map, Party my_party)
                 NormalAction(map, my_party);
                 break;
     }
-    my_party.addAnger(1);
+    if(my_party.getRoomsCleared() != 5)
+    {
+        my_party.addAnger(1);
+    }
     phaseThree(map, my_party);
 }
 
@@ -665,7 +709,10 @@ void NPCAction(Map map, Party my_party)
             NPCAction(map, my_party);
             break;
     }
-    my_party.addAnger(1);
+    if(my_party.getRoomsCleared() != 5)
+    {
+        my_party.addAnger(1);
+    }
     phaseThree(map, my_party);
 }
 
@@ -985,6 +1032,9 @@ void RoomAction(Map map, Party my_party)
             NPCAction(map, my_party);
             break;
     }
-    my_party.addAnger(1);
+    if(my_party.getRoomsCleared() != 5)
+    {
+        my_party.addAnger(1);
+    }
     phaseThree(map, my_party);
 }

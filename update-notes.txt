@@ -182,3 +182,7 @@ changed sorcereranger to a party class variable so it can be edited and accessed
 
 added misfortunes to all actions - RC
 
+added checks for lose conditions and win conditions - RC
+
+changed the adding of sorcereranger so that it stops adding if all 5 rooms are cleared - RC
+

@@ -13,9 +13,11 @@ void phaseThree(Map, Party);
 
 void phaseTwo(Map, Party);
 
-void phaseOne(Map, Party/*, Mob*/);
+void phaseOne(Map, Party);
 
-void NormalAction(Map, Party/*, Mob*/);
+void phaseFour(Map, Party, bool);
+
+void NormalAction(Map, Party);
 
 void NPCAction(Map, Party);
 
