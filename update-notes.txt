@@ -207,3 +207,6 @@ Starting debug of basic game thus far (changes in Merchant Menu/bs'd with loop s
 redeclare menu), then finishing up NPC - JW
 
 Began Mob (will implement a basic fight action) / Unfinished - JW
+
+We also need to make check condition for party reaching End room such that if they have not cleared
+5 rooms, the game refuses to end and prompts to do so or give up - JW
