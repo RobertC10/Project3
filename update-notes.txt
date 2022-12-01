@@ -249,3 +249,28 @@ Did some more debugging. Noticed some features that can be quick edited:
 - Again with member death, the "locked in rooms" misfortune only occurs when player uses key (see
  misforunes (4) game directions)
                                                                                     - JW
+
+
+1 Dec 22
+--------------------------------------------------------------------
+        Investigate leading to misfortune that breaks a club that never existed. I did not adjust them
+        as I see your method which makes sense but here's a quick run of how I would do it:
+            Rather than do an if using or conditions checking that no cookware is 0, it would remove that
+            condition and instead follow a case-by-case while check where 
+            rand2 = rand() % 3;
+                                while(my_party.subCookwareAt(rand2, 1) != 0)
+                                {
+                                    rand2 = rand() % 3;
+                                }
+            then the switch and case choices. Try it if none else works and if this method does, apply it 
+            to the other item misfortunes to test those as well!
+The Problem above is fixed. It was previously breaking a club because of a simple logic error. I do however need the conditions
+ checking that cookware and weapons is 0 because if that didn't exist, if the player had no weapons or cookware, it would be put into 
+ an infinite loop. - RC
+
+The problem where food hunger doesn't work also is fixed - RC
+
+Also made it so that the locked in room misfortune only happens when player tries to open door with a key. If the player manages to 
+complete a door puzzle, that misfortune cannot happen.
+
+Also made it so that if the player fails the door puzzle three times, a party member dies. - RC

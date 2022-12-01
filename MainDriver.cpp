@@ -394,7 +394,7 @@ void NormalAction(Map map, Party my_party)
                 rand2 = rand() % 5;
                 if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
                     {
-                    while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                    while(my_party.subWeaponsAt(rand2, 1) == 0)
                     {
                         rand2 = rand() % 5;
                     }
@@ -566,7 +566,7 @@ void NormalAction(Map map, Party my_party)
                         rand2 = rand() % 5;
                         if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
                             {
-                            while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                            while(my_party.subWeaponsAt(rand2, 1) == 0)
                             {
                                 rand2 = rand() % 5;
                             }
@@ -616,6 +616,7 @@ void NormalAction(Map map, Party my_party)
                         {
                             cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
                         }
+                        my_party.setMemberAt(rand2+1, temp_member);
                         
                     }else
                     if(rand1 == 7 || rand1 == 8 || rand1 == 9)
@@ -763,7 +764,7 @@ void NPCAction(Map map, Party my_party)
                 rand2 = rand() % 5;
                 if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
                     {
-                    while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                    while(my_party.subWeaponsAt(rand2, 1) == 0)
                     {
                         rand2 = rand() % 5;
                     }
@@ -813,6 +814,7 @@ void NPCAction(Map map, Party my_party)
                 {
                     cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
                 }
+                my_party.setMemberAt(rand2+1, temp_member);
                 
             }else
             if(rand1 == 7 || rand1 == 8 || rand1 == 9)
@@ -881,7 +883,7 @@ void RoomAction(Map map, Party my_party)
             if(my_party.getKeys() == 0)
             {
                 cout<<endl<<"It seems that you don't have any keys. You'll have to complete a puzzle if you want to enter without a key."<<endl;
-                cout<<"If you lose, one of you die. Do you want to try?"<<endl;
+                cout<<"If you lose 3 times, one of you die. Do you want to try?"<<endl;
                 cin>>playerOption;
 
                 //making sure the player actually wants to do this
@@ -930,7 +932,36 @@ void RoomAction(Map map, Party my_party)
                     }
                 }
 
-                puzzlecompleted = doorPuzzle();
+                for(int i = 0; puzzlecompleted == false; i++)
+                {
+                    puzzlecompleted = doorPuzzle();
+                    if(puzzlecompleted == true)
+                    {
+                        break;
+                    }else if(i == 2)
+                    {
+                        rand2 = rand() % 4 + 1;
+                        while(my_party.getMembersAt(rand2).getAlive() == 0)
+                        {
+                            rand2 == rand() % 4 + 1;
+                        }
+
+                        temp_member = my_party.getMembersAt(rand2);
+                        temp_member.setAlive(0);
+                        cout<<"What did I tell you. "<<temp_member.getName()<<" is dead now."<<endl;
+                        my_party.setMemberAt(rand2, temp_member);
+                        break;
+                    }
+                    cout<<"Would you like to try again? (Y/N)"<<endl;
+                    cin>>playerOption;
+                    if(playerOption[0] == 'Y' || playerOption[0] == 'y')
+                    {
+                        continue;
+                    }else
+                    {
+                        break;
+                    }
+                }
                 if(puzzlecompleted == true)
                 {
                     my_party.addKeys(1);
@@ -971,7 +1002,7 @@ void RoomAction(Map map, Party my_party)
                         rand2 = rand() % 5;
                         if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
                             {
-                            while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                            while(my_party.subWeaponsAt(rand2, 1) == 0)
                             {
                                 rand2 = rand() % 5;
                             }
@@ -1021,23 +1052,12 @@ void RoomAction(Map map, Party my_party)
                         {
                             cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
                         }
+                        my_party.setMemberAt(rand2+1, temp_member);
                         
                     }else
                     if(rand1 == 7 || rand1 == 8 || rand1 == 9)
                     {
-                        rand2 = rand() % 4 + 1;
-                        temp_member = my_party.getMembersAt(rand2);
-                        while(temp_member.getAlive() == 0)
-                        {
-                            rand2 = rand() % 4 + 1;
-                            temp_member = my_party.getMembersAt(rand2);
-                        }
-                        temp_member.setAlive(0);
-                        //my_party.setMemberAt(rand2, temp_member);
-                        my_party.removeMemberAt(rand2);
-                        my_party.setNumMembers();
-                        cout<<"OH NO! Your teammate "<<temp_member.getName()<<" is trapped in the previous room and is unable to get through. You must continue without them."<<endl
-                        <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+
                     }
                     
                 }
@@ -1046,7 +1066,7 @@ void RoomAction(Map map, Party my_party)
             {
                 my_party.subkeys(1);
                 //fight monster depending on how many rooms cleared with switch statement
-
+                cout<<"test enter"<<endl; // can be deleted whenever
                 //misfortunes
                 rand1 = rand() % 10;
                 if(rand1 == 0 || rand2 == 1 || rand2 ==2)
@@ -1082,7 +1102,7 @@ void RoomAction(Map map, Party my_party)
                     rand2 = rand() % 5;
                     if(my_party.getWeaponsAt(0) != 0 || my_party.getWeaponsAt(1) != 0 || my_party.getWeaponsAt(2) != 0 || my_party.getWeaponsAt(3) != 0 || my_party.getWeaponsAt(4) != 0)
                         {
-                        while(my_party.getWeaponsAt(rand2) != 0 && my_party.subWeaponsAt(rand2, 1))
+                        while(my_party.subWeaponsAt(rand2, 1) == 0)
                         {
                             rand2 = rand() % 5;
                         }
@@ -1120,23 +1140,36 @@ void RoomAction(Map map, Party my_party)
                 }else
                 if(rand1 == 4 || rand1 == 5 || rand1 == 6)
                 {
-                    rand2 = rand() % 4;
-                    while (my_party.getMembersAt(rand2+1).getAlive() == 0)
+                    rand2 = rand() % 4 + 1;
+                    while (my_party.getMembersAt(rand2).getAlive() == 0)
                     {
                         rand2 = rand() % 4;
                     }
-                    temp_member = my_party.getMembersAt(rand2+1);
+                    temp_member = my_party.getMembersAt(rand2);
                     cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
                     temp_member.subFullness(10);
                     if(temp_member.getAlive() == 0)
                     {
                         cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
                     }
+                    my_party.setMemberAt(rand2, temp_member);
                     
                 }else
-                if(rand1 == 7 || rand1 == 8 || rand1 == 9)
+                if((rand1 == 7 || rand1 == 8 || rand1 == 9) && puzzlecompleted == 0)
                 {
-
+                     rand2 = rand() % 4 + 1;
+                        temp_member = my_party.getMembersAt(rand2);
+                        while(temp_member.getAlive() == 0)
+                        {
+                            rand2 = rand() % 4 + 1;
+                            temp_member = my_party.getMembersAt(rand2);
+                        }
+                        temp_member.setAlive(0);
+                        //my_party.setMemberAt(rand2, temp_member);
+                        my_party.removeMemberAt(rand2);
+                        my_party.setNumMembers();
+                        cout<<"OH NO! Your teammate "<<temp_member.getName()<<" is trapped in the previous room and is unable to get through. You must continue without them."<<endl
+                        <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
                 }
             }
             break;
