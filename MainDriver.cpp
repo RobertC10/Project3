@@ -131,7 +131,7 @@ void phaseThree(Map map, Party my_party)
     //checks if player got to the end
     if(map.isDungeonExit(map.getPlayerRow(), map.getPlayerCol()) && my_party.getRoomsCleared() == 5)
     {
-
+        phaseFour(map, my_party, 1);
     }
 
     //checking spaces    
@@ -146,6 +146,10 @@ void phaseThree(Map map, Party my_party)
     if(map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
         RoomAction(map, my_party);
+    }else
+    if(map.isDungeonExit(map.getPlayerRow(), map.getPlayerCol()))
+    {
+        ExitAction(map, my_party);
     }
     
 }
@@ -153,6 +157,57 @@ void phaseThree(Map map, Party my_party)
 void phaseFour(Map map, Party my_party, bool win_lose)
 {
 
+}
+
+void ExitAction(Map map, Party my_party)
+{
+    string actionOption = "";
+    cout<<"It seems that you haven't cleared 5 rooms yet. You can't leave."<<endl;
+    cout<<"What would you like to do?"<<endl
+    <<"1. Move"<<endl
+    <<"2. Give up."<<endl;
+    cin>>actionOption;
+    while(actionOption != "1" && actionOption != "2" && actionOption != "3" && actionOption != "4" && actionOption != "5")
+    {
+        cout<<"Please enter a valid input."<<endl;
+        cin>>actionOption;
+    }
+    switch(stoi(actionOption))
+    {
+        case 1:
+            //repeats until user gives a vaild character
+            while(!truefalse)
+            {
+                cout<<"What direction do you want to move? w, a, s, or d:";
+                cin>>moveDirection;
+                truefalse = map.move(moveDirection[0]);
+            }
+            //reduces parties hunger by 1 if unlucky
+            for(int i = 0; i < 5; i++)
+            {
+                rand1 = rand() % 10;
+                if(rand1 == 1 || rand1 == 2)
+                {
+                    temp_member = my_party.getMembersAt(i);
+                    temp_member.subFullness(1);
+                    my_party.setMemberAt(i, temp_member);
+                }
+            }
+            break;
+        case 2:
+            phaseFour(map, my_party, 0);
+            break;
+        default:
+            cout<<"Please enter a valid input."<<endl;
+            ExitAction(map, my_party);
+            break;
+
+    }
+    if(my_party.getRoomsCleared() != 5)
+    {
+        my_party.addAnger(1);
+    }
+    phaseThree(map, my_party);
 }
 
 void NormalAction(Map map, Party my_party)
@@ -546,18 +601,7 @@ void NormalAction(Map map, Party my_party)
                 }
                 break;
             case 5:
-                //game over
-                cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
-                cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
-                cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
-                cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
-                cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
-                cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
-                cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
-                cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
-                cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
-                cout<<"                                                     ░                   "<<endl;
-                return;
+                phaseFour(map, my_party, 0);
                 break;
             default:
                 cout<<"Please enter a valid input."<<endl;
@@ -742,19 +786,7 @@ void NPCAction(Map map, Party my_party)
             }
             break;
         case 3:
-            //game over
-            talkTrue = false;
-            cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
-            cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
-            cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
-            cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
-            cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
-            cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
-            cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
-            cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
-            cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
-            cout<<"                                                     ░                   "<<endl;
-            return;
+            \phaseFour(map, my_party, 0);
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
@@ -1074,18 +1106,7 @@ void RoomAction(Map map, Party my_party)
             my_party.setWeapons();
             break;
         case 4:
-            //game over
-            cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
-            cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
-            cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
-            cout<<"░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄  "<<endl;
-            cout<<"░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒"<<endl;
-            cout<<" ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░"<<endl;
-            cout<<"  ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒░"<<endl;
-            cout<<"░ ░   ░   ░   ▒   ░      ░      ░      ░ ░ ░ ▒       ░░     ░     ░░   ░ "<<endl;
-            cout<<"      ░       ░  ░       ░      ░  ░       ░ ░        ░     ░  ░   ░     "<<endl;
-            cout<<"                                                     ░                   "<<endl;
-            return;
+            phaseFour(map, my_party, 0);
             break;
         default:
             cout<<"Please enter a valid input."<<endl;

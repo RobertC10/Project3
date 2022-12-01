@@ -214,3 +214,5 @@ We also need to make check condition for party reaching End room such that if th
 Finished weapon select function and added it to RoomActions - RC
 
 debugged small things - RC
+
+added an action set for the exit when the user hasn't cleared 5 rooms - RC

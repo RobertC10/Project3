@@ -17,6 +17,8 @@ void phaseOne(Map, Party);
 
 void phaseFour(Map, Party, bool);
 
+void ExitAction(Map, Party);
+
 void NormalAction(Map, Party);
 
 void NPCAction(Map, Party);
