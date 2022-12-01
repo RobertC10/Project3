@@ -168,6 +168,7 @@ void phaseFour(Map map, Party my_party, bool win_lose)
             <<" _/      _/    _/  _/    _/      _/        _/    _/        _/      _/          "<<endl
             <<"_/        _/_/      _/_/        _/_/_/_/    _/_/    _/_/_/        _/           "<<endl<<endl;
         my_party.printFinalStats();
+        results(my_party, win_lose);
 
     }
     if(win_lose == 1)
@@ -178,7 +179,7 @@ void phaseFour(Map map, Party my_party, bool win_lose)
         <<"  ===========  ===           ===  === ===  ===  ======  ===           ===  ===       ===========  === === ==== === ==== ===      === === "<<endl
         <<"   ==== ====   ========      ===  === ===  ===    ==    ========      ===  ===        ==== ====   === ===  === ===  === ======== ===  ==="<<endl;
         my_party.printFinalStats();
-        results(my_party);
+        results(my_party, win_lose);
     }
     return;
 }
@@ -224,7 +225,7 @@ void ExitAction(Map map, Party my_party)
             }
             break;
         case 2:
-            phaseFour(map, my_party, 1);
+            phaseFour(map, my_party, 0);
             return;
             break;
         default:
