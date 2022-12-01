@@ -17,6 +17,7 @@
 #include "actions.h"
 #include "Party.h"
 #include "NPC.h"
+#include "connect4.h"
 #include "Map.h"
 #include "MainDriver.h"
 using namespace std;
@@ -81,52 +82,9 @@ bool NPC::getNPCPuzzle()
 
 void NPC::setNPCPuzzle(bool puzzleCheck_)
 {
-    int i = 0;
-    string line;
-    string userAns = "";
-    //string temp_riddle[20];
-    //string temp_answer[20];
-    string temp_arr[20];
-
-    srand(time(0));
-    int riddleChosen = rand() % 19;
+    connect4 game = connect4();
+    puzzleCheck_ = game.computerGame();
     
-    //To be filled wherein the riddle will be separated by riddle and answer
-            //They will then be assigned line-by-line to their own temp array
-            //From there the array is randomly selected from a random num generator
-            //Output array, prompt user input
-            //Compare answers and determine the puzzle completion successfully to be returned as puzzleCheck
-            //will output a random puzzle and check against after splitting to see if user answer equals riddle key
-
-    ifstream file_input;
-    file_input.open("riddles.txt");
-    while (getline (file_input, line))
-    {
-            split(line, '~', temp_arr, 20);
-
-            riddle[i] = temp_arr[0];
-            riddleAns[i] = temp_arr[1];
-            temp_arr[0] = "";
-            temp_arr[1] = "";
-            i++;
-    }
-
-        cout << riddle[riddleChosen] << endl;
-        cout << riddleAns[riddleChosen] << endl
-        << "What am I?" << endl;
-        cin >> userAns;
-
-        if (userAns == riddleAns[riddleChosen])
-        {
-            cout << "Congratulations! Great to make yer acquaintance mate!" << endl;
-            puzzleCheck_ = true;
-        }
-        else
-        {
-            cout << "Too bad! You got it wrong...so JUST DIE!" << endl;
-            puzzleCheck_ = false;
-        }
-
     puzzleCheck = puzzleCheck_;
 }
 

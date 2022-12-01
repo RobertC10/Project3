@@ -46,7 +46,7 @@ void printActionsRoom()
 bool doorPuzzle()
 {
     srand(time(0));
-    int rand1 = rand() % 2;
+    int rand1 = rand() % 1;
     int rand2 = 0;
 
     switch (rand1)
