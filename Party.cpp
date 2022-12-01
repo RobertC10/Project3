@@ -25,6 +25,7 @@ using namespace std;
         for(int i = 0; i < 5; i++)
         {
             weapons_[i] = 0;
+            partyWeapons_[i] = 0;
         }
         armor_ = 0;
         for(int i = 0; i < 5; i++)
@@ -339,7 +340,103 @@ using namespace std;
         return anger_;
     }
 
+    void Party::setPartyWeapons()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            partyWeapons_[i] = 0;
+        }
 
+        int weapon;
+        for(int i = 0; i < 5; i++)
+        {
+            weapon = getMembersAt(i).getWeapon();
+            switch (weapon)
+            {
+            case 1:
+                partyWeapons_[0]++;
+                break;
+            case 2:
+                partyWeapons_[1]++;
+                break;
+            case 3:
+                partyWeapons_[2]++;
+                break;
+            case 4:
+                partyWeapons_[3]++;
+                break;
+            case 5:
+                partyWeapons_[4]++;
+                break;
+            
+            default:
+                break;
+            }
+        }
+    }
+
+    int Party::getPartyWeaponsAt(int index)
+    {
+        return partyWeapons_[index];
+    }
+
+    bool Party::setWeapons()
+    {
+        string yesNo = "";
+        int squad = 0;
+        int weapon = 0;
+        Member temp_member;
+
+        cout<<"Do you want to edit who has what weapon in your party?"<<endl;
+        cin>>yesNo;
+        while(yesNo[0] == 'y' || yesNo[0] == 'Y')
+        {  
+            cout<<"You have: "<<getWeaponsAt(0)<<" club(s), "<<getWeaponsAt(1)<<" iron sword(s), "<<getWeaponsAt(2)<<" rapier(s), "<<getWeaponsAt(3)<<" battle-axe(s), "<<getWeaponsAt(4)<<" longsword(s)."<<endl;
+            printParty();
+            cout<<"Whos weapon do you want to change?(type their position)"<<endl;
+            cin>>squad;
+            while(squad != 1 && squad != 2 && squad != 3 && squad != 4 && squad != 5)
+            {
+                cout<<"Please enter a valid input."<<endl;
+                cin>>squad;
+            }
+            cout<<"What weapon would you like to give them?"<<endl
+            <<"-1) Nothing"<<endl
+            <<"1) Club"<<endl
+            <<"2) Iron Sword"<<endl
+            <<"3) Rapier"<<endl
+            <<"4) Battle-Axe"<<endl
+            <<"5) LongSword"<<endl;
+            cin>>weapon;
+            while(weapon != -1 && weapon != 1 && weapon != 2 && weapon != 3 && weapon != 4 && weapon != 5)
+            {
+                cout<<"Please enter a valid input."<<endl;
+                cin>>weapon;
+            }
+            if(weapon == -1)
+            {
+                temp_member = getMembersAt(squad-1);
+                temp_member.setWeapon(-1);
+                setMemberAt(squad-1, temp_member);
+            }else
+            if(partyWeapons_[weapon-1] < weapons_[weapon-1])
+            {
+                temp_member = getMembersAt(squad-1);
+                temp_member.setWeapon(weapon);
+                setMemberAt(squad-1, temp_member);
+            }else
+            {
+                cout<<"You do not have enough of that weapon to do that."<<endl;
+            }
+
+            setPartyWeapons();
+
+            cout<<"Do you want to still edit who has what weapon in your party?"<<endl;
+            cin>>yesNo;
+        }
+
+        return 1;
+    }
 
 
 

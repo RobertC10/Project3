@@ -20,6 +20,7 @@ class Party
         int ingredients_;
         int cookware_[3];
         int weapons_[5];
+        int partyWeapons_[5];
         int armor_;
         int treasures_[5];
         int keys_;
@@ -61,6 +62,9 @@ class Party
         void printParty();
         void addAnger(int);
         int getAnger();
+        bool setWeapons();
+        void setPartyWeapons();
+        int getPartyWeaponsAt(int);
 };
 
 #endif
