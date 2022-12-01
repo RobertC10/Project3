@@ -160,7 +160,7 @@ void NormalAction(Map map, Party my_party)
     int actionOption = 0;
     bool truefalse = 0;
     int temp_int = 0;
-    char moveDirection = ' ';
+    string moveDirection = "";
     Member temp_member;
     printActionsNormal();
     int rand1 = 0;
@@ -174,7 +174,7 @@ void NormalAction(Map map, Party my_party)
             {
                 cout<<"What direction do you want to move? w, a, s, or d:";
                 cin>>moveDirection;
-                truefalse = map.move(moveDirection);
+                truefalse = map.move(moveDirection[0]);
             }
             //reduces parties hunger by 1 if unlucky
             for(int i = 0; i < 5; i++)
@@ -570,7 +570,7 @@ void NPCAction(Map map, Party my_party)
     bool NPCtrust = false;
     string NPCaccept = "";
     int temp_int = 0;
-    char moveDirection = ' ';
+    string moveDirection = "";
     Member temp_member;
     NPC randomNPC = NPC(true, NPCtrust);
     printActionsNPC();
@@ -585,7 +585,7 @@ void NPCAction(Map map, Party my_party)
             {
                 cout<<"What direction do you want to move? w, a, s, or d:";
                 cin>>moveDirection;
-                truefalse = map.move(moveDirection);
+                truefalse = map.move(moveDirection[0]);
             }
             //reduces parties hunger by 1 if unlucky
             for(int i = 0; i < 5; i++)
@@ -761,7 +761,7 @@ void RoomAction(Map map, Party my_party)
     int temp_int = 0;
     string playerOption = "";
     bool puzzlecompleted = 0;
-    char moveDirection = ' ';
+    string moveDirection = "";
     Member temp_member;
     printActionsRoom();
     int rand1 = 0;
@@ -775,7 +775,7 @@ void RoomAction(Map map, Party my_party)
             {
                 cout<<"What direction do you want to move? w, a, s, or d:";
                 cin>>moveDirection;
-                truefalse = map.move(moveDirection);
+                truefalse = map.move(moveDirection[0]);
             }
             //reduces parties hunger by 1 if unlucky
             for(int i = 0; i < 5; i++)

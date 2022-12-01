@@ -392,6 +392,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
+                                                party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
                                                 return merchantMarket(map_, party_);
@@ -427,6 +428,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
+                                                party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
                                                 return merchantMarket(map_, party_);
@@ -462,6 +464,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
+                                                party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
                                                 return merchantMarket(map_, party_);
@@ -497,6 +500,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
+                                                party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
                                                 return merchantMarket(map_, party_);
@@ -532,6 +536,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
+                                                party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
                                                 return merchantMarket(map_, party_);
