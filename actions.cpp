@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include "actions.h"
+#include <fstream>
+#include <vector>
 #include "Map.h"
 //#include "Mob.h"
 #include "Party.h"
@@ -172,6 +174,109 @@ int split (string input_string, char separator, string arr[], int arr_size)
     }
     
     return tracker;
+}
+
+void results(Party my_party, bool win_lose)
+{
+    cin.ignore();
+    string temp_string;
+    string temp_temp_string;
+    
+    int finalScore = 0;
+    string arr[2];
+    string temp;
+    string arrr[2];
+    ofstream output;
+    output.open("results.txt");
+    output<<"RESULTS:"<<endl
+    <<"+-------------------------------------------+"<<endl;
+    if(win_lose == 0)
+    {
+        output<<"YOU LOST"<<endl;
+    }else
+    {
+        output<<"YOU WON"<<endl;
+    }
+    
+        output<<"+-------------+"<<endl; 
+        output<<"| PARTY       |"<<endl;
+        output<<"+-------------+"<<endl; 
+        for(int i = 0; i < my_party.getNumMembers(); i++)
+        {
+            if(my_party.getMembersAt(i).getAlive() == 1)
+            {
+                output<<"| "<<my_party.getMembersAt(i).getName()<<" | Fullness: "<<my_party.getMembersAt(i).getFullness()<<" | Weapon: "<<my_party.getMembersAt(i).getWeapon()<<endl;    
+            }
+        }
+        output<<"+-------------+"<<endl; 
+        output<<"| Rooms Cleared     | "<<my_party.getRoomsCleared()<<endl;
+        output<<"| Gold              | "<<my_party.getGold()<<endl;
+        output<<"| Treasures         | R: "<<my_party.getTreasuresAt(0)<<" | N: "<<my_party.getTreasuresAt(1)<<" | B: "<<my_party.getTreasuresAt(2)<<" | C: "<<my_party.getTreasuresAt(3)<<" | G: "<<my_party.getTreasuresAt(4)<<endl;
+        output<<"| Spaces Explored   | "<<my_party.getNumExplored()<<endl;
+        output<<"| Monsters Defeated | "<<my_party.getMonstersDefeated()<<endl;
+        output<<"| Turns             | "<<my_party.getTurns()<<endl;
+        output<<"+------------------------------------------+"<<endl<<endl;
+
+        finalScore = my_party.getRoomsCleared() * 1000 + my_party.getGold() * 100 + my_party.getTreasuresAt(0) * 1000 + my_party.getTreasuresAt(1) * 2000 
+        + my_party.getTreasuresAt(2) * 3000 + my_party.getTreasuresAt(3) * 4000 + my_party.getTreasuresAt(4) * 5000 + my_party.getNumExplored() * 100
+        + my_party.getMonstersDefeated() * 100 + my_party.getNumMembers() * 1000;
+        
+        finalScore -= my_party.getTurns() * 500;
+        output<<"Your final score was: "<<finalScore<<endl<<endl;
+
+        if(win_lose == 1)
+        {
+            ifstream in;
+            ofstream out;
+            in.open("scoreboard.txt");
+            if(in.is_open() == false)
+            {
+                out.open("scoreboard.txt");
+                out<<"LEADERBOARD"<<endl;
+                out<<"+-----------------------------+"<<endl;
+                out.close();
+                in.open("scoreboard.txt");
+            }
+            vector<string> notscores;
+            vector<string> scores;
+            for(int i = 0; getline(in, temp_string); i++)
+            {   
+                if(i == 0 || i == 1)
+                {
+                    notscores.push_back(temp_string);
+                }else
+                {
+                    scores.push_back(temp_string);
+                }
+                
+            }
+            temp_string = my_party.getMembersAt(0).getName() + "~" + to_string(finalScore);
+            scores.push_back(temp_string);
+            for(int j = 0; j < scores.size(); j++){
+                for(int i = 0; i <scores.size()-1; i++)
+                {
+                    split(scores.at(i), '~', arr, 2);
+                    split(scores.at(i+1), '~', arrr, 2);
+                    if (stoi(arr[1]) < stoi(arrr[1]))
+                    {
+                        temp = scores.at(i);
+                        scores.at(i) = scores.at(i+1);
+                        scores.at(i+1) = temp;
+                    }
+                }
+            }
+            out.open("scoreboard.txt");
+            for(int i = 0; i < notscores.size(); i++)
+            {
+                out<<notscores.at(i)<<endl;
+            }
+            for(int i = 0; i < scores.size(); i++)
+            {
+                out<<scores.at(i)<<endl;
+            }
+        }
+
+        return;
 }
 
 /*

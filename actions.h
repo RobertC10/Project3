@@ -24,6 +24,8 @@ bool doorPuzzle();
 
 int split(string, char, string[], int);
 
+void results(Party, bool);
+
 //bool setWeapons(Map, Party, bool);
 
 //int readMobs(Mob[]);

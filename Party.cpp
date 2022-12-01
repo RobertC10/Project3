@@ -66,7 +66,15 @@ using namespace std;
 
     int Party::getNumMembers()
     {
-        return num_members_;
+        int memebrs = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            if(getMembersAt(i).getAlive() == 1)
+            {
+                memebrs ++;
+            }
+        }
+        return memebrs;
     }
 
     int Party::getGold()
