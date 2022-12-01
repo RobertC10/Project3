@@ -439,6 +439,7 @@ void connect4::playerGame()
     
 }
 
+//starts a game between the user and the computer
 bool connect4::computerGame()
 {
     srand(time(0));

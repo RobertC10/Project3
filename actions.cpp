@@ -11,6 +11,7 @@
 #include "connect4.h"
 #include "NPC.h"
 
+//prints actions available for a normal space
 void printActionsNormal()
 {
     cout<<"Select one:"<<endl;
@@ -21,6 +22,7 @@ void printActionsNormal()
     cout<<"5. Give up"<<endl;
 }
 
+//prints actions available for a NPC space
 void printActionsNPC()
 {
     cout<<"It seems there's a Non-Player-Character here."<<endl;
@@ -30,6 +32,7 @@ void printActionsNPC()
     cout<<"3. Give up"<<endl;
 }
 
+//prints actions available for a Room space
 void printActionsRoom()
 {
     cout<<"You're currently on a Room space. What do you want to do?"<<endl;
@@ -39,6 +42,7 @@ void printActionsRoom()
     cout<<"4. Give up"<<endl;
 }
 
+//chooses randomly from available puzzles and gives it to user
 bool doorPuzzle()
 {
     srand(time(0));
@@ -142,6 +146,7 @@ bool doorPuzzle()
     return 0;
 }
 
+//splits strings
 int split (string input_string, char separator, string arr[], int arr_size)
 {
     int tracker = 0;
@@ -176,6 +181,7 @@ int split (string input_string, char separator, string arr[], int arr_size)
     return tracker;
 }
 
+//prints and writes results to screen, results.txt, and scoreboard.txt if the player won
 void results(Party my_party, bool win_lose)
 {
     cin.ignore();
@@ -219,9 +225,11 @@ void results(Party my_party, bool win_lose)
 
         finalScore = my_party.getRoomsCleared() * 1000 + my_party.getGold() * 100 + my_party.getTreasuresAt(0) * 1000 + my_party.getTreasuresAt(1) * 2000 
         + my_party.getTreasuresAt(2) * 3000 + my_party.getTreasuresAt(3) * 4000 + my_party.getTreasuresAt(4) * 5000 + my_party.getNumExplored() * 100
-        + my_party.getMonstersDefeated() * 100 + my_party.getNumMembers() * 1000;
+        + my_party.getMonstersDefeated() * 100 + my_party.getNumMembers() * 1000 + my_party.getWeaponsAt(0) * 1000 + my_party.getWeaponsAt(1) * 2000 
+        + my_party.getWeaponsAt(2) * 3000 + my_party.getWeaponsAt(3) * 4000 + my_party.getWeaponsAt(4) * 5000;
         
         finalScore -= my_party.getTurns() * 500;
+        cout<<"Your final score was: "<<finalScore<<endl;
         output<<"Your final score was: "<<finalScore<<endl<<endl;
 
         if(win_lose == 1)
