@@ -9,6 +9,7 @@
 
 using namespace std;
 
+    //default constructor
     Party::Party()
     {
         Member temp_member;
@@ -39,6 +40,7 @@ using namespace std;
         keys_ = 0;
     }
 
+    //parametarized constructor
     Party::Party(int party_members, int gold, int rooms_cleared, int ingredients, int armor, int keys, int anger)
     {
         Member temp_member;
@@ -64,6 +66,7 @@ using namespace std;
         }
     }
 
+    //returns number of members that are alive
     int Party::getNumMembers()
     {
         int memebrs = 0;
@@ -77,51 +80,61 @@ using namespace std;
         return memebrs;
     }
 
+    //returns amount of gold
     int Party::getGold()
     {
         return gold_;
     }
 
+    //returns member at position index
     Member Party::getMembersAt(int index)
     {
         return members_.at(index);
     }
 
+    //returns number of rooms cleared
     int Party::getRoomsCleared()
     {
         return rooms_cleared_;
     }
 
+    //returns number of ingredients
     int Party::getIngredients()
     {
         return ingredients_;
     }
     
+    //returns number of cookware at index
     int Party::getCookwareAt(int index)
     {
         return cookware_[index];
     }
 
+    //returns number of weapons at index
     int Party::getWeaponsAt(int index)
     {
         return weapons_[index];
     }
 
+    //returns amount of armor
     int Party::getArmor()
     {
         return armor_;
     }
 
+    //returns how much treasure is at index
     int Party::getTreasuresAt(int index)
     {
         return treasures_[index];
     }
 
+    //returns amount of keys
     int Party::getKeys()
     {
         return keys_;
     }
 
+    //sets number of members to the amount that are alive
     void Party::setNumMembers()
     {
         int num_members = 0;
@@ -135,11 +148,13 @@ using namespace std;
         num_members_ = num_members;
     }
 
+    //adds gold
     void Party::addGold(int gold)
     {
         gold_ += gold;
     }
 
+    //takes away specified amount of gold. If insufficient amount, returns 0;
     bool Party::subGold(int gold)
     {
         if(gold_ - gold >= 0)
@@ -154,34 +169,40 @@ using namespace std;
 
     }
 
+    //sets member at index
     void Party::setMemberAt(int index, Member myMember)
     {
         members_.erase(members_.begin()+index);
         members_.emplace(members_.begin()+index, myMember);
     }
 
+    //adds a member to the vector (unused)
     void Party::addMember(Member myMember)
     {
         members_.push_back(myMember);
         num_members_++;
     }
 
+    //removes member from vector (unused)
     void Party::removeMemberAt(int index)
     {
         members_.erase(members_.begin()+index);
         num_members_--;
     }
 
+    //adds to number of rooms cleared
     void Party::addRoomsCleared(int rooms_cleared)
     {
         rooms_cleared_ += rooms_cleared;
     }
 
+    //adds number of ingredients
     void Party::addIngredients(int ingredients)
     {
         ingredients_ += ingredients;
     }
     
+    //takes away specified amount of ingredients. If insufficient amount, returns 0;
     bool Party::subIngredients(int ingredients)
     {
         if(ingredients_ - ingredients >= 0)
@@ -195,11 +216,13 @@ using namespace std;
         }
     }
 
+    //adds number of cookware at index
     void Party::addCookwareAt(int index, int number)
     {
         cookware_[index] += number;
     }
 
+    //takes away specified amount of cookware at index. If insufficient amount, returns 0;
     bool Party::subCookwareAt(int index, int number)
     {
         if(cookware_[index] - number >= 0)
@@ -212,11 +235,13 @@ using namespace std;
         }
     }
 
+    //adds number of weapons at index
     void Party::addWeaponsAt(int index, int number)
     {
         weapons_[index] = number;
     }
 
+    //takes away specified amount of weapons from index. If insufficient amount, returns 0;
     bool Party::subWeaponsAt(int index, int number)
     {
         if(weapons_[index] - number >= 0)
@@ -229,11 +254,13 @@ using namespace std;
         }
     }
 
+    //adds armor
     void Party::addArmor(int armor)
     {
         armor_ += armor;
     }
 
+    //takes away specified amount of armor. If insufficient amount, returns 0;
     bool Party::subArmor(int armor)
     {
         if(armor_ - armor >= 0)
@@ -246,11 +273,13 @@ using namespace std;
         }
     }
 
+    //adds treasure at index
     void Party::addTreasuresAt(int index, int treasures)
     {
         treasures_[index] += treasures;
     }
 
+    //takes away specified amount of treasure at index. If insufficient amount, returns 0;
     bool Party::subTreasuresAt(int index, int treasures)
     {
         if(treasures_[index] - treasures >= 0)
@@ -263,11 +292,13 @@ using namespace std;
         }
     }
 
+    //adds number of keys.
     void Party::addKeys(int keys)
     {
         keys_ += keys;
     }
 
+    //takes away specified amount of keys. If insufficient amount, returns 0;
     bool Party::subkeys(int keys)
     {
         if(keys_ - keys >= 0)
@@ -281,6 +312,7 @@ using namespace std;
         }
     }
 
+    //prints the Menu. This includes all stats and party members
     void Party::printMenu()
     {
         cout<<"+-------------+"<<endl;
@@ -310,6 +342,7 @@ using namespace std;
         
     }
 
+    //prints just the stats for the party
     void Party::printStats()
     {
         cout<<"+-------------+"<<endl;
@@ -327,6 +360,7 @@ using namespace std;
             cout<<"| Treasures   | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
     }
 
+    //prints just the party members
     void Party::printParty()
     {
             cout<<"+-------------+"<<endl; 
@@ -342,16 +376,19 @@ using namespace std;
             cout<<"+-------------+"<<endl; 
     }
 
+    //adds to sorcerer anger
     void Party::addAnger(int anger)
     {
         anger_ += anger;
     }
 
+    //returns anger
     int Party::getAnger()
     {
         return anger_;
     }
 
+    //sets the amount of weapons of each type the party is currently holding not in the inventory
     void Party::setPartyWeapons()
     {
         for(int i = 0; i < 5; i++)
@@ -387,11 +424,13 @@ using namespace std;
         }
     }
 
+    //returns number of weapons the party is currently holding not in the inventory at index
     int Party::getPartyWeaponsAt(int index)
     {
         return partyWeapons_[index];
     }
 
+    //prompts user to change what weapon each member in the party is holding 
     bool Party::setWeapons()
     {
         string yesNo = "";
@@ -452,36 +491,43 @@ using namespace std;
         return 1;
     }
 
+    //adds to number of spaces explored
     void Party::addnumExplored(int rooms)
     {
         numExplored_ += rooms;
     }
 
+    //returns numebr of spaces explored
     int Party::getNumExplored()
     {
         return numExplored_;
     }
 
+    //adds to the amount of monsters defeated
     void Party::addMonstersDefeated(int monsters)
     {
         monsters_defeated_ += monsters;
     }
 
+    //returns numebr of monsters defeated
     int Party::getMonstersDefeated()
     {
         return monsters_defeated_;
     }
 
+    //adds to the number of turns taken
     void Party::addTurns(int turns)
     {
         turns_ += turns;
     }
 
+    //returns number of turns taken
     int Party::getTurns()
     {
         return turns_;
     }
     
+    //prints stats of the party when the game ends.
     void Party::printFinalStats()
     {
         printParty();
