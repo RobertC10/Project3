@@ -157,7 +157,7 @@ void phaseFour(Map map, Party my_party, bool win_lose)
 
 void NormalAction(Map map, Party my_party)
 {
-    int actionOption = 0;
+    string actionOption = "";
     bool truefalse = 0;
     int temp_int = 0;
     string moveDirection = "";
@@ -166,7 +166,12 @@ void NormalAction(Map map, Party my_party)
     int rand1 = 0;
     int rand2 = 0;
     cin>>actionOption;
-    switch(actionOption)
+    while(actionOption != "1" && actionOption != "2" && actionOption != "3" && actionOption != "4" && actionOption != "5")
+    {
+        cout<<"Please enter a valid input."<<endl;
+        cin>>actionOption;
+    }
+    switch(stoi(actionOption))
     {
         case 1:
             //repeats until user gives a vaild character
@@ -386,6 +391,10 @@ void NormalAction(Map map, Party my_party)
                     <<"(3) "<<my_party.getCookwareAt(2)<<" cauldron(s)"<<endl
                     <<"(4) Exit"<<endl;
                     cin>>cookware;
+                    if(cookware == 4)
+                    {
+                        break;
+                    }
                     //check that the user has a non-zero amount of the cookware;
                     cout<<"How many kg of ingredients would you like to cook?"<<endl;
                     cout<<"For every 5kg you cook successfully, each party member will gain 1 hunger"<<endl;
@@ -564,7 +573,7 @@ void NormalAction(Map map, Party my_party)
 
 void NPCAction(Map map, Party my_party)
 {
-    int actionOption = 0;
+    string actionOption = "";
     bool truefalse = 0;
     bool talkTrue = true;
     bool NPCtrust = false;
@@ -577,7 +586,12 @@ void NPCAction(Map map, Party my_party)
     int rand1 = 0;
     int rand2 = 0;
     cin>>actionOption;
-    switch(actionOption)
+    while(actionOption != "1" && actionOption != "2" && actionOption != "3")
+    {
+        cout<<"Please enter a valid input."<<endl;
+        cin>>actionOption;
+    }
+    switch(stoi(actionOption))
     {
         case 1:
             //repeats until user gives a vaild character
@@ -756,7 +770,7 @@ void NPCAction(Map map, Party my_party)
 
 void RoomAction(Map map, Party my_party)
 {
-    int actionOption = 0;
+    string actionOption = "";
     bool truefalse = 0;
     int temp_int = 0;
     string playerOption = "";
@@ -767,7 +781,12 @@ void RoomAction(Map map, Party my_party)
     int rand1 = 0;
     int rand2 = 0;
     cin>>actionOption;
-    switch(actionOption)
+    while(actionOption != "1" && actionOption != "2" && actionOption != "3" && actionOption != "4")
+    {
+        cout<<"Please enter a valid input."<<endl;
+        cin>>actionOption;
+    }
+    switch(stoi(actionOption))
     {
         case 1:
             //repeats until user gives a vaild character
@@ -1052,6 +1071,9 @@ void RoomAction(Map map, Party my_party)
             }
             break;
         case 3:
+            my_party.setWeapons();
+            break;
+        case 4:
             //game over
             cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
             cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;

@@ -210,3 +210,7 @@ Began Mob (will implement a basic fight action) / Unfinished - JW
 
 We also need to make check condition for party reaching End room such that if they have not cleared
 5 rooms, the game refuses to end and prompts to do so or give up - JW
+
+Finished weapon select function and added it to RoomActions - RC
+
+debugged small things - RC

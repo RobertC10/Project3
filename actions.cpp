@@ -33,7 +33,8 @@ void printActionsRoom()
     cout<<"You're currently on a Room space. What do you want to do?"<<endl;
     cout<<"1. Move"<<endl;
     cout<<"2. Open the door"<<endl;
-    cout<<"3. Give up"<<endl;
+    cout<<"3. Change your party's Loadout"<<endl;
+    cout<<"4. Give up"<<endl;
 }
 
 bool doorPuzzle()
