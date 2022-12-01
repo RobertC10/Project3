@@ -18,6 +18,7 @@ int main()
     Party my_party = Party();
     int angerLvl = 0;
     //Mob Sorcerer = Sorcerer();
+    //cout<<"-"<<endl;
     phaseOne(map, my_party/*, sorcerer*/);
 }
 
@@ -171,8 +172,15 @@ void phaseFour(Map map, Party my_party, bool win_lose)
     }
     if(win_lose == 1)
     {
-        
+        cout<<" :::  ===  === :::=====      :::  === :::====  :::  === :::=====      :::====       :::  ===  === ::: :::= === :::= === :::===== :::==== "<<endl
+        <<" :::  ===  === :::           :::  === :::  === :::  === :::           :::  ===      :::  ===  === ::: :::===== :::===== :::      :::  ==="<<endl
+        <<" ===  ===  === ======        ======== ======== ===  === ======        ========      ===  ===  === === ======== ======== ======   ======= "<<endl
+        <<"  ===========  ===           ===  === ===  ===  ======  ===           ===  ===       ===========  === === ==== === ==== ===      === === "<<endl
+        <<"   ==== ====   ========      ===  === ===  ===    ==    ========      ===  ===        ==== ====   === ===  === ===  === ======== ===  ==="<<endl;
+        my_party.printFinalStats();
+        results(my_party);
     }
+    return;
 }
 
 void ExitAction(Map map, Party my_party)
@@ -216,8 +224,8 @@ void ExitAction(Map map, Party my_party)
             }
             break;
         case 2:
-            phaseFour(map, my_party, 0);
-        return;
+            phaseFour(map, my_party, 1);
+            return;
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
@@ -272,6 +280,17 @@ void NormalAction(Map map, Party my_party)
             }
             break;
         case 2:
+
+            if(map.isExplored(map.getPlayerRow(), map.getPlayerCol()) == 0)
+            {
+                map.exploreSpace(map.getPlayerRow(), map.getPlayerCol());
+                my_party.addnumExplored(1);
+            }else
+            {
+                cout<<"You already explored this space!"<<endl;
+                phaseThree(map, my_party);
+            }
+
             rand1 = rand() % 10;
 
             if(rand1 == 1)
@@ -341,6 +360,8 @@ void NormalAction(Map map, Party my_party)
                 //monster fight
             }
 
+            rand1 = rand() % 10;
+
             if(rand1 > 4) /*double check this does interfere with above chance*/
             {
                 cout<<"Darn. You didn't find anything."<<endl;
@@ -356,8 +377,6 @@ void NormalAction(Map map, Party my_party)
                     }
                 }
             }
-            map.exploreSpace(map.getPlayerRow(), map.getPlayerCol());
-            my_party.addnumExplored(1);
             
             //misfortunes
             rand1 = rand() % 10;
@@ -444,6 +463,7 @@ void NormalAction(Map map, Party my_party)
                 {
                     cout<<"OH DANG! "<<temp_member.getName()<<" just died!"<<endl;
                 }
+                my_party.setMemberAt(rand2+1, temp_member);
                 
             }else
             if(rand1 == 7 || rand1 == 8 || rand1 == 9)
