@@ -20,71 +20,126 @@ using namespace std;
 Mob::Mob()
 {
     //default constructor
-    monsterName = "";
-    mobStr = 0;
-    //sorcererRage = 0;
+    name = "";
+    str = 0;
+    gold = 0;
+    food = 0;
+    mobChosen = 0;
     //defeated = false;
-    goldDrop = 0;
-    foodDrop = 0;
-    keyDrop = false;
 }
 
-Mob::Mob(string name, int str, int gold, int food, bool key)
+Mob::Mob(string name_, int str_, int gold_, int food_, int mobChosen_)
 {
     //parameterized constructor
-    monsterName = name;
-    mobStr = str;
-    //sorcererRage = rage;
+    name = name_;
+    str = str_;
+    gold = gold_;
+    food = food_;
+    mobChosen = mobChosen_;
     //defeated = status;
-    goldDrop = gold;
-    foodDrop = food;
-    keyDrop = key;
 }
 
 string Mob::getName()
 {
     //returns the monster's name after splitting it
-    return monsterName;
+    return name;
 }
 
-void Mob::setName(string name)
+void Mob::setName(string name_)
 {
     //sets name to name of randomly selected mob based on file number rand
-    monsterName = name;
+    name = name_;
 }
 
 int Mob::getStr()
 {
     //returns the monster's strength after splitting it
-    return mobStr;
+    return str;
 }
 
-void Mob::setStr(int str)
+void Mob::setStr(int str_)
 {
     //sets str of the monster randomly selected that was split from file
-    mobStr = str;
+    str = str_;
 }
 
-/*int getRage()
+int Mob::getGold()
 {
-    //will return rage of the sorcerer as a value if the monster is such
-    return rage;
+    //returns the gold drop rate of the mob
+    return gold;
 }
 
-void setRage(int rage)
+void Mob::setGold(int str_, int gold_)
 {
-    int i = mob.getName();
-    bool rageInclude;
-    //will first run condition seeing if randomly selected mob is sorcerer
-    //then out put it as a value to be adjusted in other classes
-    if (name[i] == 20)
+    //will use a calculation to determine gold drop if defeated
+
+    gold_ = 10 * str_;
+
+    gold = gold_;
+}
+
+int Mob::getFood()
+{
+    //returns the resource drop rate of the mob
+    return food;
+}
+
+void Mob::setFood(int str_, int food_)
+{
+    //will use a calculation to determine resource drop if defeated
+    
+    food_ = 5 * str_;
+
+    food = food_;
+}
+
+int Mob::getmobChoices()
+{
+    return mobChosen;
+}
+
+void Mob::setmobChoices(int mobChosen_)
+{
+    mobChosen = mobChosen_;
+}
+
+void Mob::setMob(string name_, int str_, int mobChosen_, int gold_, int food_)
+{
+    int i = 0;
+    string line;
+    string temp_arr[21];
+
+    srand(time(0));    
+    //To be filled wherein the mob will be separated by name and strength/rating
+            //They will then be assigned line-by-line to their own temp array
+            //From there the array is randomly selected from a random num generator
+            //Output array, and assign name and strength to respective mobs
+            
+    ifstream file_input;
+    file_input.open("monsters.txt");
+    while (getline (file_input, line))
     {
-        //rage = Action action[1-5];
-        rageInclude = true;
+            split(line, ',', temp_arr, 21);
+
+            mobName[i] = temp_arr[0];
+            mobStr[i] = temp_arr[1];
+            temp_arr[0] = "";
+            temp_arr[1] = "";
+            i++;
     }
+
+        name_ = mobName[mobChosen_];
+        str_ = stoi(mobStr[mobChosen_]);
+        gold_ = 10 * str_;
+        food_ = 5 * str_;
+
+        name = name_;
+        str = str_;
+        gold = gold_;
+        food = food_;
 }
 
-bool getStatus()
+/*bool getStatus()
 {
     //will determine monsters status as "alive" until defeated in action or etc
     return status;
@@ -105,64 +160,3 @@ void setStatus(bool status, Action action_)
         }
     }
 }*/
-
-int Mob::getGold()
-{
-    //returns the gold drop rate of the mob
-    return goldDrop;
-}
-
-void Mob::setGold(int gold, bool status)
-{
-    //will use a calculation to determine gold drop if defeated
-
-    gold = 10 * mobStr;
-
-    goldDrop = gold;
-}
-
-int Mob::getFood()
-{
-    //returns the resource drop rate of the mob
-    return foodDrop;
-}
-
-void Mob::setFood(int food, bool status)
-{
-    //will use a calculation to determine resource drop if defeated
-    
-    food = 5 * mobStr;
-
-    foodDrop = food;
-}
-
-bool Mob::getKey()
-{
-    //returns the key drop rate of the mob
-    return keyDrop;
-}
-
-void Mob::setKey(bool key)
-{
-    //will use a calculation to determine key drop if defeated
-    srand(time(0));
-    int rand1 = 0;
-    bool dropSuccess = false;
-
-    for (int i = 0; i < 20; i++)
-    {
-        rand1 = (rand() & 1) < 10;
-
-    }
-
-    if (rand1 == 1)
-    {
-        dropSuccess = true;
-    }
-    else
-    {
-        dropSuccess = false;
-    }
-
-    keyDrop = dropSuccess;
-}

@@ -111,7 +111,8 @@ void NPC::setNPCPuzzle(bool puzzleCheck_)
             i++;
     }
 
-        cout << riddle[riddleChosen] << endl
+        cout << riddle[riddleChosen] << endl;
+        cout << riddleAns[riddleChosen] << endl
         << "What am I?" << endl;
         cin >> userAns;
 
@@ -122,7 +123,7 @@ void NPC::setNPCPuzzle(bool puzzleCheck_)
         }
         else
         {
-            cout << "The answer was " << riddleAns[riddleChosen] <<". " << "Too bad! You got it wrong...so JUST DIE!" << endl;
+            cout << "Too bad! You got it wrong...so JUST DIE!" << endl;
             puzzleCheck_ = false;
         }
 

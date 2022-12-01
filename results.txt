@@ -1,0 +1,22 @@
+RESULTS:
++-------------------------------------------+
+YOU LOST
++-------------+
+| PARTY       |
++-------------+
+| Jevan | Fullness: 44 | Weapon: -1
+| A | Fullness: 45 | Weapon: -1
+| D | Fullness: 33 | Weapon: -1
+| C | Fullness: 44 | Weapon: -1
+| E | Fullness: 47 | Weapon: -1
++-------------+
+| Rooms Cleared     | 0
+| Gold              | 100
+| Treasures         | R: 0 | N: 0 | B: 0 | C: 0 | G: 0
+| Spaces Explored   | 6
+| Monsters Defeated | 0
+| Turns             | 11
++------------------------------------------+
+
+Your final score was: 10100
+

@@ -29,32 +29,30 @@ using namespace std;
 class Mob
 {
     private:
-        string monsterName;
-        int mobStr;
-        //int sorcererRage;
+        string name;
+        string mobName[21];
+        string mobStr[21];
+        int mobChosen;
+        int str;
+        int gold;
+        int food;
         //bool defeated;
-        int goldDrop;
-        int foodDrop;
-        bool keyDrop;
-        //actions action_[5];
-
 
     public:
         Mob();
-        Mob(string,int, int, int, bool);
+        Mob(string,int, int, int, int);
         string getName();
         void setName(string);
         int getStr();
         void setStr(int);
-        /*int getRage();
-        void setRage(int);
-        bool getStatus();
-        void setStatus(bool, Action);*/
         int getGold();
-        void setGold(int, bool);
+        void setGold(int, int);
         int getFood();
-        void setFood(int, bool);
-        bool getKey();
-        void setKey(bool);
+        void setFood(int, int);
+        int getmobChoices();
+        void setmobChoices(int);
+        void setMob(string, int, int, int, int);
+        /*bool getStatus();
+        void setStatus(bool);*/
 };
 #endif

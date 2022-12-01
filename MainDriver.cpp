@@ -4,6 +4,7 @@
 #include "Member.h"
 #include "Party.h"
 #include "NPC.h"
+#include "Mob.h"
 #include "Map.h"
 #include "actions.h"
 #include <iostream>
@@ -247,13 +248,26 @@ void ExitAction(Map map, Party my_party)
 void NormalAction(Map map, Party my_party)
 {
     string actionOption = "";
-    bool truefalse = 0;
+    string mobName = "";
+    int rating = 0;
+    int gDrop = 0;
+    int fDrop = 0;
+    int foodLoss = rand() % 30;
+    int spawnRate = 0;
+    int w = 0;
+    int d = 0;
+    bool winLoss = false;
+    bool truefalse = 0;;
     int temp_int = 0;
     string moveDirection = "";
     Member temp_member;
+    Mob temp_Mob = Mob(mobName, rating, gDrop, fDrop, spawnRate);
     printActionsNormal();
     int rand1 = 0;
     int rand2 = 0;
+    int btlrand1 = 0;
+    int btlrand2 = 0;
+    int btlrand3 = 0;
     cin>>actionOption;
     while(actionOption != "1" && actionOption != "2" && actionOption != "3" && actionOption != "4" && actionOption != "5")
     {
@@ -361,6 +375,458 @@ void NormalAction(Map map, Party my_party)
             if(rand1 == 4 || rand1 == 5)
             {
                 //monster fight
+                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                {
+                    if (my_party.getRoomsCleared() < 1)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 3;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 2)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 7 + 4;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 3)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 11 + 8;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 4)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 15 + 12;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 5)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 19 + 16;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                }
+                else
+                {
+                    cout << "You don't have weapons bruv! Godspeed!! @#^&@" << endl
+                    << "You managed to flee this scenario without any real injuries."
+                    << "Lucky you didn't willingly fight this time or things would be different!!" << endl;
+                    cout << "" << endl;
+                    cout << "" << endl;
+                    cout << "" << endl;
+                }
             }
 
             rand1 = rand() % 10;
@@ -477,6 +943,470 @@ void NormalAction(Map map, Party my_party)
             break;
             case 3:
                 //monster fight
+                cout << "You challenged a nearby lurking creature!" << endl
+                << "IT'S TIME TO..D..D..D..D..D-D-D-D-DUEL!!!!" << endl;
+                cout << "" << endl;
+                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                {
+                    if (my_party.getRoomsCleared() < 1)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 3;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 2)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 7 + 4;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 3)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 11 + 8;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 4)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 15 + 12;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 5)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 19 + 16;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                }
+                else
+                {
+                    cout << "You don't have weapons bruv! Godspeed!! @#^&@" << endl;
+                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                    cout << "" << endl
+                    << "" << endl;
+                }
                 break;
             case 4:
                 {
@@ -668,6 +1598,14 @@ void NormalAction(Map map, Party my_party)
 void NPCAction(Map map, Party my_party)
 {
     string actionOption = "";
+    string mobName = "";
+    int rating = 0;
+    int gDrop = 0;
+    int fDrop = 0;
+    int foodLoss = rand() % 30;
+    int spawnRate = 0;
+    int w = 0;
+    int d = 0;
     bool truefalse = 0;
     bool talkTrue = true;
     bool NPCtrust = false;
@@ -680,9 +1618,13 @@ void NPCAction(Map map, Party my_party)
     string moveDirection = "";
     Member temp_member;
     NPC randomNPC = NPC(NPCused, NPCtrust, marketUsage);
+    Mob temp_Mob = Mob(mobName, rating, spawnRate, gDrop, fDrop);
     printActionsNPC();
     int rand1 = 0;
     int rand2 = 0;
+    int btlrand1 = 0;
+    int btlrand2 = 0;
+    int btlrand3 = 0;
     cin>>actionOption;
     while(actionOption != "1" && actionOption != "2" && actionOption != "3")
     {
@@ -737,7 +1679,473 @@ void NPCAction(Map map, Party my_party)
                 }
                 else
                 {
-                  talkTrue = false;
+                    cout << "The stranger brought out a...Pokeball?!?! I mean..uhm..sure then..? Ready your weapons!!" << endl
+                    << " He sends out a strange creature!" << endl;
+                    if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                {
+                    if (my_party.getRoomsCleared() < 1)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 3;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 2)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 7 + 4;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 3)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 11 + 8;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 4)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 15 + 12;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 5)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 19 + 16;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                }
+                    else
+                {
+                    cout << "You don't have weapons bruv! Godspeed!! @#^&@" << endl;
+                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                    cout << "" << endl
+                    << "" << endl;
+                }
+                    cout << "" << endl;
+                    cout << "" << endl;
+                    cout << "" << endl;
+                    talkTrue = false;
                 }
            }
            else if (NPCaccept[0] == 'n' || NPCaccept[0] == 'N')
@@ -865,15 +2273,27 @@ void NPCAction(Map map, Party my_party)
 void RoomAction(Map map, Party my_party)
 {
     string actionOption = "";
+    string mobName = "";
+    int rating = 0;
+    int gDrop = 0;
+    int fDrop = 0;
+    int foodLoss = rand() % 30;
+    int spawnRate = 0;
+    int w = 0;
+    int d = 0;
     bool truefalse = 0;
     int temp_int = 0;
     string playerOption = "";
     bool puzzlecompleted = 0;
     string moveDirection = "";
     Member temp_member;
+    Mob temp_Mob = Mob(mobName, rating, spawnRate, gDrop, fDrop);
     printActionsRoom();
     int rand1 = 0;
     int rand2 = 0;
+    int btlrand1 = 0;
+    int btlrand2 = 0;
+    int btlrand3 = 0;
     cin>>actionOption;
     while(actionOption != "1" && actionOption != "2" && actionOption != "3" && actionOption != "4")
     {
@@ -1089,7 +2509,467 @@ void RoomAction(Map map, Party my_party)
             {
                 my_party.subkeys(1);
                 //fight monster depending on how many rooms cleared with switch statement
-                cout<<"test enter"<<endl; // can be deleted whenever
+                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                {
+                    if (my_party.getRoomsCleared() < 1)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 3;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 2)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 7 + 4;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 3)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 11 + 8;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 4)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = rand() % 15 + 12;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! A wild " << temp_Mob.getName() << " appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The foul beast rampages and crushes all in its path, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                    if (my_party.getRoomsCleared() < 5)
+                    {
+                        btlrand1 = rand() % 6;
+                        btlrand2 = rand() % 6;
+
+                        w = 5; //((my_party.getPartyWeaponsAt(0) + my_party.getPartyWeaponsAt(1) + my_party.getPartyWeaponsAt(2) + my_party.getPartyWeaponsAt(3) + my_party.getPartyWeaponsAt(4)));
+                        if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 3 || my_party.getPartyWeaponsAt(2) == 3 || my_party.getPartyWeaponsAt(3) == 3 || my_party.getPartyWeaponsAt(4) == 3)
+                        {
+                            w += 1;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 4 || my_party.getPartyWeaponsAt(2) == 4 || my_party.getPartyWeaponsAt(3) == 4 || my_party.getPartyWeaponsAt(4) == 4)
+                        {
+                            w += 2;
+                        }
+                        else if (my_party.getPartyWeaponsAt(0) == 3 || my_party.getPartyWeaponsAt(1) == 5 || my_party.getPartyWeaponsAt(2) == 5 || my_party.getPartyWeaponsAt(3) == 5 || my_party.getPartyWeaponsAt(4) == 5)
+                        {
+                            w +=3;
+                        }
+
+                        if (my_party.getPartyWeaponsAt(0) != my_party.getPartyWeaponsAt(1) && my_party.getPartyWeaponsAt(1) != my_party.getPartyWeaponsAt(2) && my_party.getPartyWeaponsAt(2) != my_party.getPartyWeaponsAt(3) && my_party.getPartyWeaponsAt(3) != my_party.getPartyWeaponsAt(4))
+                        {
+                            d = 4;
+                        }
+                        else
+                        {
+                            d = 0;
+                        }
+
+                        spawnRate = 21;
+                        temp_Mob.setMob(mobName, rating, spawnRate, gDrop, fDrop);
+
+                        cout << "Oh no! It's him... The " << temp_Mob.getName() << " has finally appeared!" << endl
+                        << "So the battle commences!" << endl
+                        << "" << endl;
+                        
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        {
+                            cout << "Congrats! You managed to win!! Here's your rewards." << endl;
+                            cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
+                            my_party.addGold(temp_Mob.getGold());
+                            my_party.addIngredients(temp_Mob.getFood());
+                            my_party.addMonstersDefeated(1);
+                        }
+                        else
+                        {
+                            cout << "The wizard radiates power and crushes all around him, and you lose some belongings in an effort to escape!" << endl;
+                            my_party.subGold(my_party.getGold()/25);
+                            my_party.subIngredients(foodLoss);
+                            btlrand3 = rand() % 10;
+                            if (my_party.getArmor() != 0)
+                            {
+                                if (btlrand3 == 1 || btlrand3 == 2)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            else
+                            {
+                                if (btlrand3 == 3 || btlrand3 == 4 || btlrand3 == 5 || btlrand3 == 6)
+                                {
+                                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                                }
+                            }
+                            my_party.addTurns(1);
+                        }
+                    }
+                }
+                else
+                {
+                    cout << "You don't have weapons bruv! Godspeed!! @#^&@" << endl;
+                    rand2 = rand() % 4 + 1;
+                                    temp_member = my_party.getMembersAt(rand2);
+                                    while(temp_member.getAlive() == 0)
+                                        {
+                                        rand2 = rand() % 4 + 1;
+                                        temp_member = my_party.getMembersAt(rand2);
+                                        }
+                                    temp_member.setAlive(0);
+                                    my_party.removeMemberAt(rand2);
+                                    my_party.setNumMembers();
+                                    cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
+                                    <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
+                    cout << "" << endl
+                    << "" << endl;
+                }
                 //misfortunes
                 rand1 = rand() % 10;
                 if(rand1 == 0 || rand2 == 1 || rand2 ==2)

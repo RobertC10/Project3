@@ -274,3 +274,21 @@ Also made it so that the locked in room misfortune only happens when player trie
 complete a door puzzle, that misfortune cannot happen.
 
 Also made it so that if the player fails the door puzzle three times, a party member dies. - RC
+
+Added da muthafuckinass Mob class and fights (they are very rough, and don't meet all of the 
+CSCI github instructions but it works) - JW
+
+There are a fuckton of bugs if imma be honest. Several loop errors when we put letters where user
+should be prompted to put integers. Another big bug that I couldn't test was the one involving
+treasures and room clearance with key. - JW
+
+I still need to implement key drop rate to mob death but that's simple. Instead there's a few
+other large amount of bugs with the fight the most notable being player death afterwards (if you
+wanna take a look at that as it's something about ranges I don't quite understand) - JW
+
+Still need to implement ranking system (if you already did that: noice) - JW
+
+Going to be fixing NPC riddle as much as I can - JW
+
+Lastly once we fix what we can, we gotta comment everything with a quick algorithm then tidy up and deleted
+the needless comments of items never used - JW
