@@ -74,8 +74,8 @@ void phaseOne(Map map, Party my_party)
 void phaseTwo(Map map, Party my_party)
 {
     //bool marketUsed = false;
-    NPC my_npc = NPC(false, true);
-    my_npc.merchantMarket(map, my_party);    
+    NPC my_npc = NPC(false, true, false);
+    my_npc.merchantMarket(map, my_party, false);    
 
     /*if (marketUsed == true)
     {
@@ -647,11 +647,15 @@ void NPCAction(Map map, Party my_party)
     bool truefalse = 0;
     bool talkTrue = true;
     bool NPCtrust = false;
+    bool NPCused = false;
+    bool marketUsage = false;
     string NPCaccept = "";
     int temp_int = 0;
+    int NPCrow = map.getPlayerRow();
+    int NPCcol = map.getPlayerCol();
     string moveDirection = "";
     Member temp_member;
-    NPC randomNPC = NPC(true, NPCtrust);
+    NPC randomNPC = NPC(NPCused, NPCtrust, marketUsage);
     printActionsNPC();
     int rand1 = 0;
     int rand2 = 0;
@@ -663,13 +667,20 @@ void NPCAction(Map map, Party my_party)
     }
     switch(stoi(actionOption))
     {
-        case 1:
+        case 1:   
+            //NPCrow = map.getPlayerRow();
+            //NPCcol = map.getPlayerCol();       
             //repeats until user gives a vaild character
             while(!truefalse)
             {
                 cout<<"What direction do you want to move? w, a, s, or d:";
                 cin>>moveDirection;
                 truefalse = map.move(moveDirection[0]);
+
+                if (randomNPC.getspaceExplored() == true)
+                {
+                    map.removeNPC(NPCrow, NPCcol);
+                }
             }
             //reduces parties hunger by 1 if unlucky
             for(int i = 0; i < 5; i++)
@@ -691,17 +702,18 @@ void NPCAction(Map map, Party my_party)
            cin >> NPCaccept;
            if (NPCaccept[0] == 'y' || NPCaccept[0] == 'Y')
            {
-                cout << "Very Well then." << endl;
+                cout << "Very well then..." << endl;
                 cout << "" << endl;
                 randomNPC.setNPCPuzzle(NPCtrust);
 
                 if (randomNPC.getNPCPuzzle() == true)
                 {
-                    randomNPC.merchantMarket(map, my_party);
+                    randomNPC.merchantMarket(map, my_party, marketUsage);
+                    randomNPC.setspaceExplored(NPCused, NPCtrust, marketUsage);
                 }
                 else
                 {
-                    talkTrue = false;
+                  talkTrue = false;
                 }
            }
            else if (NPCaccept[0] == 'n' || NPCaccept[0] == 'N')
@@ -709,13 +721,10 @@ void NPCAction(Map map, Party my_party)
             cout << "Aight, peace bruv!" << endl;
             cout << "" << endl;
             talkTrue = false;
-            //NPCAction(map, my_party);
            }
            else
            {
             cout << "Please give a valid input." << endl;
-            talkTrue = false;
-            //NPCAction(map, my_party);
            }
            }
 
@@ -1006,7 +1015,7 @@ void RoomAction(Map map, Party my_party)
                             rand2 = rand() % 4;
                         }
                         temp_member = my_party.getMembersAt(rand2+1);
-                        cout<<"OH NO! "<<temp_member.getName()<<" got food poisining!"<<endl;
+                        cout<<"OH NO! "<<temp_member.getName()<<" got food poisoning!"<<endl;
                         temp_member.subFullness(10);
                         if(temp_member.getAlive() == 0)
                         {
@@ -1024,7 +1033,8 @@ void RoomAction(Map map, Party my_party)
                             temp_member = my_party.getMembersAt(rand2);
                         }
                         temp_member.setAlive(0);
-                        my_party.setMemberAt(rand2, temp_member);
+                        //my_party.setMemberAt(rand2, temp_member);
+                        my_party.removeMemberAt(rand2);
                         my_party.setNumMembers();
                         cout<<"OH NO! Your teammate "<<temp_member.getName()<<" is trapped in the previous room and is unable to get through. You must continue without them."<<endl
                         <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;

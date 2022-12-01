@@ -14,7 +14,7 @@
 #include <ctime> 
 #include <cstdlib>
 #include <string>
-//#include "Mob.h"
+
 #include "Party.h"
 #include "Map.h"
 #include "MainDriver.h"
@@ -30,31 +30,26 @@ using namespace std;
 class NPC
 {
     private:
-        //Mob monsters[50];
         Party party_;
         Map map_;
-        //int numEncounterd;
         bool spaceExplored;
         bool puzzleCheck;
-        //bool merchantExit;
+        bool merchantExit;
         string riddle[20];
         string riddleAns[20];
 
     public:
         NPC();
-        NPC(bool, bool/*Mob*/);
+        NPC(bool, bool, bool);
         /*int getNumNPC();
         void setNumNPC(int);*/
         bool getspaceExplored();
-        bool setspaceExplored(bool, bool);;
+        void setspaceExplored(bool, bool, bool);;
         bool getNPCPuzzle();
-        bool setNPCPuzzle(bool);
-        /*Mob getMob();
-        bool setMob(bool, Mob)
-        bool getmerchantUse();
+        void setNPCPuzzle(bool);
+        /*bool getmerchantUse();
         void setmerchantUse(bool);*/
-        bool setWeaponsMarket(Map, Party);
-        void merchantMarket(Map, Party);      
+        void merchantMarket(Map, Party, bool);      
 };
 
 #endif

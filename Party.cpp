@@ -273,7 +273,7 @@ using namespace std;
         }
     }
 
-    void Party::printMenu(/*Mob sorcerer, */)
+    void Party::printMenu()
     {
         cout<<"+-------------+"<<endl;
         cout<<"| STATUS      |"<<endl;
@@ -393,9 +393,10 @@ using namespace std;
 
         cout<<"Do you want to edit who has what weapon in your party?"<<endl;
         cin>>yesNo;
+        cout << "" << endl;
         while(yesNo[0] == 'y' || yesNo[0] == 'Y')
         {  
-            cout<<"You have: "<<getWeaponsAt(0)<<" club(s), "<<getWeaponsAt(1)<<" iron sword(s), "<<getWeaponsAt(2)<<" rapier(s), "<<getWeaponsAt(3)<<" battle-axe(s), "<<getWeaponsAt(4)<<" longsword(s)."<<endl;
+            cout<<"You have: "<<getWeaponsAt(0)<<" club(s), "<<getWeaponsAt(1)<<" iron spear(s), "<<getWeaponsAt(2)<<" rapier(s), "<<getWeaponsAt(3)<<" battle-axe(s), "<<getWeaponsAt(4)<<" longsword(s)."<<endl;
             printParty();
             cout<<"Whos weapon do you want to change?(type their position)"<<endl;
             cin>>squad;
@@ -407,7 +408,7 @@ using namespace std;
             cout<<"What weapon would you like to give them?"<<endl
             <<"-1) Nothing"<<endl
             <<"1) Club"<<endl
-            <<"2) Iron Sword"<<endl
+            <<"2) Iron Spear"<<endl
             <<"3) Rapier"<<endl
             <<"4) Battle-Axe"<<endl
             <<"5) LongSword"<<endl;
@@ -431,6 +432,7 @@ using namespace std;
             }else
             {
                 cout<<"You do not have enough of that weapon to do that."<<endl;
+                cout << "" << endl;
             }
 
             setPartyWeapons();

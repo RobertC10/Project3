@@ -503,7 +503,8 @@ bool connect4::computerGame()
             }
             if(getPlayer() == 2)
             {
-                cout<<"Oh. My. Goodness. You lost. To a computer. Embarasing really."<<endl;
+                cout<<"Oh. My. Goodness. You lost. To a computer. Embarrassing really."<<endl;
+                cout << "" << endl;
                 return 0;
             }
 

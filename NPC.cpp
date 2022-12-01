@@ -28,17 +28,17 @@ NPC::NPC()
     spaceExplored = false;
     puzzleCheck = false;
     //monsters_ = "";
-    //merchantExit = false;
+    merchantExit = false;
 }
 
-NPC::NPC(bool spaceExplored_, bool puzzleCheck_ /*Mob monsters_[50] bool merchantExit_*/)
+NPC::NPC(bool spaceExplored_, bool puzzleCheck_, bool merchantExit_)
 {
     //parameterized constructor
     //numEncounterd = numEncounterd_;
     spaceExplored = spaceExplored_;
     puzzleCheck = puzzleCheck_;
     //monsters = monsters_;
-    //merchantExit = merchantExit_;
+    merchantExit = merchantExit_;
 }
 /*
 int NPC::getNumNPC()
@@ -58,10 +58,10 @@ bool NPC::getspaceExplored()
     return spaceExplored;
 }
 
-bool NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_)
+void NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_, bool merchantExit_)
 {
     //If both the puzzle has been completed and the merchant menu for the NPC is exited, return space as explored
-    if (puzzleCheck_ == true)
+    if (puzzleCheck_ && merchantExit_ == true)
     {
         spaceExplored_ = true;
     }
@@ -70,7 +70,7 @@ bool NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_)
         spaceExplored_ = false;
     }
 
-    return spaceExplored_;
+    spaceExplored = spaceExplored_;
 }
 
 bool NPC::getNPCPuzzle()
@@ -79,7 +79,7 @@ bool NPC::getNPCPuzzle()
     return puzzleCheck;
 }
 
-bool NPC::setNPCPuzzle(bool puzzleCheck_)
+void NPC::setNPCPuzzle(bool puzzleCheck_)
 {
     int i = 0;
     string line;
@@ -126,7 +126,7 @@ bool NPC::setNPCPuzzle(bool puzzleCheck_)
             puzzleCheck_ = false;
         }
 
-    return puzzleCheck_;
+    puzzleCheck = puzzleCheck_;
 }
 
 /*Mob getMob()
@@ -170,7 +170,7 @@ void NPC::setmerchantUse(bool merchantExit_)
 
 */
 
-void NPC::merchantMarket(Map map_, Party party_)
+void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
 {
     string user = "";
     bool shopExit = false;
@@ -205,7 +205,7 @@ void NPC::merchantMarket(Map map_, Party party_)
 
                               if (itemSelect1 == 0)
                               {
-                                return merchantMarket(map_, party_);
+                                return merchantMarket(map_, party_, merchantExit_);
                               }
                               else if (itemSelect1 % 5 != 0)
                               {
@@ -216,7 +216,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         {
                                         cout<<"You don't have enough gold to buy that."<<endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                         }
                               else
                                         {
@@ -224,7 +224,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
                                         cout << "" << endl;
                                         choiceExit = false;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                         }
                             }
          if(choice==2){
@@ -254,21 +254,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -289,21 +289,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -324,21 +324,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -350,7 +350,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                 case 4:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                     cout << "" << endl;
-                                    return merchantMarket(map_, party_);
+                                    return merchantMarket(map_, party_, merchantExit_);
                                     break;
 
                                 default: cout << "Please put a valid choice." << endl;
@@ -387,7 +387,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
@@ -395,14 +395,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                                 party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -423,7 +423,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
@@ -431,14 +431,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                                 party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -459,7 +459,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
@@ -467,14 +467,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                                 party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -495,7 +495,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
@@ -503,14 +503,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                                 party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -531,7 +531,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
@@ -539,14 +539,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                                 party_.setWeapons();
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -558,7 +558,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                 case 6:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                     cout << "" << endl;
-                                    return merchantMarket(map_, party_);
+                                    return merchantMarket(map_, party_, merchantExit_);
                                     break;
                                 
                                 default: cout << "Please put a valid choice." << endl;
@@ -573,7 +573,7 @@ void NPC::merchantMarket(Map map_, Party party_)
 
                                if (itemSelect4 == 0)
                                {
-                                return merchantMarket(map_, party_);
+                                return merchantMarket(map_, party_, merchantExit_);
                                }
                                else
                                {
@@ -581,14 +581,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.addArmor(itemSelect4);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                }
                              }
@@ -623,21 +623,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -649,7 +649,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     break;
 
@@ -667,21 +667,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -693,7 +693,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     break;
                                 
@@ -711,21 +711,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -737,7 +737,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     break;
 
@@ -755,21 +755,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -781,7 +781,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     break;
                                 
@@ -799,21 +799,21 @@ void NPC::merchantMarket(Map map_, Party party_)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
                                                 cout << "" << endl;
-                                                return merchantMarket(map_, party_);
+                                                return merchantMarket(map_, party_, merchantExit_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     else
                                     {
@@ -825,14 +825,14 @@ void NPC::merchantMarket(Map map_, Party party_)
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                                     }
                                     break;
 
                                 case 6:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                     cout << "" << endl;
-                                    return merchantMarket(map_, party_);
+                                    return merchantMarket(map_, party_, merchantExit_);
                                     break;
                                 
                                 default: cout << "Please put a valid choice." << endl;
@@ -851,7 +851,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                                 cout << "" << endl;
                                 cout << "" << endl;
                                 cout << "" << endl;
-                                //merchantExit_ = true;
+                                merchantExit_ = true;
                                 choiceExit = true;
                                 phaseThree(map_, party_);
                              }
@@ -859,7 +859,7 @@ void NPC::merchantMarket(Map map_, Party party_)
                              {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
                                         cout << "" << endl;
-                                        return merchantMarket(map_, party_);
+                                        return merchantMarket(map_, party_, merchantExit_);
                              }
                              else
                              {
@@ -867,12 +867,6 @@ void NPC::merchantMarket(Map map_, Party party_)
                                         //cin >> choice6; 
                              }
                              }
-         
-         /*{
-            cout << "C'mon!!! Waste my time and I'll be as vicious as that ol' wizard." << endl;
-            cout << "Please put in a valid response" << endl;
-            cin >> choice;
-         }*/
   }
   else if (user[0] == 'N' || user[0] == 'n')
   {
@@ -881,7 +875,7 @@ void NPC::merchantMarket(Map map_, Party party_)
     cout << "" << endl;
     cout << "" << endl;
     cout << "" << endl;
-    //merchantExit_ = true;
+    merchantExit_ = true;
     choiceExit = true;
     phaseThree(map_, party_);
   }
@@ -889,32 +883,7 @@ void NPC::merchantMarket(Map map_, Party party_)
   {
     cout << "Please put a valid response." << endl;
     //cin >> user;
-    return merchantMarket(map_, party_);
+    return merchantMarket(map_, party_, merchantExit_);
   }
 }
-}
-
-bool NPC::setWeaponsMarket(Map map, Party my_party)
-{
-    string yesNo = "";
-    string squad = "";
-
-    cout<<"Do you want to edit who has what weapon in your party?"<<endl;
-    cin>>yesNo;
-    while(yesNo[0] == 'y' || yesNo[0] == 'Y')
-    {  
-        cout<<"You have: "<<my_party.getWeaponsAt(0)<<" club(s), "<<my_party.getWeaponsAt(1)<<" iron sword(s), "<<my_party.getWeaponsAt(2)<<" rapier(s), "<<my_party.getWeaponsAt(3)<<" battle-axe(s), "<<my_party.getWeaponsAt(4)<<" longsword(s)."<<endl;
-        my_party.printParty();
-        cout<<"Whos weapon do you want to change?(type their name)"<<endl;
-        cin>>squad;
-        while(squad != my_party.getMembersAt(0).getName() && squad != my_party.getMembersAt(1).getName() && squad != my_party.getMembersAt(2).getName() && squad != my_party.getMembersAt(3).getName() && squad != my_party.getMembersAt(4).getName())
-        {
-            cout<<"Please enter a valid name."<<endl;
-            cin>>squad;
-        }
-        cout<<"Do you want to still edit who has what weapon in your party?"<<endl;
-        cin>>yesNo;
-    }
-
-    return 1;
 }

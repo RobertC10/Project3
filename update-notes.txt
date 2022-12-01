@@ -218,3 +218,34 @@ debugged small things - RC
 added an action set for the exit when the user hasn't cleared 5 rooms - RC
 
 added a counter to keep track of the monsters defeated, turns, and spaces explored in the Party class - RC
+
+NPC class done including exploration settings (riddle still bugged) - JW
+
+Tommorrow will wrap up Mob & implement fights to "finish" game. -JW
+
+Did some more debugging. Noticed some features that can be quick edited:
+ - Investigate leading to misfortune that breaks a club that never existed. I did not adjust them
+   as I see your method which makes sense but here's a quick run of how I would do it:
+        Rather than do an if using or conditions checking that no cookware is 0, it would remove that
+        condition and instead follow a case-by-case while check where 
+        rand2 = rand() % 3;
+                            while(my_party.subCookwareAt(rand2, 1) != 0)
+                            {
+                                rand2 = rand() % 3;
+                            }
+        then the switch and case choices. Try it if none else works and if this method does, apply it 
+        to the other item misfortunes to test those as well!
+
+ - Potential hunger/poisoning error where error doesn't apply correctly?
+
+ - Occasional error when door puzzle taken too many times:
+    "terminate called after throwing an instance of 'std::out_of_range'
+    what():  vector::_M_range_check: __n (which is 4) >= this->size() (which is 4)
+    Aborted"
+
+- I also redid the removal of party member in misfortune but there's a condition we need
+  where we can only fail 3 times before a team member dies
+
+- Again with member death, the "locked in rooms" misfortune only occurs when player uses key (see
+ misforunes (4) game directions)
+                                                                                    - JW
