@@ -136,6 +136,7 @@ void phaseThree(Map map, Party my_party)
     if(map.isDungeonExit(map.getPlayerRow(), map.getPlayerCol()) && my_party.getRoomsCleared() == 5)
     {
         phaseFour(map, my_party, 1);
+        return;
     }
 
     //checking spaces    
@@ -154,6 +155,7 @@ void phaseThree(Map map, Party my_party)
     if(map.isDungeonExit(map.getPlayerRow(), map.getPlayerCol()))
     {
         ExitAction(map, my_party);
+        return;
     }
     
 }
