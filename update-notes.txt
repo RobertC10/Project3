@@ -292,3 +292,5 @@ Going to be fixing NPC riddle as much as I can - JW
 
 Lastly once we fix what we can, we gotta comment everything with a quick algorithm then tidy up and deleted
 the needless comments of items never used - JW
+
+made connect 4 the thing instead of riddles -RC
