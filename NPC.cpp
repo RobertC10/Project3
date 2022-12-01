@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <stdlib.h>
 #include <ctime> 
 #include <cstdlib>
 #include <string>
@@ -27,17 +28,17 @@ NPC::NPC()
     spaceExplored = false;
     puzzleCheck = false;
     //monsters_ = "";
-    merchantExit = false;
+    //merchantExit = false;
 }
 
-NPC::NPC(bool spaceExplored_, bool puzzleCheck_ /*Mob monsters_[50]*/, bool merchantExit_)
+NPC::NPC(bool spaceExplored_, bool puzzleCheck_ /*Mob monsters_[50] bool merchantExit_*/)
 {
     //parameterized constructor
     //numEncounterd = numEncounterd_;
     spaceExplored = spaceExplored_;
     puzzleCheck = puzzleCheck_;
     //monsters = monsters_;
-    merchantExit = merchantExit_;
+    //merchantExit = merchantExit_;
 }
 /*
 int NPC::getNumNPC()
@@ -57,10 +58,10 @@ bool NPC::getspaceExplored()
     return spaceExplored;
 }
 
-bool NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_, bool merchantExit_)
+bool NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_)
 {
     //If both the puzzle has been completed and the merchant menu for the NPC is exited, return space as explored
-    if (puzzleCheck_ && merchantExit_ == true)
+    if (puzzleCheck_ == true)
     {
         spaceExplored_ = true;
     }
@@ -90,6 +91,12 @@ bool NPC::setNPCPuzzle(bool puzzleCheck_)
     srand(time(0));
     int riddleChosen = rand() % 19;
     
+    //To be filled wherein the riddle will be separated by riddle and answer
+            //They will then be assigned line-by-line to their own temp array
+            //From there the array is randomly selected from a random num generator
+            //Output array, prompt user input
+            //Compare answers and determine the puzzle completion successfully to be returned as puzzleCheck
+            //will output a random puzzle and check against after splitting to see if user answer equals riddle key
 
     ifstream file_input;
     file_input.open("riddles.txt");
@@ -102,337 +109,6 @@ bool NPC::setNPCPuzzle(bool puzzleCheck_)
             temp_arr[0] = "";
             temp_arr[1] = "";
             i++;
-
-            /*srand(time(0));
-            switch(rand() % 19)
-            {
-                case 0:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << temp_riddle[0] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "candle")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-                
-                case 1:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[1] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "map")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 2:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[2] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "r")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 3:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[3] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "heroine")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 4:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[4] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "bookkeeper")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 5:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[5] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "silence")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 6:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[6] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "keyboard")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-                
-                case 7:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[7] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "towel")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-                
-                case 8:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[8] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "11")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-                
-                case 9:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[9] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "ENT")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 10:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[10] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "fishhook")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 11:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[11] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "m")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 12:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[12] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "incorrectly")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 13:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[13] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "umbrella")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 14:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[14] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "coin")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 15:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[15] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "alone")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 16:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[16] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "crows")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 17:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[17] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "beauty")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 18:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[18] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "3")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-
-                case 19:
-                    cout << "Ello there weary traveller! Spare me a moment of your time would you?" << endl;
-                    cout << riddle[19] << " What am I?" endl;
-                    cin >> userAns;
-                    if (userAns == "bubble")
-                    {
-                        cout << "Congratulations! Great to make yer' acquaintance pal!" << endl;
-                        puzzleCheck = true;
-                    }
-                    else
-                    {
-                        cout << "Guess this is the end for you, huh? Now DIE!!!" << endl;
-                        puzzleCheck == false;
-                    }
-                    break;
-            }*/
-
-            //To be filled wherein the riddle will be separated by riddle and answer
-            //They will then be assigned line-by-line to their own temp array
-            //From there the array is randomly selected from a random num generator
-            //Output array, prompt user input
-            //Compare answers and determine the puzzle completion successfully to be returned as puzzleCheck
-            //will output a random puzzle and check against after splitting to see if user answer equals riddle key
     }
 
         cout << riddle[riddleChosen] << endl
@@ -446,7 +122,7 @@ bool NPC::setNPCPuzzle(bool puzzleCheck_)
         }
         else
         {
-            cout << "Too bad! You got it wrong...so JUST DIE!" << endl;
+            cout << "The answer was " << riddleAns[riddleChosen] <<". " << "Too bad! You got it wrong...so JUST DIE!" << endl;
             puzzleCheck_ = false;
         }
 
@@ -480,7 +156,7 @@ bool setMob (bool puzzleCheck_, *Mob monsters_)
     }
 
     monsters[] = monsters_[];
-}*/
+}
 
 bool NPC::getmerchantUse()
 {
@@ -492,9 +168,13 @@ void NPC::setmerchantUse(bool merchantExit_)
     merchantExit = merchantExit_;
 }
 
-void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
+*/
+
+void NPC::merchantMarket(Map map_, Party party_)
 {
     string user = "";
+    bool shopExit = false;
+    bool choiceExit = false;
     //will consist of multiple couts to establish a menu in which multiple options can result and produce random
     //products for purchase and will run through series of conditions taking in 
     //party resources to be used for checking/purchasing
@@ -502,6 +182,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
   cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
   cout<<"He asks you if you want to buy something [Y/N]?"<<endl;   
   cin >> user;
+  while (choiceExit == false){
   if(user[0]=='y'||user[0]=='Y') {
         int choice = 0;
          cout << "If you're looking to get supplies, you've come to the right place."<< endl
@@ -516,35 +197,35 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
               << "6. Leave: Be sure you got eve'ythin mate. I'm gone after 'dis!" << endl;
          cout << "> "; 
          cin >> choice;
-         if(choice==1){
+        if(choice==1){
                               int itemSelect1 = 0;
+                              string choice1 = "";
                               cout << "How many kg of ingredients mate [1 Gold/kg]? (Enter a positive mulitple of 5, or 0 to cancel)" << endl;
                               cin >> itemSelect1;
 
                               if (itemSelect1 == 0)
                               {
-                                return merchantMarket(map_, party_, merchantExit_);
+                                return merchantMarket(map_, party_);
                               }
                               else if (itemSelect1 % 5 != 0)
                               {
-                                cout << "Enter a valid amount: " << endl;
-                                cin >> itemSelect1;
+                                cout << "Enter a valid amount. " << endl;
+                                //cin >> itemSelect1;
                               }
+                              else if(party_.subGold((itemSelect1)) == 0)
+                                        {
+                                        cout<<"You don't have enough gold to buy that."<<endl;
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
+                                        }
                               else
-                              {
-                                if(party_.subGold((itemSelect1)) == 0)
-                                {
-                                    cout<<"You don't have enough gold to buy that."<<endl;
-                                    return merchantMarket(map_, party_, merchantExit_);
-                                }
-                                else
-                             {
-                                party_.addIngredients(itemSelect1);
-                                cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
-                                cout << "" << endl;
-                                return merchantMarket(map_, party_, merchantExit_);
-                              }
-                              }
+                                        {
+                                         party_.addIngredients(itemSelect1);
+                                        cout << "Thanks for your patronage young sire! *He gives you a toothless grin*" << endl;
+                                        cout << "" << endl;
+                                        choiceExit = false;
+                                        return merchantMarket(map_, party_);
+                                        }
                             }
          if(choice==2){
                              int itemSelect2 = 0;
@@ -572,24 +253,27 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity * 2)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
 
@@ -604,24 +288,27 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity * 10)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
                                 
@@ -636,34 +323,38 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity * 20)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addCookwareAt(itemSelect2 - 1, quantity);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice2[0] == 'N' || choice2[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect2;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect2;
                                     }
                                     break;
 
                                 case 4:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                    return merchantMarket(map_, party_, merchantExit_);
+                                    cout << "" << endl;
+                                    return merchantMarket(map_, party_);
                                     break;
 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect2;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect2;
                                     break;
                               }
 
@@ -689,32 +380,33 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                     cout << "And to how much you prefer? (Enter a positive integer, or 0 to cancel)" << endl;
                                     cin >> quantity2;
                                     cout << "You sure about buying " << quantity2 << " clubs for " << quantity2 * 2  << " gold? (y/n)" << endl;
-                                    cout << "" << endl;
                                     cin >> choice3;
                                     if (choice3[0] == 'Y' || choice3[0] == 'y')
                                     {
                                         if(party_.subGold((quantity2 * 2)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                //merchantExit_ = setWeaponsMarket(map_, party_, merchantExit_);
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
@@ -729,24 +421,27 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity2 * 2)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
                                 
@@ -761,24 +456,27 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity2 * 5)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
@@ -793,24 +491,27 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity2 * 15)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
                                 
@@ -825,34 +526,38 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subGold((quantity2 * 50)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addWeaponsAt(itemSelect3 - 1, quantity2);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice3[0] == 'N' || choice3[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect3;
+                                        cout << "Please put a valid choice." << endl;
+                                       //cin >> itemSelect3;
                                     }
                                     break;
 
                                 case 6:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                    return merchantMarket(map_, party_, merchantExit_);
+                                    cout << "" << endl;
+                                    return merchantMarket(map_, party_);
                                     break;
                                 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect3;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect3;
                                     break;
                               }
                              }
@@ -863,20 +568,22 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
 
                                if (itemSelect4 == 0)
                                {
-                                return merchantMarket(map_, party_, merchantExit_);
+                                return merchantMarket(map_, party_);
                                }
                                else
                                {
                                 if(party_.subGold((itemSelect4 * 5)) == 0)
                                             {
                                                 cout<<"You don't have enough gold to buy that."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.addArmor(itemSelect4);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                }
                              }
@@ -910,30 +617,34 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subTreasuresAt(itemSelect5 - 1, quantity3) <=0)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     break;
 
@@ -950,30 +661,34 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subTreasuresAt(itemSelect5 - 1, quantity3) <=0)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     break;
                                 
@@ -990,30 +705,34 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subTreasuresAt(itemSelect5 - 1, quantity3) <=0)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     break;
 
@@ -1030,30 +749,34 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subTreasuresAt(itemSelect5 - 1, quantity3) <=0)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     break;
                                 
@@ -1070,40 +793,45 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                                         if(party_.subTreasuresAt(itemSelect5 - 1, quantity3) <=0)
                                             {
                                                 cout<<"You don't have enough any of those mate. L + Ratio."<<endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                         else
                                             {
                                                 party_.subTreasuresAt(itemSelect5 - 1, quantity3);
                                                 cout << "Thanks as always! Any other fancy catch yer eye?" << endl;
-                                                return merchantMarket(map_, party_, merchantExit_);
+                                                cout << "" << endl;
+                                                return merchantMarket(map_, party_);
                                             }
                                     }
                                     else if (choice5[0] == 'N' || choice5[0] == 'n')
                                     {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     else
                                     {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> itemSelect5;
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> itemSelect5;
                                     }
                                     }
                                     else
                                     {
                                         cout << "Ahhh! This must be fake! You need to clear more rooms in order to find the real deal!" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                                     }
                                     break;
 
                                 case 6:
                                     cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                    return merchantMarket(map_, party_, merchantExit_);
+                                    cout << "" << endl;
+                                    return merchantMarket(map_, party_);
                                     break;
                                 
-                                default: cout << "Please put a valid choice:" << endl;
-                                         cin >> itemSelect5;
+                                default: cout << "Please put a valid choice." << endl;
+                                         //cin >> itemSelect5;
                                     break;
                               }
                              }
@@ -1115,42 +843,53 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                              if (choice6[0] == 'Y' || choice6[0] == 'y')
                              {
                                 cout << "I bid you luck! Hopefully better than mine mate... *He appears rather sad but grins away at you anyways*" << endl;
-                                merchantExit_ = true;
+                                cout << "" << endl;
+                                cout << "" << endl;
+                                cout << "" << endl;
+                                //merchantExit_ = true;
+                                choiceExit = true;
                                 phaseThree(map_, party_);
                              }
                              else if (choice6[0] == 'N' || choice6[0] == 'n')
                              {
                                         cout << "Damn'd bugger...quit wasting my time and decide on something! >:C" << endl;
-                                        return merchantMarket(map_, party_, merchantExit_);
+                                        cout << "" << endl;
+                                        return merchantMarket(map_, party_);
                              }
                              else
                              {
-                                        cout << "Please put a valid choice:" << endl;
-                                        cin >> choice6; 
+                                        cout << "Please put a valid choice." << endl;
+                                        //cin >> choice6; 
                              }
                              }
-         else
-         {
+         
+         /*{
             cout << "C'mon!!! Waste my time and I'll be as vicious as that ol' wizard." << endl;
             cout << "Please put in a valid response" << endl;
             cin >> choice;
-         }
+         }*/
   }
   else if (user[0] == 'N' || user[0] == 'n')
   {
     cout << "Fine you bugger! You look dirt poor anyways!" << endl;
     cout <<"The prisoner disappears. Yet a distinct, pungy smell hangs in the air..." << endl;
-    merchantExit_ = true;
+    cout << "" << endl;
+    cout << "" << endl;
+    cout << "" << endl;
+    //merchantExit_ = true;
+    choiceExit = true;
     phaseThree(map_, party_);
   }
   else
   {
-    cout << "Please put a valid response:" << endl;
-    cin >> user;
+    cout << "Please put a valid response." << endl;
+    //cin >> user;
+    return merchantMarket(map_, party_);
   }
 }
+}
 
-bool NPC::setWeaponsMarket(Map map, Party my_party, bool merchant_Exit_)
+bool NPC::setWeaponsMarket(Map map, Party my_party)
 {
     string yesNo = "";
     string squad = "";
