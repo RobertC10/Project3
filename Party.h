@@ -25,6 +25,9 @@ class Party
         int treasures_[5];
         int keys_;
         int anger_;
+        int numExplored_;
+        int monsters_defeated_;
+        int turns_;
     public:
         Party();
         Party(int, int, int, int, int, int, int);
@@ -65,6 +68,14 @@ class Party
         bool setWeapons();
         void setPartyWeapons();
         int getPartyWeaponsAt(int);
+        void addnumExplored(int);
+        int getNumExplored();
+        void addMonstersDefeated(int);
+        int getMonstersDefeated();
+        void addTurns(int);
+        int getTurns();
+        void printFinalStats();
+
 };
 
 #endif

@@ -18,6 +18,10 @@ using namespace std;
         rooms_cleared_ = 0;
         ingredients_ = 0;
         anger_ = 0;
+        numExplored_ = 0;
+        monsters_defeated_ = 0;
+        turns_ = 0;
+        
         for(int i = 0; i < 3; i++)
         {
             cookware_[i] = 0;
@@ -436,6 +440,48 @@ using namespace std;
         }
 
         return 1;
+    }
+
+    void Party::addnumExplored(int rooms)
+    {
+        numExplored_ += rooms;
+    }
+
+    int Party::getNumExplored()
+    {
+        return numExplored_;
+    }
+
+    void Party::addMonstersDefeated(int monsters)
+    {
+        monsters_defeated_ += monsters;
+    }
+
+    int Party::getMonstersDefeated()
+    {
+        return monsters_defeated_;
+    }
+
+    void Party::addTurns(int turns)
+    {
+        turns_ += turns;
+    }
+
+    int Party::getTurns()
+    {
+        return turns_;
+    }
+    
+    void Party::printFinalStats()
+    {
+        printParty();
+        cout<<"| Rooms Cleared     | "<<getRoomsCleared()<<endl;
+        cout<<"| Gold              | "<<getGold()<<endl;
+        cout<<"| Treasures         | R: "<<getTreasuresAt(0)<<" | N: "<<getTreasuresAt(1)<<" | B: "<<getTreasuresAt(2)<<" | C: "<<getTreasuresAt(3)<<" | G: "<<getTreasuresAt(4)<<endl;
+        cout<<"| Spaces Explored   | "<<getNumExplored()<<endl;
+        cout<<"| Monsters Defeated | "<<getMonstersDefeated()<<endl;
+        cout<<"| Turns             | "<<getTurns()<<endl;
+        cout<<"+------------------------------------------+"<<endl;
     }
 
 

@@ -113,6 +113,7 @@ void phaseThree(Map map, Party my_party)
     if(truefalse == 0)
     {
         phaseFour(map, my_party, 0);
+        return;
     }
     truefalse = 0;
 
@@ -120,12 +121,14 @@ void phaseThree(Map map, Party my_party)
     if(my_party.getMembersAt(0).getAlive() == 0)
     {
         phaseFour(map, my_party, 0);
+        return;
     }
 
     //checks if Anger is 100
     if(my_party.getAnger() == 100)
     {
         phaseFour(map, my_party, 0);
+        return;
     }
 
     //checks if player got to the end
@@ -156,12 +159,30 @@ void phaseThree(Map map, Party my_party)
 
 void phaseFour(Map map, Party my_party, bool win_lose)
 {
+    if(win_lose == 0)
+    {
+        cout<<"_/      _/    _/_/    _/    _/      _/          _/_/      _/_/_/  _/_/_/_/_/   "<<endl
+            <<" _/  _/    _/    _/  _/    _/      _/        _/    _/  _/            _/        "<<endl
+            <<"  _/      _/    _/  _/    _/      _/        _/    _/    _/_/        _/         "<<endl
+            <<" _/      _/    _/  _/    _/      _/        _/    _/        _/      _/          "<<endl
+            <<"_/        _/_/      _/_/        _/_/_/_/    _/_/    _/_/_/        _/           "<<endl<<endl;
+        my_party.printFinalStats();
 
+    }
+    if(win_lose == 1)
+    {
+        
+    }
 }
 
 void ExitAction(Map map, Party my_party)
 {
     string actionOption = "";
+    bool truefalse = 0;
+    string moveDirection = "";
+    int rand1 = 0;
+    Member temp_member;
+
     cout<<"It seems that you haven't cleared 5 rooms yet. You can't leave."<<endl;
     cout<<"What would you like to do?"<<endl
     <<"1. Move"<<endl
@@ -196,6 +217,7 @@ void ExitAction(Map map, Party my_party)
             break;
         case 2:
             phaseFour(map, my_party, 0);
+        return;
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
@@ -207,6 +229,7 @@ void ExitAction(Map map, Party my_party)
     {
         my_party.addAnger(1);
     }
+    my_party.addTurns(1);
     phaseThree(map, my_party);
 }
 
@@ -334,6 +357,7 @@ void NormalAction(Map map, Party my_party)
                 }
             }
             map.exploreSpace(map.getPlayerRow(), map.getPlayerCol());
+            my_party.addnumExplored(1);
             
             //misfortunes
             rand1 = rand() % 10;
@@ -602,6 +626,7 @@ void NormalAction(Map map, Party my_party)
                 break;
             case 5:
                 phaseFour(map, my_party, 0);
+                return;
                 break;
             default:
                 cout<<"Please enter a valid input."<<endl;
@@ -612,6 +637,7 @@ void NormalAction(Map map, Party my_party)
     {
         my_party.addAnger(1);
     }
+    my_party.addTurns(1);
     phaseThree(map, my_party);
 }
 
@@ -786,17 +812,19 @@ void NPCAction(Map map, Party my_party)
             }
             break;
         case 3:
-            \phaseFour(map, my_party, 0);
+            phaseFour(map, my_party, 0);
+            return;
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
-            //NPCAction(map, my_party);
+            NPCAction(map, my_party);
             break;
     }
     if(my_party.getRoomsCleared() != 5)
     {
         my_party.addAnger(1);
     }
+    my_party.addTurns(1);
     phaseThree(map, my_party);
 }
 
@@ -1107,15 +1135,17 @@ void RoomAction(Map map, Party my_party)
             break;
         case 4:
             phaseFour(map, my_party, 0);
+            return;
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
-            NPCAction(map, my_party);
+            RoomAction(map, my_party);
             break;
     }
     if(my_party.getRoomsCleared() != 5)
     {
         my_party.addAnger(1);
     }
+    my_party.addTurns(1);
     phaseThree(map, my_party);
 }

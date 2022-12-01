@@ -216,3 +216,5 @@ Finished weapon select function and added it to RoomActions - RC
 debugged small things - RC
 
 added an action set for the exit when the user hasn't cleared 5 rooms - RC
+
+added a counter to keep track of the monsters defeated, turns, and spaces explored in the Party class - RC
