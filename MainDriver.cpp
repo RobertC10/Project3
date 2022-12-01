@@ -73,9 +73,9 @@ void phaseOne(Map map, Party my_party)
 
 void phaseTwo(Map map, Party my_party)
 {
-    bool marketUsed = false;
-    NPC my_npc = NPC(false, true, marketUsed);
-    my_npc.merchantMarket(map, my_party, marketUsed);    
+    //bool marketUsed = false;
+    NPC my_npc = NPC(false, true);
+    my_npc.merchantMarket(map, my_party);    
 
     /*if (marketUsed == true)
     {
@@ -141,7 +141,7 @@ void phaseThree(Map map, Party my_party)
     }else
     if(map.isNPCLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
-        NPCAction(map, my_party);
+            NPCAction(map, my_party);
     }else
     if(map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol()))
     {
@@ -566,9 +566,13 @@ void NPCAction(Map map, Party my_party)
 {
     int actionOption = 0;
     bool truefalse = 0;
+    bool talkTrue = true;
+    bool NPCtrust = false;
+    string NPCaccept = "";
     int temp_int = 0;
     char moveDirection = ' ';
     Member temp_member;
+    NPC randomNPC = NPC(true, NPCtrust);
     printActionsNPC();
     int rand1 = 0;
     int rand2 = 0;
@@ -597,6 +601,39 @@ void NPCAction(Map map, Party my_party)
             break;
         case 2:
             //talk to NPC
+           while (talkTrue == true)
+           {
+           cout << "Before I agree to do anything...you must answer this riddle of mine weary lad. Dare you take on me in this witty battle? (y/n)" << endl;
+           cin >> NPCaccept;
+           if (NPCaccept[0] == 'y' || NPCaccept[0] == 'Y')
+           {
+                cout << "Very Well then." << endl;
+                cout << "" << endl;
+                randomNPC.setNPCPuzzle(NPCtrust);
+
+                if (randomNPC.getNPCPuzzle() == true)
+                {
+                    randomNPC.merchantMarket(map, my_party);
+                }
+                else
+                {
+                    talkTrue = false;
+                }
+           }
+           else if (NPCaccept[0] == 'n' || NPCaccept[0] == 'N')
+           {
+            cout << "Aight, peace bruv!" << endl;
+            cout << "" << endl;
+            talkTrue = false;
+            //NPCAction(map, my_party);
+           }
+           else
+           {
+            cout << "Please give a valid input." << endl;
+            talkTrue = false;
+            //NPCAction(map, my_party);
+           }
+           }
 
             //misfortunes
             rand1 = rand() % 10;
@@ -692,6 +729,7 @@ void NPCAction(Map map, Party my_party)
             break;
         case 3:
             //game over
+            talkTrue = false;
             cout<<"  ▄████  ▄▄▄       ███▄ ▄███▓▓█████     ▒█████   ██▒   █▓▓█████  ██▀███  "<<endl;
             cout<<" ██▒ ▀█▒▒████▄    ▓██▒▀█▀ ██▒▓█   ▀    ▒██▒  ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒"<<endl;
             cout<<"▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒"<<endl;
@@ -706,7 +744,7 @@ void NPCAction(Map map, Party my_party)
             break;
         default:
             cout<<"Please enter a valid input."<<endl;
-            NPCAction(map, my_party);
+            //NPCAction(map, my_party);
             break;
     }
     if(my_party.getRoomsCleared() != 5)

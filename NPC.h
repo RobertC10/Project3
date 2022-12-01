@@ -36,25 +36,25 @@ class NPC
         //int numEncounterd;
         bool spaceExplored;
         bool puzzleCheck;
-        bool merchantExit;
+        //bool merchantExit;
         string riddle[20];
         string riddleAns[20];
 
     public:
         NPC();
-        NPC(bool, bool/*Mob*/, bool);
+        NPC(bool, bool/*Mob*/);
         /*int getNumNPC();
         void setNumNPC(int);*/
         bool getspaceExplored();
-        bool setspaceExplored(bool, bool, bool);;
+        bool setspaceExplored(bool, bool);;
         bool getNPCPuzzle();
         bool setNPCPuzzle(bool);
         /*Mob getMob();
-        bool setMob(bool, Mob)*/
+        bool setMob(bool, Mob)
         bool getmerchantUse();
-        void setmerchantUse(bool);
-        bool setWeaponsMarket(Map, Party, bool);
-        void merchantMarket(Map, Party, bool);      
+        void setmerchantUse(bool);*/
+        bool setWeaponsMarket(Map, Party);
+        void merchantMarket(Map, Party);      
 };
 
 #endif
