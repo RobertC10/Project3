@@ -13,19 +13,18 @@
 
 using namespace std;
 
+//Start of the Game! This begins the game by initializing things then moves on to phase 1
 int main()
 {
     Map map = Map();
     Party my_party = Party();
     int angerLvl = 0;
-    //Mob Sorcerer = Sorcerer();
-    //cout<<"-"<<endl;
     phaseOne(map, my_party/*, sorcerer*/);
 }
 
+//This function would kind of be the welcome and initializing everything before passing it through the other functions.
 void phaseOne(Map map, Party my_party)
 {
-    //This function would kind of be the welcome and initializing everything before passing it through the other functions.
 
     //initializing variables and stuff
     srand(time(0));
@@ -73,22 +72,14 @@ void phaseOne(Map map, Party my_party)
     phaseTwo(map, my_party);
 }
 
+//The merchantMenu! This function develops the starting menu for players to buy all the goods they need before continuing on to the actual game
 void phaseTwo(Map map, Party my_party)
 {
-    //bool marketUsed = false;
     NPC my_npc = NPC(false, true, false);
     my_npc.merchantMarket(map, my_party, false);    
-
-    /*if (marketUsed == true)
-    {
-        phaseThree(map, my_party);
-    }
-    else
-    {
-        cout << "Fail" << endl;
-    }*/
 }
 
+//This function is the main game, constantly outputting the map and status of everything when an action ends
 void phaseThree(Map map, Party my_party)
 {
 
@@ -161,6 +152,7 @@ void phaseThree(Map map, Party my_party)
     
 }
 
+//This is the winLoss function that checks to make sure at every turn whether the player gives up, dies, or successfully wins
 void phaseFour(Map map, Party my_party, bool win_lose)
 {
     if(win_lose == 0)
@@ -188,6 +180,8 @@ void phaseFour(Map map, Party my_party, bool win_lose)
     return;
 }
 
+//This function stands as a constant check such that if the player tries leaving the dungeon without 5 rooms complete, the 
+//player is turned around and can either give up or continue
 void ExitAction(Map map, Party my_party)
 {
     string actionOption = "";
@@ -246,6 +240,8 @@ void ExitAction(Map map, Party my_party)
     phaseThree(map, my_party);
 }
 
+//This function carries all our basic player actions, allowing them to either move along the map, fight a
+//monster, investigate a space, cook and eat, or even give up
 void NormalAction(Map map, Party my_party)
 {
     string actionOption = "";
@@ -298,7 +294,8 @@ void NormalAction(Map map, Party my_party)
             }
             break;
         case 2:
-
+            //checks to see if the space has already been explored and removes spaces (exploring it if not yet)
+            //Also has series of misfortunes alongside it
             if(map.isExplored(map.getPlayerRow(), map.getPlayerCol()) == 0)
             {
                 map.exploreSpace(map.getPlayerRow(), map.getPlayerCol());
@@ -1432,6 +1429,7 @@ my_party.setMemberAt(rand2, temp_member);
                 break;
             case 4:
                 {
+                    //Develops cooking menu where the player can decide what utility to use to cook how ingredients
                     srand(time(0));
                     int numkg = 0;
                     int cookware = 0;
@@ -1617,6 +1615,8 @@ my_party.setMemberAt(rand2, temp_member);
     phaseThree(map, my_party);
 }
 
+//This function carries all our npc interaction player actions, allowing them to either move away and continue
+//their journey, talk to the figure, or give up
 void NPCAction(Map map, Party my_party)
 {
     string actionOption = "";
@@ -1655,9 +1655,7 @@ void NPCAction(Map map, Party my_party)
     }
     switch(stoi(actionOption))
     {
-        case 1:   
-            //NPCrow = map.getPlayerRow();
-            //NPCcol = map.getPlayerCol();       
+        case 1:         
             //repeats until user gives a vaild character
             while(!truefalse)
             {
@@ -1678,7 +1676,10 @@ void NPCAction(Map map, Party my_party)
             }
             break;
         case 2:
-            //talk to NPC
+            //talk to NPC & allows such that as long as the NPC hasn't had a befriend attempt, the NPC will offer
+            //the player the choice to battle him in wits in a puzzle. If they complete the puzzle, they get the option
+            //to use the NPC's market for the rest of the game. If not, he will unleash a monster on them
+            //and disappear during the distraction
            while (talkTrue == true)
            {
            cout << "Before I agree to do anything...you must solve this puzzle of mine weary lad. Dare you take on me in this witty battle? (y/n)" << endl;
@@ -2288,6 +2289,7 @@ my_party.setMemberAt(rand2, temp_member);
             map.removeNPC(map.getPlayerRow(), map.getPlayerCol());
             break;
         case 3:
+            //Player can give up
             phaseFour(map, my_party, 0);
             return;
             break;
@@ -2304,6 +2306,8 @@ my_party.setMemberAt(rand2, temp_member);
     phaseThree(map, my_party);
 }
 
+//This function holds every room based interaction with the player, where they may either move away and continue
+//their journey, try and open the room, or give up
 void RoomAction(Map map, Party my_party)
 {
     string actionOption = "";
@@ -2357,6 +2361,10 @@ void RoomAction(Map map, Party my_party)
             }
             break;
         case 2:
+            //Sets conditions such that if the player tries opening the room and beating it,
+            //they must present a key. For each room unlocked a key is used. If no keys are held, they
+            //make take on a puzzle in order to open it instead. If they do have a key, 
+            //the dungeon room has a room guardian who must be defeated first before the room can be cleared!
             if(my_party.getKeys() == 0)
             {
                 cout<<endl<<"It seems that you don't have any keys. You'll have to complete a puzzle if you want to enter without a key."<<endl;
@@ -3121,9 +3129,11 @@ my_party.setMemberAt(rand2, temp_member);
             }
             break;
         case 3:
+            //Provides the party the chance to equip themselves better for the hazards that lie ahead
             my_party.setWeapons();
             break;
         case 4:
+            //Ends the game and outputs scores
             phaseFour(map, my_party, 0);
             return;
             break;

@@ -17,92 +17,95 @@
 #include "NPC.h"
 using namespace std;
 
+//default constructor
 Mob::Mob()
 {
-    //default constructor
     name = "";
     str = 0;
     gold = 0;
     food = 0;
     mobChosen = 0;
-    //defeated = false;
 }
 
+//parameterized constructor
 Mob::Mob(string name_, int str_, int gold_, int food_, int mobChosen_)
 {
-    //parameterized constructor
     name = name_;
     str = str_;
     gold = gold_;
     food = food_;
     mobChosen = mobChosen_;
-    //defeated = status;
 }
 
+//returns the monster's name after splitting it
 string Mob::getName()
 {
-    //returns the monster's name after splitting it
     return name;
 }
 
+//sets name to name of randomly selected mob based on monster line number randomly selected and split
 void Mob::setName(string name_)
 {
-    //sets name to name of randomly selected mob based on file number rand
     name = name_;
 }
 
+//returns the monster's strength after splitting it
 int Mob::getStr()
 {
-    //returns the monster's strength after splitting it
     return str;
 }
 
+//sets str of the monster randomly selected that was split from file
 void Mob::setStr(int str_)
 {
-    //sets str of the monster randomly selected that was split from file
     str = str_;
 }
 
+//returns the gold drop rate of the mob
 int Mob::getGold()
 {
-    //returns the gold drop rate of the mob
     return gold;
 }
 
+//will use a calculation to determine gold drop if defeated
 void Mob::setGold(int str_, int gold_)
 {
-    //will use a calculation to determine gold drop if defeated
 
     gold_ = 10 * str_;
 
     gold = gold_;
 }
 
+//returns the ingredient/resource drop rate of the mob
 int Mob::getFood()
 {
-    //returns the resource drop rate of the mob
     return food;
 }
 
+//will use a calculation to determine ingredient/resource drop if defeated
 void Mob::setFood(int str_, int food_)
 {
-    //will use a calculation to determine resource drop if defeated
     
     food_ = 5 * str_;
 
     food = food_;
 }
 
+//will return a number that randomly decides number of monster to be split based on inputs
 int Mob::getmobChoices()
 {
     return mobChosen;
 }
 
+//will set mob choices based on random rated declared based on the situation
 void Mob::setmobChoices(int mobChosen_)
 {
     mobChosen = mobChosen_;
 }
 
+//to allow a list of monsters to be split up line by line into monster name and strength/rating and
+//store those in temporary arrays for later use, also allowing the gold and food drop rates to be 
+//determined by the monster randomly chosen and split
 void Mob::setMob(string name_, int str_, int mobChosen_, int gold_, int food_)
 {
     int i = 0;
@@ -138,25 +141,3 @@ void Mob::setMob(string name_, int str_, int mobChosen_, int gold_, int food_)
         gold = gold_;
         food = food_;
 }
-
-/*bool getStatus()
-{
-    //will determine monsters status as "alive" until defeated in action or etc
-    return status;
-}
-
-void setStatus(bool status, Action action_)
-{
-    //will continuously monitor if mob is defeated in action
-    while (action_[x])
-    {
-        if (partyWin = true)
-        {
-            status = false
-        }
-        else
-        {
-            status = true;
-        }
-    }
-}*/

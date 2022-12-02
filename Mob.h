@@ -36,7 +36,6 @@ class Mob
         int str;
         int gold;
         int food;
-        //bool defeated;
 
     public:
         Mob();
@@ -52,7 +51,5 @@ class Mob
         int getmobChoices();
         void setmobChoices(int);
         void setMob(string, int, int, int, int);
-        /*bool getStatus();
-        void setStatus(bool);*/
 };
 #endif
