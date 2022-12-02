@@ -6,7 +6,6 @@
 #include <fstream>
 #include <vector>
 #include "Map.h"
-//#include "Mob.h"
 #include "Party.h"
 #include "connect4.h"
 #include "NPC.h"
