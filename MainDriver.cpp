@@ -184,6 +184,7 @@ void phaseFour(Map map, Party my_party, bool win_lose)
         my_party.printFinalStats();
         results(my_party, win_lose);
     }
+    exit(0);
     return;
 }
 
@@ -1676,6 +1677,7 @@ void NPCAction(Map map, Party my_party)
                 {
                     randomNPC.merchantMarket(map, my_party, marketUsage);
                     randomNPC.setspaceExplored(NPCused, NPCtrust, marketUsage);
+                    talkTrue = false;
                 }
                 else
                 {
@@ -2252,6 +2254,7 @@ void NPCAction(Map map, Party my_party)
             {
 
             }
+            map.removeNPC(map.getPlayerRow(), map.getPlayerCol());
             break;
         case 3:
             phaseFour(map, my_party, 0);

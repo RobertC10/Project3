@@ -294,3 +294,5 @@ Lastly once we fix what we can, we gotta comment everything with a quick algorit
 the needless comments of items never used - JW
 
 made connect 4 the thing instead of riddles -RC
+
+fixed a bug where it would keep running even when saying give up on NPC space - RC
