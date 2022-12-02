@@ -128,7 +128,7 @@ void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
                               string choice1 = "";
                               cout << "How many kg of ingredients mate [1 Gold/kg]? (Enter a positive mulitple of 5, or 0 to cancel)" << endl;
                               cin >> itemSelect1;
-                              while (itemSelect1 != )
+                              //while (itemSelect1 != )
 
                               if (itemSelect1 == 0)
                               {
