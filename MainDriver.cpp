@@ -413,7 +413,7 @@ void NormalAction(Map map, Party my_party)
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -503,7 +503,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -593,7 +593,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -683,7 +683,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -773,7 +773,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -994,7 +994,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1084,7 +1084,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1174,7 +1174,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1264,7 +1264,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1354,7 +1354,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1740,7 +1740,7 @@ void NPCAction(Map map, Party my_party)
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1830,7 +1830,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -1920,7 +1920,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2010,7 +2010,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2100,7 +2100,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2580,7 +2580,7 @@ void RoomAction(Map map, Party my_party)
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2670,7 +2670,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2760,7 +2760,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2850,7 +2850,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
@@ -2940,7 +2940,7 @@ my_party.setMemberAt(rand2, temp_member);
                         << "So the battle commences!" << endl
                         << "" << endl;
                         
-                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/my_party.getArmor())) > 0)
+                        if (((btlrand1 * w + d) - ((btlrand2 * temp_Mob.getStr())/(my_party.getArmor() + 1))) > 0)
                         {
                             cout << "Congrats! You managed to win!! Here's your rewards." << endl;
                             cout << temp_Mob.getGold() << " gold pieces & " << temp_Mob.getFood() << " kg of ingredients!" << endl;
