@@ -376,7 +376,7 @@ void NormalAction(Map map, Party my_party)
             if(rand1 == 4 || rand1 == 5)
             {
                 //monster fight
-                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
                     if (my_party.getRoomsCleared() < 1)
                     {
@@ -947,7 +947,7 @@ void NormalAction(Map map, Party my_party)
                 cout << "You challenged a nearby lurking creature!" << endl
                 << "IT'S TIME TO..D..D..D..D..D-D-D-D-DUEL!!!!" << endl;
                 cout << "" << endl;
-                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
                     if (my_party.getRoomsCleared() < 1)
                     {
@@ -1683,7 +1683,7 @@ void NPCAction(Map map, Party my_party)
                 {
                     cout << "The stranger brought out a...Pokeball?!?! I mean..uhm..sure then..? Ready your weapons!!" << endl
                     << " He sends out a strange creature!" << endl;
-                    if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                    if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
                     if (my_party.getRoomsCleared() < 1)
                     {
@@ -2512,7 +2512,7 @@ void RoomAction(Map map, Party my_party)
             {
                 my_party.subkeys(1);
                 //fight monster depending on how many rooms cleared with switch statement
-                if (my_party.getWeaponsAt(0) > 0 && my_party.getWeaponsAt(1) > 0 && my_party.getWeaponsAt(2) > 0 && my_party.getWeaponsAt(3) > 0 && my_party.getWeaponsAt(4) > 0)
+                if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
                     if (my_party.getRoomsCleared() < 1)
                     {
