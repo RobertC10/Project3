@@ -439,7 +439,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -457,7 +458,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -527,7 +529,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -545,7 +548,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -615,7 +619,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -633,7 +638,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -703,7 +709,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -721,7 +728,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -791,7 +799,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -809,7 +818,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1010,7 +1020,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1028,7 +1039,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1098,7 +1110,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1116,7 +1129,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1186,7 +1200,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1204,7 +1219,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1274,7 +1290,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1292,7 +1309,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1362,7 +1380,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1380,7 +1399,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1401,7 +1421,8 @@ void NormalAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1746,7 +1767,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1764,7 +1786,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1834,7 +1857,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1852,7 +1876,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1922,7 +1947,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -1940,7 +1966,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2010,7 +2037,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2028,7 +2056,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2098,7 +2127,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2116,7 +2146,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2137,7 +2168,8 @@ void NPCAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2575,7 +2607,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2593,7 +2626,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2663,7 +2697,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2681,7 +2716,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2751,7 +2787,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2769,7 +2806,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2839,7 +2877,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2857,7 +2896,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2927,7 +2967,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2945,7 +2986,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got dealt the nasty hand. Unfortunate..."<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -2966,7 +3008,8 @@ void RoomAction(Map map, Party my_party)
                                         temp_member = my_party.getMembersAt(rand2);
                                         }
                                     temp_member.setAlive(0);
-                                    my_party.removeMemberAt(rand2);
+my_party.setMemberAt(rand2, temp_member);
+
                                     my_party.setNumMembers();
                                     cout<<"OH NO! Your teammate "<<temp_member.getName()<<" got caught. But it's too late to help! Run!!!"<<endl
                                     <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;
@@ -3071,8 +3114,7 @@ void RoomAction(Map map, Party my_party)
                             temp_member = my_party.getMembersAt(rand2);
                         }
                         temp_member.setAlive(0);
-                        //my_party.setMemberAt(rand2, temp_member);
-                        my_party.removeMemberAt(rand2);
+                        my_party.setMemberAt(rand2, temp_member);
                         my_party.setNumMembers();
                         cout<<"OH NO! Your teammate "<<temp_member.getName()<<" is trapped in the previous room and is unable to get through. You must continue without them."<<endl
                         <<"Your party size has reduced to "<<my_party.getNumMembers()<<" members. "<<endl;

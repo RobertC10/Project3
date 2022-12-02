@@ -331,7 +331,7 @@ using namespace std;
         cout<<"+-------------+"<<endl;
         cout<<"| PARTY       |"<<endl;
         cout<<"+-------------+"<<endl; 
-        for(int i = 0; i < getNumMembers(); i++)
+        for(int i = 0; i < 5; i++)
         {
             if(getMembersAt(i).getAlive() == 1)
             {
@@ -366,7 +366,7 @@ using namespace std;
             cout<<"+-------------+"<<endl; 
             cout<<"| PARTY       |"<<endl;
             cout<<"+-------------+"<<endl; 
-            for(int i = 0; i < getNumMembers(); i++)
+            for(int i = 0; i < 5; i++)
             {
                 if(getMembersAt(i).getAlive() == 1)
                 {
@@ -434,8 +434,8 @@ using namespace std;
     bool Party::setWeapons()
     {
         string yesNo = "";
-        int squad = 0;
-        int weapon = 0;
+        string squad = "";
+        string weapon = "";
         Member temp_member;
 
         cout<<"Do you want to edit who has what weapon in your party?"<<endl;
@@ -447,7 +447,7 @@ using namespace std;
             printParty();
             cout<<"Whos weapon do you want to change?(type their position)"<<endl;
             cin>>squad;
-            while(squad != 1 && squad != 2 && squad != 3 && squad != 4 && squad != 5)
+            while(squad != "1" && squad != "2" && squad != "3" && squad != "4" && squad != "5")
             {
                 cout<<"Please enter a valid input."<<endl;
                 cin>>squad;
@@ -460,22 +460,22 @@ using namespace std;
             <<"4) Battle-Axe"<<endl
             <<"5) LongSword"<<endl;
             cin>>weapon;
-            while(weapon != -1 && weapon != 1 && weapon != 2 && weapon != 3 && weapon != 4 && weapon != 5)
+            while(weapon != "-1" && weapon != "1" && weapon != "2" && weapon != "3" && weapon != "4" && weapon != "5")
             {
                 cout<<"Please enter a valid input."<<endl;
                 cin>>weapon;
             }
-            if(weapon == -1)
+            if(weapon == "-1")
             {
-                temp_member = getMembersAt(squad-1);
+                temp_member = getMembersAt(stoi(squad)-1);
                 temp_member.setWeapon(-1);
-                setMemberAt(squad-1, temp_member);
+                setMemberAt(stoi(squad)-1, temp_member);
             }else
-            if(partyWeapons_[weapon-1] < weapons_[weapon-1])
+            if(partyWeapons_[stoi(weapon)-1] < weapons_[stoi(weapon)-1])
             {
-                temp_member = getMembersAt(squad-1);
-                temp_member.setWeapon(weapon);
-                setMemberAt(squad-1, temp_member);
+                temp_member = getMembersAt(stoi(squad)-1);
+                temp_member.setWeapon(stoi(weapon));
+                setMemberAt(stoi(squad)-1, temp_member);
             }else
             {
                 cout<<"You do not have enough of that weapon to do that."<<endl;

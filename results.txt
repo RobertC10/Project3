@@ -1,22 +1,22 @@
 RESULTS:
 +-------------------------------------------+
-YOU LOST
+YOU WON
 +-------------+
 | PARTY       |
 +-------------+
-| 1 | Fullness: 40 | Weapon: -1
-| 2 | Fullness: 42 | Weapon: -1
-| 3 | Fullness: 37 | Weapon: -1
-| 4 | Fullness: 40 | Weapon: -1
-| 5 | Fullness: 37 | Weapon: -1
+| a | Fullness: 50 | Weapon: -1
+| b | Fullness: 50 | Weapon: -1
+| c | Fullness: 50 | Weapon: -1
+| d | Fullness: 50 | Weapon: -1
+| e | Fullness: 50 | Weapon: -1
 +-------------+
 | Rooms Cleared     | 0
 | Gold              | 100
 | Treasures         | R: 0 | N: 0 | B: 0 | C: 0 | G: 0
 | Spaces Explored   | 0
 | Monsters Defeated | 0
-| Turns             | 55
+| Turns             | 0
 +------------------------------------------+
 
-Your final score was: -12500
+Your final score was: 15000
 
