@@ -60,7 +60,7 @@ class Party
         bool subTreasuresAt(int, int);
         void addKeys(int);
         bool subkeys(int);
-        void printMenu(/*Mob, */);
+        void printMenu();
         void printStats();
         void printParty();
         void addAnger(int);

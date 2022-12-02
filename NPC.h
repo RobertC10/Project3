@@ -41,14 +41,10 @@ class NPC
     public:
         NPC();
         NPC(bool, bool, bool);
-        /*int getNumNPC();
-        void setNumNPC(int);*/
         bool getspaceExplored();
         void setspaceExplored(bool, bool, bool);;
         bool getNPCPuzzle();
         void setNPCPuzzle(bool);
-        /*bool getmerchantUse();
-        void setmerchantUse(bool);*/
         void merchantMarket(Map, Party, bool);      
 };
 

@@ -13,7 +13,6 @@
 #include <ctime> 
 #include <cstdlib>
 #include <string>
-//#include "Mob.h"
 #include "actions.h"
 #include "Party.h"
 #include "NPC.h"
@@ -22,46 +21,31 @@
 #include "MainDriver.h"
 using namespace std;
 
+//default constructor
 NPC::NPC()
 {
-    //default constructor
-    //numEncounterd = 0;
     spaceExplored = false;
     puzzleCheck = false;
-    //monsters_ = "";
     merchantExit = false;
 }
 
+//parameterized constructor
 NPC::NPC(bool spaceExplored_, bool puzzleCheck_, bool merchantExit_)
 {
-    //parameterized constructor
-    //numEncounterd = numEncounterd_;
     spaceExplored = spaceExplored_;
     puzzleCheck = puzzleCheck_;
-    //monsters = monsters_;
     merchantExit = merchantExit_;
 }
-/*
-int NPC::getNumNPC()
-{
-    //returns the num of NPC's encounterd thus far
-    numEncountered = numEncounterd_;
-}
 
-void NPC::setNumNPC(int numEncounterd_)
-{
-    //if have already spoken to previous NPC's, ongoing count willl increment
-}*/
-
+//returns at the end whether the space is already explored or if the NPC interaction ends
 bool NPC::getspaceExplored()
 {
-   //returns at the end whether the space is already explored or if the NPC interaction ends
     return spaceExplored;
 }
 
+//If both the puzzle has been completed and the merchant menu for the NPC is exited, return space as explored
 void NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_, bool merchantExit_)
 {
-    //If both the puzzle has been completed and the merchant menu for the NPC is exited, return space as explored
     if (puzzleCheck_ && merchantExit_ == true)
     {
         spaceExplored_ = true;
@@ -74,12 +58,14 @@ void NPC::setspaceExplored(bool spaceExplored_, bool puzzleCheck_, bool merchant
     spaceExplored = spaceExplored_;
 }
 
+//returns the validity of the puzzle NPC presents on first interaction
 bool NPC::getNPCPuzzle()
 {
-    //returns the validity of the puzzle NPC presents on first interaction
     return puzzleCheck;
 }
 
+//establishes a puzzle to be taken in place of the once-be riddle for User to pass in order to befriend NPC. 
+//outcome of one is given back as a boolean
 void NPC::setNPCPuzzle(bool puzzleCheck_)
 {
     connect4 game = connect4();
@@ -88,17 +74,17 @@ void NPC::setNPCPuzzle(bool puzzleCheck_)
     puzzleCheck = puzzleCheck_;
 }
 
-void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
-{
-    string user = "";
-    bool shopExit = false;
-    bool choiceExit = false;
-    //will consist of multiple couts to establish a menu in which multiple options can result and produce random
+//will consist of multiple couts to establish a menu in which multiple options can result and produce random
     //products for purchase and will run through series of conditions taking in 
     //party resources to be used for checking/purchasing
     //For specific conditions: Prices will vary per item quality as well as, for treasures, a certain number 
     //of rooms must be cleared in order to sell the respective treasure
     //Furthermore, if invalid inputs are given, the comp will request valid response and redo merhcant menu
+void NPC::merchantMarket(Map map_, Party party_, bool merchantExit_)
+{
+    string user = "";
+    bool shopExit = false;
+    bool choiceExit = false;
     party_.printStats();
   cout<<"There is a prisoner here? He looks kinda odd though..."<<endl;
   cout<<"He asks you if you want to buy something [Y/N]?"<<endl;   
