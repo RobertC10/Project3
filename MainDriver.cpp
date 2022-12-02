@@ -1664,11 +1664,6 @@ void NPCAction(Map map, Party my_party)
                 cout<<"What direction do you want to move? w, a, s, or d:";
                 cin>>moveDirection;
                 truefalse = map.move(moveDirection[0]);
-
-                if (randomNPC.getspaceExplored() == true)
-                {
-                    map.removeNPC(NPCrow, NPCcol);
-                }
             }
             //reduces parties hunger by 1 if unlucky
             for(int i = 0; i < 5; i++)
@@ -1698,7 +1693,11 @@ void NPCAction(Map map, Party my_party)
                 {
                     randomNPC.merchantMarket(map, my_party, marketUsage);
                     randomNPC.setspaceExplored(NPCused, NPCtrust, marketUsage);
-                    talkTrue = false;
+                    
+                    if (randomNPC.getspaceExplored() == true)
+                    {
+                        map.removeNPC(NPCrow, NPCcol);
+                    }
                 }
                 else
                 {
