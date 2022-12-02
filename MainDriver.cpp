@@ -1681,7 +1681,7 @@ void NPCAction(Map map, Party my_party)
             //talk to NPC
            while (talkTrue == true)
            {
-           cout << "Before I agree to do anything...you must answer this riddle of mine weary lad. Dare you take on me in this witty battle? (y/n)" << endl;
+           cout << "Before I agree to do anything...you must solve this puzzle of mine weary lad. Dare you take on me in this witty battle? (y/n)" << endl;
            cin >> NPCaccept;
            if (NPCaccept[0] == 'y' || NPCaccept[0] == 'Y')
            {
