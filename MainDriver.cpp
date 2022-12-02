@@ -378,7 +378,7 @@ void NormalAction(Map map, Party my_party)
                 //monster fight
                 if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
-                    if (my_party.getRoomsCleared() == 1)
+                    if (my_party.getRoomsCleared() == 0)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -468,7 +468,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 2)
+                    if (my_party.getRoomsCleared() == 1)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -558,7 +558,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 3)
+                    if (my_party.getRoomsCleared() == 2)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -648,7 +648,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 4)
+                    if (my_party.getRoomsCleared() == 3)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -738,7 +738,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 5)
+                    if (my_party.getRoomsCleared() == 4)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -959,7 +959,7 @@ my_party.setMemberAt(rand2, temp_member);
                 cout << "" << endl;
                 if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
-                    if (my_party.getRoomsCleared() == 1)
+                    if (my_party.getRoomsCleared() == 0)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1049,7 +1049,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 2)
+                    if (my_party.getRoomsCleared() == 1)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1139,7 +1139,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 3)
+                    if (my_party.getRoomsCleared() == 2)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1229,7 +1229,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 4)
+                    if (my_party.getRoomsCleared() == 3)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1319,7 +1319,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 5)
+                    if (my_party.getRoomsCleared() == 4)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1705,7 +1705,7 @@ void NPCAction(Map map, Party my_party)
                     << " He sends out a strange creature!" << endl;
                     if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
-                    if (my_party.getRoomsCleared() == 1)
+                    if (my_party.getRoomsCleared() == 0)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1795,7 +1795,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 2)
+                    if (my_party.getRoomsCleared() == 1)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1885,7 +1885,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 3)
+                    if (my_party.getRoomsCleared() == 2)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -1975,7 +1975,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 4)
+                    if (my_party.getRoomsCleared() == 3)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2065,7 +2065,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 5)
+                    if (my_party.getRoomsCleared() == 4)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2545,7 +2545,7 @@ void RoomAction(Map map, Party my_party)
                 //fight monster depending on how many rooms cleared with switch statement
                 if (my_party.getWeaponsAt(0) > 0 || my_party.getWeaponsAt(1) > 0 || my_party.getWeaponsAt(2) > 0 || my_party.getWeaponsAt(3) > 0 || my_party.getWeaponsAt(4) > 0)
                 {
-                    if (my_party.getRoomsCleared() == 1)
+                    if (my_party.getRoomsCleared() == 0)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2635,7 +2635,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 2)
+                    if (my_party.getRoomsCleared() == 1)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2725,7 +2725,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 3)
+                    if (my_party.getRoomsCleared() == 2)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2815,7 +2815,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 4)
+                    if (my_party.getRoomsCleared() == 3)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
@@ -2905,7 +2905,7 @@ my_party.setMemberAt(rand2, temp_member);
                             my_party.addTurns(1);
                         }
                     }
-                    if (my_party.getRoomsCleared() == 5)
+                    if (my_party.getRoomsCleared() == 4)
                     {
                         btlrand1 = rand() % 6;
                         btlrand2 = rand() % 6;
